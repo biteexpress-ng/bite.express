@@ -28,7 +28,10 @@
       "subtitle": "Order from thousands of restaurants, supermarkets, pharmacies and local shops. Live tracking, fair prices, every neighbourhood.",
       "addressPlaceholder": "Enter your delivery address",
       "cta": "Find food",
-      "trust": "Trusted by thousands across 10+ cities in Nigeria"
+      "trust": "Trusted by thousands across 10+ cities in Nigeria",
+      "chipTracking": "Live order tracking",
+      "chipEta": "25–45 min avg. delivery",
+      "chipPayments": "Card · transfer · cash"
     },
     "modules": {
       "eyebrow": "Everything in one app",

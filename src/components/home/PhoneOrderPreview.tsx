@@ -11,7 +11,11 @@ import {
 
 export function PhoneOrderPreview() {
   return (
-    <div className="relative mx-auto w-full max-w-[24rem]">
+    <div
+      aria-hidden
+      role="presentation"
+      className="relative mx-auto w-full max-w-[24rem]"
+    >
       <div className="premium-shadow relative rounded-[2.5rem] border border-white/15 bg-white/10 p-2 backdrop-blur-2xl">
         <div className="relative aspect-[9/16] overflow-hidden rounded-[2rem] border border-white/10 bg-[#050505]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,107,74,0.18),transparent_30%),radial-gradient(circle_at_90%_20%,rgba(222,22,0,0.2),transparent_28%),linear-gradient(180deg,#111,#030303)]" />
@@ -88,28 +92,19 @@ export function PhoneOrderPreview() {
                 </div>
                 <PackageCheck className="text-brand-red" size={23} />
               </div>
+              {/* Decorative mock controls — divs (not buttons) so they
+                  stay out of the tab order and screen-reader tree. */}
               <div className="mt-4 flex items-center gap-2">
-                <button
-                  type="button"
-                  className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full bg-ink-900 text-xs font-semibold text-white"
-                >
+                <div className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full bg-ink-900 text-xs font-semibold text-white">
                   <MessageCircle size={15} />
                   Chat rider
-                </button>
-                <button
-                  type="button"
-                  aria-label="Call rider"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-ink-900"
-                >
+                </div>
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-ink-900">
                   <Phone size={15} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Order protected"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-brand-red"
-                >
+                </div>
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-brand-red">
                   <ShieldCheck size={15} />
-                </button>
+                </div>
               </div>
             </div>
           </div>

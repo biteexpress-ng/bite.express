@@ -22,7 +22,7 @@ export function HowItWorksTimeline({ eyebrow, title, subtitle, steps }: Props) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="bg-[#f8f3ee] py-20 sm:py-28">
+    <section className="bg-white py-20 sm:py-28">
       <div className="mx-auto w-full max-w-[80rem] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <div className="section-eyebrow mx-auto">

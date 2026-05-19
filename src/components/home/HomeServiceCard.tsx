@@ -9,6 +9,7 @@ type Props = {
 };
 
 export function HomeServiceCard({ service, index }: Props) {
+  void index; // retained in API for future variant work; not used today.
   const Icon = service.icon;
 
   return (
@@ -16,7 +17,6 @@ export function HomeServiceCard({ service, index }: Props) {
       href={service.href}
       className={cn(
         "group relative min-h-[19rem] overflow-hidden rounded-[1.75rem] border border-ink-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-red/35 hover:shadow-elevated",
-        index === 0 && "lg:col-span-2",
       )}
     >
       <div
@@ -49,10 +49,7 @@ export function HomeServiceCard({ service, index }: Props) {
         </div>
 
         <div className="mt-10 max-w-md">
-          <p className="text-xs font-semibold uppercase text-ink-500">
-            Essential {String(index + 1).padStart(2, "0")}
-          </p>
-          <h3 className="mt-3 font-serif text-3xl leading-none tracking-normal text-ink-900">
+          <h3 className="font-serif text-3xl leading-none tracking-normal text-ink-900">
             {service.name}
           </h3>
           <p className="mt-4 text-base leading-7 text-ink-600">

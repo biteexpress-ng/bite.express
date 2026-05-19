@@ -81,6 +81,9 @@ export default async function HomePage() {
         subtitle={t("hero.subtitle")}
         addressPlaceholder={t("hero.addressPlaceholder")}
         cta={t("hero.cta")}
+        chipTracking={t("hero.chipTracking")}
+        chipEta={t("hero.chipEta")}
+        chipPayments={t("hero.chipPayments")}
       />
 
       {/* 2. DELIVERY MODULES — One app. Every essential. */}

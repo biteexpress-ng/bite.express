@@ -39,17 +39,18 @@ export function FloatingServiceCard({
 
   return (
     <motion.div
-      className={cn("absolute hidden sm:block", className)}
+      aria-hidden
+      className={cn("absolute hidden lg:block", className)}
       initial={reducedMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
       animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.55, delay, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 1, 0.5, 1] }}
     >
       <motion.div
         animate={reducedMotion ? undefined : { y: [0, -8, 0] }}
         transition={{
-          duration: 6 + delay,
+          duration: 9 + delay,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: [0.45, 0, 0.55, 1],
         }}
         className="glass-card flex min-w-36 items-center gap-3 rounded-2xl px-4 py-3 text-white"
       >

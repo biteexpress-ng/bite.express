@@ -11,13 +11,10 @@ type Props = {
   subtitle: string;
   addressPlaceholder: string;
   cta: string;
+  chipTracking: string;
+  chipEta: string;
+  chipPayments: string;
 };
-
-const trustChips = [
-  { label: "Live order tracking", Icon: ShieldCheck },
-  { label: "25-45 min avg. delivery", Icon: Clock },
-  { label: "Card · transfer · cash", Icon: Wallet },
-];
 
 function ExpressiveTitle({ title }: { title: string }) {
   const [before, after = ""] = title.split("Delivered");
@@ -39,14 +36,22 @@ export function HeroShowcase({
   subtitle,
   addressPlaceholder,
   cta,
+  chipTracking,
+  chipEta,
+  chipPayments,
 }: Props) {
+  const trustChips = [
+    { label: chipTracking, Icon: ShieldCheck },
+    { label: chipEta, Icon: Clock },
+    { label: chipPayments, Icon: Wallet },
+  ];
   return (
-    <section className="hero-radial-bg relative isolate overflow-hidden bg-brand-black pt-12 pb-20 text-white sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28">
+    <section className="hero-radial-bg relative isolate overflow-hidden bg-brand-black pt-24 pb-20 text-white sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-32">
       <MotionDeliveryRibbon />
 
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f8f3ee] to-transparent"
+        className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent"
       />
 
       <Container className="relative z-10">
@@ -105,7 +110,7 @@ export function HeroShowcase({
             </div>
           </div>
 
-          <div className="relative min-h-[34rem] lg:min-h-[43rem]">
+          <div className="relative min-h-[28rem] sm:min-h-[32rem] lg:min-h-[43rem]">
             <PhoneOrderPreview />
             <FloatingServiceCard
               label="Food"
