@@ -6,6 +6,7 @@ import {
 } from "@/lib/forms/job-application";
 import { sendMail } from "@/lib/mailgun";
 import { jobApplicationEmail } from "@/lib/email-templates/job-application";
+import { fetchJob } from "@/lib/jobs-api";
 import { siteConfig } from "@/lib/site-config";
 
 export type JobActionResult =
@@ -13,9 +14,10 @@ export type JobActionResult =
   | { ok: false; message: string };
 
 /**
- * Validates the application + CV, then emails the careers inbox with
- * the CV attached. Phase 4+ will also POST to a Laravel jobs endpoint
- * for ATS-style tracking; action signature stays stable.
+ * Validates the application + CV, fetches the role from the backend
+ * to confirm it's still open, then emails the careers inbox with
+ * the CV attached. Per-role apply_email overrides the global
+ * NOTIFY_EMAIL_CAREERS recipient.
  */
 export async function submitJobApplication(
   formData: FormData,
@@ -43,17 +45,28 @@ export async function submitJobApplication(
     };
   }
 
+  // Fetch the role to confirm it's still open and to pick up per-role
+  // apply_email override. If the backend is unreachable we still accept
+  // the application — don't lose the lead to a transient infra issue.
+  const job = await fetchJob(parsed.data.jobSlug);
+  const jobTitle = job?.title ?? parsed.data.jobSlug;
+
   const cvBytes = new Uint8Array(await cvCheck.file.arrayBuffer());
   console.log("[job-application]:", {
     ...parsed.data,
     cv: { name: cvCheck.file.name, size: cvCheck.file.size, type: cvCheck.file.type },
   });
 
-  const to = process.env.NOTIFY_EMAIL_CAREERS ?? siteConfig.email;
-  const email = jobApplicationEmail(parsed.data, {
-    name: cvCheck.file.name,
-    size: cvCheck.file.size,
-  });
+  const to =
+    job?.apply_email ||
+    process.env.NOTIFY_EMAIL_CAREERS ||
+    siteConfig.email;
+
+  const email = jobApplicationEmail(
+    parsed.data,
+    { name: cvCheck.file.name, size: cvCheck.file.size },
+    jobTitle,
+  );
 
   const res = await sendMail({
     to,

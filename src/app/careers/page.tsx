@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowUpRight, Briefcase, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  Briefcase,
+  HandHeart,
+  Heart,
+  MapPin,
+  Sparkles,
+  Target,
+} from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
@@ -9,8 +17,14 @@ import { FeatureCard } from "@/components/ui/feature-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/jsonld";
-import { jobsByRecency, type Job } from "@/lib/jobs";
-import { HandHeart, Heart, Sparkles, Target } from "lucide-react";
+import {
+  fetchJobs,
+  groupJobsByTeam,
+  jobsByRecency,
+  type JobListItem,
+} from "@/lib/jobs-api";
+
+export const revalidate = 900;
 
 export const metadata = buildMetadata({
   title: "Careers at BiteExpress — open roles across Nigeria",
@@ -27,18 +41,18 @@ export const metadata = buildMetadata({
   ],
 });
 
-function workArrangementBadge(j: Job) {
-  return `${j.workArrangement} · ${j.city}`;
-}
-
-function employmentLabel(j: Job) {
-  return j.employmentType
+function employmentLabel(j: JobListItem) {
+  return j.employment_type
     .toLowerCase()
     .replace("_", " ")
     .replace(/^./, (s) => s.toUpperCase());
 }
 
-function JobCard({ job }: { job: Job }) {
+function workArrangementBadge(j: JobListItem) {
+  return `${j.work_arrangement} · ${j.city}`;
+}
+
+function JobCard({ job }: { job: JobListItem }) {
   return (
     <Link
       href={`/careers/${job.slug}`}
@@ -46,24 +60,35 @@ function JobCard({ job }: { job: Job }) {
     >
       <div className="flex-1">
         <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wider text-ink-600">
-          <span className="rounded-full bg-ink-100 px-2.5 py-1 text-ink-700">
-            {job.team}
-          </span>
+          {job.team.name && (
+            <span className="rounded-full bg-ink-100 px-2.5 py-1 text-ink-700">
+              {job.team.name}
+            </span>
+          )}
           <span>{employmentLabel(job)}</span>
+          {job.featured && (
+            <span className="rounded-full bg-brand-red/10 px-2.5 py-1 text-brand-red">
+              ★ Featured
+            </span>
+          )}
         </div>
         <h3 className="mt-3 font-serif text-xl leading-tight text-ink-900 sm:text-2xl">
           {job.title}
         </h3>
-        <p className="mt-2 max-w-2xl text-sm text-ink-600">{job.summary}</p>
+        {job.summary && (
+          <p className="mt-2 max-w-2xl text-sm text-ink-600">{job.summary}</p>
+        )}
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-600">
           <span className="inline-flex items-center gap-1.5">
             <MapPin size={12} className="text-brand-red" />
             {workArrangementBadge(job)}
           </span>
-          <span className="inline-flex items-center gap-1.5">
-            <Briefcase size={12} className="text-brand-red" />
-            {job.team}
-          </span>
+          {job.team.name && (
+            <span className="inline-flex items-center gap-1.5">
+              <Briefcase size={12} className="text-brand-red" />
+              {job.team.name}
+            </span>
+          )}
         </div>
       </div>
       <ArrowUpRight
@@ -76,17 +101,9 @@ function JobCard({ job }: { job: Job }) {
 
 export default async function CareersPage() {
   const t = await getTranslations("careers");
-  const allJobs = jobsByRecency();
-
-  // Group by team for the listing
-  const groups = Array.from(
-    allJobs.reduce((acc, j) => {
-      const list = acc.get(j.team) ?? [];
-      list.push(j);
-      acc.set(j.team, list);
-      return acc;
-    }, new Map<Job["team"], Job[]>()),
-  );
+  const { jobs } = await fetchJobs({ perPage: 100 });
+  const sorted = jobsByRecency(jobs);
+  const groups = groupJobsByTeam(sorted);
 
   return (
     <>
@@ -117,7 +134,7 @@ export default async function CareersPage() {
         </Container>
       </section>
 
-      {/* VALUES — what we look for */}
+      {/* VALUES */}
       <Section background="white" padding="lg">
         <Container>
           <SectionHeading
@@ -159,7 +176,7 @@ export default async function CareersPage() {
         <Container>
           <SectionHeading
             eyebrow="Open roles"
-            title={`${allJobs.length} open role${allJobs.length === 1 ? "" : "s"} across the team.`}
+            title={`${sorted.length} open role${sorted.length === 1 ? "" : "s"} across the team.`}
           />
 
           {groups.length === 0 ? (

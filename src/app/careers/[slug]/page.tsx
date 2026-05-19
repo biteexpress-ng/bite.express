@@ -5,46 +5,55 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { ButtonLink } from "@/components/ui/button";
+import { Markdown } from "@/components/content/markdown";
 import { JobApplicationForm } from "@/components/forms/job-application-form";
 import { JsonLd } from "@/components/seo/json-ld";
-import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, jobPostingSchema } from "@/lib/jsonld";
-import { getJob, jobs, type Job } from "@/lib/jobs";
-import { absoluteUrl } from "@/lib/seo";
+import { fetchJob, fetchJobs, type JobDetail } from "@/lib/jobs-api";
 
 type RouteProps = { params: Promise<{ slug: string }> };
 
-/** Pre-render every job slug at build time. */
-export function generateStaticParams() {
+export const revalidate = 900;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  // Pre-render the current open roles at build time; new ones added in
+  // admin afterwards get rendered on demand thanks to dynamicParams.
+  const { jobs } = await fetchJobs({ perPage: 100 });
   return jobs.map((j) => ({ slug: j.slug }));
 }
 
 export async function generateMetadata({ params }: RouteProps) {
   const { slug } = await params;
-  const job = getJob(slug);
+  const job = await fetchJob(slug);
   if (!job) return {};
   return buildMetadata({
-    title: `${job.title} — Careers at BiteExpress`,
-    description: job.summary,
+    title: job.meta_title ?? `${job.title} — Careers at BiteExpress`,
+    description:
+      job.meta_description ??
+      job.summary ??
+      `Apply for the ${job.title} role at BiteExpress, based in ${job.city}.`,
     path: `/careers/${job.slug}`,
     keywords: [
       job.title,
       `${job.title} ${job.city}`,
-      `${job.team} jobs Nigeria`,
+      job.team.name ? `${job.team.name} jobs Nigeria` : undefined,
       "BiteExpress careers",
       "delivery startup jobs",
-    ],
+    ].filter((k): k is string => Boolean(k)),
   });
 }
 
-function employmentLabel(j: Job) {
-  return j.employmentType
+function employmentLabel(j: JobDetail) {
+  return j.employment_type
     .toLowerCase()
     .replace("_", " ")
     .replace(/^./, (s) => s.toUpperCase());
 }
 
-function formatDate(iso: string) {
+function formatDate(iso: string | null) {
+  if (!iso) return "—";
   return new Date(iso).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
@@ -54,7 +63,7 @@ function formatDate(iso: string) {
 
 export default async function JobDetailPage({ params }: RouteProps) {
   const { slug } = await params;
-  const job = getJob(slug);
+  const job = await fetchJob(slug);
   if (!job) notFound();
 
   const applyUrl = absoluteUrl(`/careers/${job.slug}#apply`);
@@ -73,10 +82,10 @@ export default async function JobDetailPage({ params }: RouteProps) {
         id="ld-jobposting"
         data={jobPostingSchema({
           title: job.title,
-          description: `<p>${job.description}</p><h3>Responsibilities</h3><ul>${job.responsibilities.map((r) => `<li>${r}</li>`).join("")}</ul><h3>Requirements</h3><ul>${job.requirements.map((r) => `<li>${r}</li>`).join("")}</ul>`,
-          datePosted: job.datePosted,
-          validThrough: job.validThrough,
-          employmentType: job.employmentType,
+          description: `<p>${job.description ?? job.summary ?? ""}</p><h3>Responsibilities</h3><ul>${job.responsibilities.map((r) => `<li>${r}</li>`).join("")}</ul><h3>Requirements</h3><ul>${job.requirements.map((r) => `<li>${r}</li>`).join("")}</ul>`,
+          datePosted: job.date_posted ?? new Date().toISOString().slice(0, 10),
+          validThrough: job.valid_through ?? undefined,
+          employmentType: job.employment_type,
           city: job.city,
           state: job.state,
           applyUrl,
@@ -95,12 +104,12 @@ export default async function JobDetailPage({ params }: RouteProps) {
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-2 text-xs uppercase tracking-wider text-ink-600">
-            <Eyebrow>{job.team}</Eyebrow>
+            {job.team.name && <Eyebrow>{job.team.name}</Eyebrow>}
             <span className="rounded-full bg-ink-100 px-2.5 py-1 text-ink-700">
               {employmentLabel(job)}
             </span>
             <span className="rounded-full bg-ink-100 px-2.5 py-1 text-ink-700">
-              {job.workArrangement}
+              {job.work_arrangement}
             </span>
           </div>
 
@@ -113,14 +122,18 @@ export default async function JobDetailPage({ params }: RouteProps) {
               <MapPin size={14} className="text-brand-red" />
               {job.city}, {job.state}
             </span>
-            <span className="inline-flex items-center gap-2">
-              <Briefcase size={14} className="text-brand-red" />
-              {job.team}
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Calendar size={14} className="text-brand-red" />
-              Posted {formatDate(job.datePosted)}
-            </span>
+            {job.team.name && (
+              <span className="inline-flex items-center gap-2">
+                <Briefcase size={14} className="text-brand-red" />
+                {job.team.name}
+              </span>
+            )}
+            {job.date_posted && (
+              <span className="inline-flex items-center gap-2">
+                <Calendar size={14} className="text-brand-red" />
+                Posted {formatDate(job.date_posted)}
+              </span>
+            )}
           </div>
 
           <div className="mt-8">
@@ -134,44 +147,54 @@ export default async function JobDetailPage({ params }: RouteProps) {
       {/* DESCRIPTION */}
       <Section background="white" padding="md">
         <Container size="narrow">
-          <article className="legal-prose">
-            <p className="text-lg">{job.description}</p>
+          {job.description && <Markdown content={job.description} className="text-lg" />}
 
-            <h2>What you'll do</h2>
-            <ul>
-              {job.responsibilities.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
+          {job.responsibilities.length > 0 && (
+            <article className="legal-prose mt-10">
+              <h2>What you'll do</h2>
+              <ul>
+                {job.responsibilities.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </article>
+          )}
 
-            <h2>What we're looking for</h2>
-            <ul>
-              {job.requirements.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
+          {job.requirements.length > 0 && (
+            <article className="legal-prose mt-8">
+              <h2>What we're looking for</h2>
+              <ul>
+                {job.requirements.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </article>
+          )}
 
-            {job.niceToHaves && job.niceToHaves.length > 0 && (
-              <>
-                <h2>Nice to have</h2>
-                <ul>
-                  {job.niceToHaves.map((r) => (
-                    <li key={r}>{r}</li>
-                  ))}
-                </ul>
-              </>
-            )}
+          {job.nice_to_haves.length > 0 && (
+            <article className="legal-prose mt-8">
+              <h2>Nice to have</h2>
+              <ul>
+                {job.nice_to_haves.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </article>
+          )}
 
-            <h2>What you'll get</h2>
-            <ul>
-              {job.perks.map((p) => (
-                <li key={p} className="flex items-start gap-2">
-                  <CheckCircle2 size={18} className="mt-1 flex-none text-brand-red" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+          {job.perks.length > 0 && (
+            <article className="legal-prose mt-8">
+              <h2>What you'll get</h2>
+              <ul>
+                {job.perks.map((p) => (
+                  <li key={p} className="flex items-start gap-2">
+                    <CheckCircle2 size={18} className="mt-1 flex-none text-brand-red" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          )}
         </Container>
       </Section>
 

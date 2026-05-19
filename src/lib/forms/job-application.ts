@@ -1,7 +1,4 @@
 import { z } from "zod";
-import { jobs } from "@/lib/jobs";
-
-const jobSlugs = jobs.map((j) => j.slug) as [string, ...string[]];
 
 const MAX_CV_BYTES = 5 * 1024 * 1024; // 5 MB
 export const ACCEPTED_CV_TYPES = [
@@ -10,8 +7,14 @@ export const ACCEPTED_CV_TYPES = [
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
 
+/**
+ * Job slugs are dynamic (driven by the backend CMS), so we validate
+ * the slug as a free-form string. The server action looks the role
+ * up via the API and refuses applications for slugs that don't
+ * resolve to an active, published role.
+ */
 export const jobApplicationSchema = z.object({
-  jobSlug: z.enum(jobSlugs),
+  jobSlug: z.string().min(1, "Job slug missing"),
   fullName: z.string().min(2, "Tell us your name").max(120),
   email: z.string().email("That doesn't look like a valid email"),
   phone: z
@@ -39,8 +42,6 @@ export const jobApplicationSchema = z.object({
 
 export type JobApplicationValues = z.infer<typeof jobApplicationSchema>;
 
-/** File validation runs on the server because Zod doesn't handle File natively
- *  across server-action serialization boundaries. */
 export function validateCvFile(file: File | null | undefined):
   | { ok: true; file: File }
   | { ok: false; message: string } {

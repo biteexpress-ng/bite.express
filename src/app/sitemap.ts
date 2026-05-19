@@ -2,13 +2,23 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { cities } from "@/lib/cities";
 import { cuisines } from "@/lib/cuisines";
-import { jobs } from "@/lib/jobs";
+import { fetchJobs } from "@/lib/jobs-api";
+import { fetchBlogPosts } from "@/lib/blog-api";
+import { fetchNewsItems } from "@/lib/news-api";
 
 /**
- * Dynamic sitemap. Sources today: static routes + curated cities +
- * cuisines + jobs. Phase 5 will append blog/press.
+ * Dynamic sitemap. Static surfaces (home, vendors, riders, etc.) plus
+ * curated registries (cities, cuisines) plus live CMS feeds for jobs,
+ * blog and news. Backend feeds tolerate failure — if the API is down
+ * the sitemap still renders the static + curated portion rather than
+ * 500-ing.
+ *
+ * Revalidated hourly. The /api/revalidate webhook bumps /sitemap.xml
+ * on every CMS publish so search engines get fresh URLs faster.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -19,6 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/careers", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/cities", priority: 0.9, changeFrequency: "weekly" as const },
     { path: "/cuisines", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/blog", priority: 0.9, changeFrequency: "daily" as const },
+    { path: "/press", priority: 0.7, changeFrequency: "weekly" as const },
     { path: "/about", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/help", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.5, changeFrequency: "monthly" as const },
@@ -47,12 +59,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Fetch CMS content in parallel; each falls back to [] on infra issues.
+  const [{ jobs }, { posts }, { items: newsItems }] = await Promise.all([
+    fetchJobs({ perPage: 100 }),
+    fetchBlogPosts({ perPage: 100 }),
+    fetchNewsItems({ perPage: 100 }),
+  ]);
+
   const jobRoutes: MetadataRoute.Sitemap = jobs.map((j) => ({
     url: absoluteUrl(`/careers/${j.slug}`),
-    lastModified: new Date(j.datePosted),
+    lastModified: j.date_posted ? new Date(j.date_posted) : now,
     changeFrequency: "weekly",
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...cityRoutes, ...cuisineRoutes, ...jobRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: absoluteUrl(`/blog/${p.slug}`),
+    lastModified: p.published_at ? new Date(p.published_at) : now,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  // Skip "coverage" items that redirect externally — Google should crawl
+  // the source, not our redirect.
+  const pressRoutes: MetadataRoute.Sitemap = newsItems
+    .filter((i) => !(i.type === "coverage" && i.source?.url))
+    .map((i) => ({
+      url: absoluteUrl(`/press/${i.slug}`),
+      lastModified: i.published_at ? new Date(i.published_at) : now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+
+  return [
+    ...staticRoutes,
+    ...cityRoutes,
+    ...cuisineRoutes,
+    ...jobRoutes,
+    ...blogRoutes,
+    ...pressRoutes,
+  ];
 }

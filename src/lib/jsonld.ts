@@ -185,6 +185,7 @@ export function articleSchema(input: {
   datePublished: string;
   dateModified?: string;
   authorName: string;
+  authorRole?: string;
 }): WithContext<Article> {
   return {
     "@context": "https://schema.org",
@@ -197,7 +198,48 @@ export function articleSchema(input: {
     author: {
       "@type": "Person",
       name: input.authorName,
+      ...(input.authorRole ? { jobTitle: input.authorRole } : {}),
     },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.legalName,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/brand/logo.svg"),
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": input.url,
+    },
+  };
+}
+
+/**
+ * NewsArticle schema for press releases and announcements. Google
+ * News and Discover surface NewsArticle distinctly from Article —
+ * use this for /press/[slug] detail pages.
+ */
+export function newsArticleSchema(input: {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  datePublished: string;
+  dateModified?: string;
+  authorName?: string;
+}): WithContext<Article> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: input.title,
+    description: input.description,
+    image: input.image,
+    datePublished: input.datePublished,
+    dateModified: input.dateModified ?? input.datePublished,
+    author: input.authorName
+      ? { "@type": "Person", name: input.authorName }
+      : { "@type": "Organization", name: siteConfig.legalName },
     publisher: {
       "@type": "Organization",
       name: siteConfig.legalName,

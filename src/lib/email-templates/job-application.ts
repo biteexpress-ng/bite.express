@@ -1,14 +1,12 @@
 import { esc } from "@/lib/mailgun";
 import { siteConfig } from "@/lib/site-config";
-import { getJob } from "@/lib/jobs";
 import type { JobApplicationValues } from "@/lib/forms/job-application";
 
 export function jobApplicationEmail(
   v: JobApplicationValues,
   cv: { name: string; size: number },
+  jobTitle: string,
 ): { subject: string; text: string; html: string } {
-  const job = getJob(v.jobSlug);
-  const jobTitle = job?.title ?? v.jobSlug;
   const cvSizeKb = Math.round(cv.size / 1024);
 
   const rows: Array<[string, string]> = [
