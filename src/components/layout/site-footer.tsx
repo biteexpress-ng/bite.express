@@ -6,6 +6,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from "@/components/brand/social-icons";
+import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { Container } from "@/components/ui/container";
 import { footerNav, siteConfig } from "@/lib/site-config";
 
@@ -62,13 +63,14 @@ export function SiteFooter() {
   return (
     <footer className="mt-24 bg-brand-black text-white">
       <Container className="py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
             <Logo variant="dark" className="h-10 md:h-12" />
             <p className="mt-5 max-w-xs text-sm text-white/70">
               Delivery, reimagined for every neighbourhood.
             </p>
-            <div className="mt-6 flex items-center gap-3">
+            <NewsletterForm variant="dark" className="mt-8 max-w-sm" />
+            <div className="mt-8 flex items-center gap-3">
               {social.map(({ href, label, Icon }) => (
                 <a
                   key={label}
