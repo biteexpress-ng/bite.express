@@ -1,77 +1,94 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/cn";
 
 const ribbonText =
   "FOOD • GROCERY • PHARMACY • PARCEL • PETROL • DELIVERED";
 
+/**
+ * Diagonal glowing red "delivery" ribbon that sweeps across the
+ * bottom of the hero. Composed from:
+ *   - Two thin glowing edge lines (top + bottom).
+ *   - Two stacked text marquees moving in opposite directions for
+ *     parallax depth.
+ *   - A faint diagonal red wash behind everything.
+ *
+ * Purely decorative — aria-hidden, pointer-events-none, and the
+ * marquee falls back to a static state under prefers-reduced-motion
+ * (the .motion-ribbon-track CSS keyframe is suppressed globally).
+ */
 export function MotionDeliveryRibbon() {
-  const reducedMotion = useReducedMotion();
+  const reduced = useReducedMotion();
 
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      role="presentation"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-72 overflow-hidden sm:h-80 lg:h-96"
     >
-      <svg
-        className="absolute left-1/2 top-[9%] h-[62rem] w-[92rem] -translate-x-1/2 opacity-80"
-        viewBox="0 0 1440 960"
-        fill="none"
+      {/* The rotating band — wider than viewport so the diagonal
+          rotation doesn't expose its ends. */}
+      <div
+        className={cn(
+          "absolute left-1/2 top-1/2 w-[180%] -translate-x-1/2 -translate-y-1/2 -rotate-[8deg]",
+        )}
       >
-        <defs>
-          <linearGradient id="hero-route-gradient" x1="173" y1="222" x2="1259" y2="702">
-            <stop stopColor="#ff6b4a" stopOpacity="0" />
-            <stop offset="0.25" stopColor="#ff6b4a" stopOpacity="0.7" />
-            <stop offset="0.55" stopColor="#de1600" />
-            <stop offset="1" stopColor="#ff6b4a" stopOpacity="0" />
-          </linearGradient>
-          <filter id="hero-route-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="9" result="blur" />
-            <feColorMatrix
-              in="blur"
-              type="matrix"
-              values="1 0 0 0 0.87 0 0.2 0 0 0.09 0 0 0.2 0 0 0 0 0 0.9 0"
-            />
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        <path
-          d="M78 651C246 520 318 205 548 247C733 281 721 553 914 548C1101 543 1163 342 1350 414"
-          stroke="url(#hero-route-gradient)"
-          strokeWidth="2"
-          opacity="0.35"
+        {/* Faint red wash behind the ribbon */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-1/2 -z-10 h-40 -translate-y-1/2 bg-gradient-to-b from-transparent via-brand-red/8 to-transparent blur-2xl"
         />
-        <motion.path
-          d="M78 651C246 520 318 205 548 247C733 281 721 553 914 548C1101 543 1163 342 1350 414"
-          stroke="url(#hero-route-gradient)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeDasharray="20 24"
-          filter="url(#hero-route-glow)"
-          animate={
-            reducedMotion
-              ? { strokeDashoffset: 0 }
-              : { strokeDashoffset: [0, -220] }
-          }
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      </svg>
 
-      <div className="motion-ribbon absolute left-1/2 top-[18%] w-[72rem] -translate-x-1/2 rotate-[-8deg] opacity-65">
-        <div className="motion-ribbon-track">
-          <span>{ribbonText}</span>
-          <span>{ribbonText}</span>
-          <span>{ribbonText}</span>
-          <span>{ribbonText}</span>
+        {/* Top glowing edge */}
+        <div className="h-px bg-brand-red shadow-[0_0_18px_3px_rgba(222,22,0,0.55),0_0_4px_1px_rgba(255,107,74,0.7)]" />
+        <div className="mt-2 h-px bg-brand-red/30" />
+
+        {/* Marquee row 1 — moves left */}
+        <div className="motion-ribbon mt-3 bg-gradient-to-r from-transparent via-brand-red/10 to-transparent">
+          <div className="motion-ribbon-track text-base font-bold tracking-[0.22em] text-brand-red/80 sm:text-lg">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={`a-${i}`} className="inline-flex items-center gap-3">
+                <span>{ribbonText}</span>
+                <span aria-hidden className="h-1 w-1 rounded-full bg-brand-orange/80" />
+              </span>
+            ))}
+          </div>
         </div>
+
+        {/* Marquee row 2 — moves the opposite way for depth */}
+        <div
+          className={cn(
+            "motion-ribbon mt-1 bg-gradient-to-r from-transparent via-brand-red/15 to-transparent",
+          )}
+        >
+          <div
+            className="motion-ribbon-track text-base font-bold tracking-[0.22em] text-brand-red/55 sm:text-lg"
+            style={
+              reduced
+                ? undefined
+                : { animationDirection: "reverse", animationDuration: "30s" }
+            }
+          >
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={`b-${i}`} className="inline-flex items-center gap-3">
+                <span>{ribbonText}</span>
+                <span aria-hidden className="h-1 w-1 rounded-full bg-brand-orange/60" />
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom glowing edge */}
+        <div className="mt-3 h-px bg-brand-red/30" />
+        <div className="mt-2 h-px bg-brand-red shadow-[0_0_18px_3px_rgba(222,22,0,0.55),0_0_4px_1px_rgba(255,107,74,0.7)]" />
       </div>
+
+      {/* Top fade so the ribbon dissolves into the hero, no hard edge */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#050505] to-transparent"
+      />
     </div>
   );
 }

@@ -1,13 +1,14 @@
-import { Clock, MapPin, Search, ShieldCheck, Wallet } from "lucide-react";
+import { MapPin, Search } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
+import { heroCards } from "@/lib/hero-cards";
 import { FloatingServiceCard } from "./FloatingServiceCard";
 import { MotionDeliveryRibbon } from "./MotionDeliveryRibbon";
 import { PhoneOrderPreview } from "./PhoneOrderPreview";
 
 type Props = {
   eyebrow: string;
-  title: string;
+  title: string;            // accessibility / SEO fallback only
   subtitle: string;
   addressPlaceholder: string;
   cta: string;
@@ -16,20 +17,19 @@ type Props = {
   chipPayments: string;
 };
 
-function ExpressiveTitle({ title }: { title: string }) {
-  const [before, after = ""] = title.split("Delivered");
-
-  return (
-    <>
-      {before}
-      <span className="font-serif italic text-transparent [background-image:linear-gradient(110deg,#ff6b4a,#de1600_48%,#ffb19e)] bg-clip-text">
-        Delivered
-      </span>
-      {after}
-    </>
-  );
-}
-
+/**
+ * Premium dark hero matching the design reference:
+ *   - Red uppercase eyebrow (no pill).
+ *   - 3-line serif headline with the brand-red italic "Delivered" word.
+ *   - Compact white-pill address picker with red CTA.
+ *   - Dot-style trust chips row.
+ *   - Phone mockup centred in the right column with 5 floating glass
+ *     cards positioned around it (lg+ only).
+ *   - Glowing diagonal delivery ribbon across the bottom.
+ *
+ * Server component — the only client islands are the framer-motion
+ * pieces inside FloatingServiceCard and MotionDeliveryRibbon.
+ */
 export function HeroShowcase({
   eyebrow,
   title,
@@ -40,116 +40,114 @@ export function HeroShowcase({
   chipEta,
   chipPayments,
 }: Props) {
-  const trustChips = [
-    { label: chipTracking, Icon: ShieldCheck },
-    { label: chipEta, Icon: Clock },
-    { label: chipPayments, Icon: Wallet },
-  ];
   return (
-    <section className="hero-radial-bg relative isolate overflow-hidden bg-brand-black pt-24 pb-20 text-white sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-32">
-      <MotionDeliveryRibbon />
-
+    <section
+      className="relative isolate overflow-hidden bg-[#050505] pt-24 pb-44 text-white sm:pt-28 sm:pb-48 lg:pt-32 lg:pb-56"
+      aria-label={title}
+    >
+      {/* Subtle background texture — a barely-there dot grid + a very
+          gentle red wash from the bottom-right. Toned down vs the
+          radial-bg utility so the ribbon and phone do the heavy lifting. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent"
+        className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(255,255,255,1)_1px,transparent_1px)] [background-size:34px_34px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 -right-32 h-[36rem] w-[36rem] rounded-full bg-brand-red/15 blur-[120px]"
       />
 
       <Container className="relative z-10">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="max-w-3xl">
-            <div className="section-eyebrow border-white/15 bg-white/10 text-white/80">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+          {/* LEFT — copy + form */}
+          <div className="max-w-2xl">
+            {/* Eyebrow — plain red uppercase, no pill */}
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">
               {eyebrow}
-            </div>
+            </p>
 
-            <h1 className="mt-7 max-w-4xl font-serif text-[3.45rem] leading-[0.93] tracking-normal text-white sm:text-[4.7rem] md:text-[5.35rem] lg:text-[6.35rem]">
-              <ExpressiveTitle title={title} />
+            {/* Headline — 3 lines, "Delivered" in red italic.
+                The h1 still contains the full sentence for screen
+                readers and SEO; visual line breaks are done with
+                explicit <br/> so they're not at the mercy of width. */}
+            <h1 className="mt-5 font-serif text-[clamp(3rem,7vw,5.75rem)] leading-[1.02] tracking-tight text-white">
+              <span className="block">Everything</span>
+              <span className="block">you crave.</span>
+              <span className="block">
+                <span className="italic text-brand-red">Delivered</span>{" "}
+                <span>fast.</span>
+              </span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
+            <p className="mt-7 max-w-md text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
               {subtitle}
             </p>
 
+            {/* Address picker — clean white pill, red CTA */}
             <form
-              className="mt-10 flex w-full max-w-2xl flex-col gap-3 rounded-[2rem] border border-white/10 bg-white/[0.08] p-2 shadow-2xl backdrop-blur sm:flex-row sm:items-center"
+              className="mt-9 flex w-full max-w-md flex-col gap-2 rounded-full bg-white p-1.5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
               action={siteConfig.appUrl}
               method="get"
             >
               <label className="relative flex min-w-0 flex-1 items-center">
                 <MapPin
-                  size={18}
-                  className="pointer-events-none absolute left-5 text-white/45"
+                  size={16}
+                  className="pointer-events-none absolute left-4 text-ink-400"
                 />
                 <input
                   type="text"
                   name="q"
                   placeholder={addressPlaceholder}
-                  className="h-14 w-full rounded-full border border-white/10 bg-black/35 pl-12 pr-5 text-base text-white placeholder:text-white/40 transition focus:border-brand-orange focus:bg-black/55 focus:outline-none focus:ring-2 focus:ring-brand-red/35"
                   aria-label={addressPlaceholder}
+                  className="h-11 w-full rounded-full bg-transparent pl-10 pr-4 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
                 />
               </label>
               <button
                 type="submit"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-red px-7 text-base font-semibold text-white shadow-lg shadow-brand-red/25 transition hover:bg-brand-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-brand-red px-5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(222,22,0,0.4)] transition-colors hover:bg-brand-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                <Search size={18} />
+                <Search size={15} />
                 {cta}
               </button>
             </form>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              {trustChips.map(({ label, Icon }) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.07] px-4 py-2 text-sm text-white/75 backdrop-blur"
-                >
-                  <Icon size={16} className="text-brand-orange" />
+            {/* Trust chips — small red dot + label, no pill */}
+            <ul className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 text-[13px] text-white/70">
+              {[chipTracking, chipEta, chipPayments].map((label) => (
+                <li key={label} className="inline-flex items-center gap-2">
+                  <span
+                    aria-hidden
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-brand-red"
+                  />
                   {label}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          <div className="relative min-h-[28rem] sm:min-h-[32rem] lg:min-h-[43rem]">
+          {/* RIGHT — phone + 5 floating cards */}
+          <div className="relative mx-auto h-full w-full max-w-[26rem] lg:max-w-none lg:min-h-[40rem]">
             <PhoneOrderPreview />
-            <FloatingServiceCard
-              label="Food"
-              detail="Hot meals"
-              icon="food"
-              delay={0.05}
-              className="left-0 top-10"
-            />
-            <FloatingServiceCard
-              label="Grocery"
-              detail="Daily essentials"
-              icon="grocery"
-              delay={0.14}
-              className="right-0 top-16"
-            />
-            <FloatingServiceCard
-              label="Pharmacy"
-              detail="Care items"
-              icon="pharmacy"
-              delay={0.22}
-              className="-left-4 bottom-36"
-            />
-            <FloatingServiceCard
-              label="Parcel"
-              detail="On-demand"
-              icon="parcel"
-              delay={0.3}
-              className="right-3 bottom-48"
-            />
-            <FloatingServiceCard
-              label="Petrol"
-              detail="Fuel runs"
-              icon="petrol"
-              delay={0.38}
-              className="left-1/2 bottom-7 -translate-x-1/2"
-            />
+
+            {heroCards.map((card) => (
+              <FloatingServiceCard
+                key={card.key}
+                label={card.label}
+                detail={card.detail}
+                imagePath={card.imagePath}
+                iconKey={card.iconKey}
+                placeholderAccent={card.placeholderAccent}
+                delay={card.delay}
+                className={card.position}
+              />
+            ))}
           </div>
         </div>
       </Container>
+
+      {/* Diagonal red ribbon at the bottom — visually anchors the hero
+          and references the design without crowding the form. */}
+      <MotionDeliveryRibbon />
     </section>
   );
 }
