@@ -1,8 +1,8 @@
 import {
-  Bike,
-  Dumbbell,
+  Fuel,
   Package,
   Pill,
+  ShoppingBag,
   ShoppingBasket,
   UtensilsCrossed,
 } from "lucide-react";
@@ -21,7 +21,7 @@ export type DeliveryModule = {
 
 /**
  * Verticals BiteExpress operates. Mirrors the modules concept on the
- * customer-app side (Food, Grocery, Pharmacy, Parcel, Rental, etc.).
+ * customer-app side (Food, Grocery, Pharmacy, Parcel, Shopping, Petrol).
  * Each card on the home page links to the equivalent module landing
  * on app.bite.express.
  */
@@ -32,7 +32,7 @@ export const deliveryModules: readonly DeliveryModule[] = [
     slug: "food",
     name: "Food",
     description:
-      "Order from your favourite restaurants — local kitchens, big chains, and everything in between.",
+      "Order from neighbourhood kitchens, premium restaurants and everyday favourites.",
     icon: UtensilsCrossed,
     accent: "bg-brand-red/10 text-brand-red",
     href: `${APP_URL}/home?module=food`,
@@ -41,7 +41,7 @@ export const deliveryModules: readonly DeliveryModule[] = [
     slug: "grocery",
     name: "Grocery",
     description:
-      "Fresh produce, pantry essentials and household items from supermarkets near you.",
+      "Fresh produce, pantry staples and household essentials from stores near you.",
     icon: ShoppingBasket,
     accent: "bg-emerald-100 text-emerald-700",
     href: `${APP_URL}/home?module=grocery`,
@@ -50,7 +50,7 @@ export const deliveryModules: readonly DeliveryModule[] = [
     slug: "pharmacy",
     name: "Pharmacy",
     description:
-      "Prescription refills, OTC essentials and personal care delivered discreetly.",
+      "Medicine, refills and personal care delivered with speed and discretion.",
     icon: Pill,
     accent: "bg-sky-100 text-sky-700",
     href: `${APP_URL}/home?module=pharmacy`,
@@ -59,27 +59,27 @@ export const deliveryModules: readonly DeliveryModule[] = [
     slug: "parcel",
     name: "Parcel",
     description:
-      "Send packages across town with live tracking and on-demand riders.",
+      "Send packages across town with reliable riders and live route visibility.",
     icon: Package,
     accent: "bg-amber-100 text-amber-700",
     href: `${APP_URL}/home?module=parcel`,
   },
   {
-    slug: "rental",
-    name: "Rental",
+    slug: "shopping",
+    name: "Shopping",
     description:
-      "Rent a vehicle by the hour, day or week — from cars to power bikes.",
-    icon: Bike,
+      "Shop local stores, beauty counters and everyday retail without the errand.",
+    icon: ShoppingBag,
     accent: "bg-violet-100 text-violet-700",
-    href: `${APP_URL}/home?module=rental`,
+    href: `${APP_URL}/home?module=shopping`,
   },
   {
-    slug: "fitness",
-    name: "Fitness & Wellness",
+    slug: "petrol",
+    name: "Petrol",
     description:
-      "Book personal trainers, wellness sessions and recovery experiences nearby.",
-    icon: Dumbbell,
+      "Fuel and station runs coordinated through BiteExpress where available.",
+    icon: Fuel,
     accent: "bg-rose-100 text-rose-700",
-    href: `${APP_URL}/home?module=fitness`,
+    href: `${APP_URL}/home?module=petrol`,
   },
 ];

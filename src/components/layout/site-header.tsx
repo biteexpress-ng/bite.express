@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
@@ -9,9 +10,24 @@ import { Container } from "@/components/ui/container";
 import { primaryNav, siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/cn";
 
+/**
+ * Sticky header that:
+ *   - Sits transparently over the dark hero on `/` until the user
+ *     scrolls past 8px, then flips to the opaque white treatment.
+ *   - Stays in the opaque white treatment on every other route.
+ *
+ * Lazy hydration is fine — the initial server render assumes the
+ * default white treatment, which is what every non-home page wants
+ * anyway, and the home-page swap happens in the same tick on mount
+ * so the visual flash is imperceptible.
+ */
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const isHome = pathname === "/";
+  const overDark = isHome && !scrolled && !open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -31,12 +47,14 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full bg-white/95 backdrop-blur transition-shadow",
-        scrolled && "shadow-sm",
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        overDark
+          ? "border-b border-transparent bg-transparent"
+          : "border-b border-ink-200/60 bg-white/90 backdrop-blur shadow-sm",
       )}
     >
       <Container className="flex h-16 items-center justify-between md:h-20">
-        <Logo priority />
+        <Logo variant={overDark ? "dark" : "light"} priority />
 
         {/* Desktop nav */}
         <nav
@@ -47,7 +65,12 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink-700 transition-colors hover:text-brand-red"
+              className={cn(
+                "text-sm font-medium transition-colors",
+                overDark
+                  ? "text-white/85 hover:text-white"
+                  : "text-ink-700 hover:text-brand-red",
+              )}
             >
               {item.label}
             </Link>
@@ -63,7 +86,12 @@ export function SiteHeader() {
         {/* Mobile toggle */}
         <button
           type="button"
-          className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-900 hover:bg-ink-100 md:hidden"
+          className={cn(
+            "-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors md:hidden",
+            overDark
+              ? "text-white hover:bg-white/10"
+              : "text-ink-900 hover:bg-ink-100",
+          )}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
