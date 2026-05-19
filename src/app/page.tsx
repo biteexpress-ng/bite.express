@@ -3,12 +3,45 @@ import { MapPin, Search } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
+import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { allLocalBusinessesSchema, breadcrumbSchema } from "@/lib/jsonld";
+
+export const metadata = buildMetadata({
+  title: `${siteConfig.name} — Order food, groceries & more, delivered fast in Nigeria`,
+  description:
+    "Order from thousands of restaurants, supermarkets, pharmacies and local shops across Nigeria. Live tracking, fair prices, fast delivery — only on BiteExpress.",
+  path: "/",
+  keywords: [
+    "food delivery Nigeria",
+    "grocery delivery",
+    "BiteExpress",
+    "order food online",
+    "Kaduna food delivery",
+    "Lagos food delivery",
+    "Abuja food delivery",
+    "Kano food delivery",
+    "Jos food delivery",
+    "pharmacy delivery",
+    "supermarket delivery",
+    "on-demand delivery Nigeria",
+  ],
+});
 
 export default async function HomePage() {
   const t = await getTranslations("home");
 
   return (
     <>
+      {/* Per-page structured data — every city we serve as a LocalBusiness
+          + the breadcrumb. The brand-wide Organization/WebSite schemas
+          are emitted by the root layout. */}
+      <JsonLd id="ld-localbusiness" data={allLocalBusinessesSchema()} />
+      <JsonLd
+        id="ld-breadcrumb"
+        data={breadcrumbSchema([{ name: "Home", path: "/" }])}
+      />
+
       {/* Hero — placeholder until Phase 2 ships the real composition */}
       <section className="relative overflow-hidden bg-ink-50 pt-12 pb-24 sm:pt-20 sm:pb-32">
         <div
@@ -75,20 +108,22 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* Phase-0 status panel — remove when Phase 2 lands */}
+      {/* Phase-1 status panel — remove when Phase 2 lands */}
       <Container className="py-16">
         <div className="rounded-3xl border border-ink-200 bg-white p-8 sm:p-12">
           <span className="inline-flex items-center rounded-full bg-brand-red/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red">
-            Phase 0 — Foundation
+            Phase 1 — SEO infrastructure live
           </span>
           <h2 className="mt-4 font-serif text-3xl leading-tight text-ink-900 sm:text-4xl">
-            Brand tokens, fonts and shell wired up.
+            Metadata, sitemap, JSON-LD and OG images wired across the site.
           </h2>
           <p className="mt-4 max-w-2xl text-base text-ink-600">
-            {t("comingSoon")} Next comes the full SEO infrastructure
-            (metadata, sitemaps, structured data, OG image generation),
-            then the marketing pages: For Vendors, Riders, Agents, Careers,
-            About and the city/cuisine landing matrix.
+            {t("comingSoon")} Every page now ships with canonical URLs,
+            Organization + WebSite + LocalBusiness structured data, a
+            dynamic sitemap, env-aware robots, branded OG images, and an
+            analytics scaffold. Phase 2 brings the full marketing site:
+            For Vendors, Riders, Agents, Careers, About and the city /
+            cuisine landing matrix.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <ButtonLink href={siteConfig.appUrl} external variant="primary">
