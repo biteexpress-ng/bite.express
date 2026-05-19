@@ -1,0 +1,40 @@
+{
+  "common": {
+    "siteName": "BiteExpress",
+    "tagline": "Get food, groceries & more — delivered fast.",
+    "orderNow": "Order now",
+    "downloadApp": "Download the app",
+    "learnMore": "Learn more",
+    "getStarted": "Get started",
+    "signUp": "Sign up",
+    "signIn": "Sign in"
+  },
+  "nav": {
+    "orderFood": "Order Food",
+    "vendors": "For Vendors",
+    "riders": "For Riders",
+    "agents": "For Agents",
+    "careers": "Careers",
+    "about": "About",
+    "menu": "Menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Delivery, reimagined for Nigeria",
+      "title": "Everything you crave. Delivered fast.",
+      "subtitle": "Order from thousands of restaurants, supermarkets, pharmacies and local shops. Live tracking, fair prices, every neighbourhood.",
+      "addressPlaceholder": "Enter your delivery address",
+      "cta": "Find food"
+    },
+    "comingSoon": "Full landing page coming in Phase 2 — foundation is live."
+  },
+  "footer": {
+    "company": "Company",
+    "partners": "Partner with us",
+    "support": "Support",
+    "legal": "Legal",
+    "rights": "All rights reserved.",
+    "tagline": "Delivery, reimagined for every neighbourhood."
+  }
+}

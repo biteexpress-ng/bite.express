@@ -1,65 +1,105 @@
-import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import { MapPin, Search } from "lucide-react";
+import { ButtonLink } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { siteConfig } from "@/lib/site-config";
 
-export default function Home() {
+export default async function HomePage() {
+  const t = await getTranslations("home");
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      {/* Hero — placeholder until Phase 2 ships the real composition */}
+      <section className="relative overflow-hidden bg-ink-50 pt-12 pb-24 sm:pt-20 sm:pb-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand-red/10 blur-3xl"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-brand-orange/10 blur-3xl"
+        />
+
+        <Container className="relative">
+          <span className="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white/80 px-3 py-1 text-xs font-medium tracking-wide text-ink-700 backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
+            {t("hero.eyebrow")}
+          </span>
+
+          <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem] lg:text-[5.25rem]">
+            {t("hero.title")}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
+            {t("hero.subtitle")}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          {/* Address picker — visual stub; wired in Phase 2 */}
+          <form
+            className="mt-10 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-stretch"
+            action={siteConfig.appUrl}
+            method="get"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <label className="relative flex flex-1 items-center">
+              <MapPin
+                size={18}
+                className="pointer-events-none absolute left-4 text-ink-400"
+              />
+              <input
+                type="text"
+                name="q"
+                placeholder={t("hero.addressPlaceholder")}
+                className="h-14 w-full rounded-full border border-ink-200 bg-white pl-11 pr-5 text-base text-ink-900 placeholder:text-ink-400 shadow-sm transition-shadow focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                aria-label={t("hero.addressPlaceholder")}
+              />
+            </label>
+            <button
+              type="submit"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-red px-7 text-base font-medium text-white shadow-sm transition-colors hover:bg-brand-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2"
+            >
+              <Search size={18} />
+              {t("hero.cta")}
+            </button>
+          </form>
+
+          <p className="mt-4 text-sm text-ink-600">
+            Or{" "}
+            <a
+              href={siteConfig.appUrl}
+              className="font-medium text-brand-red underline-offset-4 hover:underline"
+            >
+              open the app
+            </a>{" "}
+            to keep browsing where you left off.
+          </p>
+        </Container>
+      </section>
+
+      {/* Phase-0 status panel — remove when Phase 2 lands */}
+      <Container className="py-16">
+        <div className="rounded-3xl border border-ink-200 bg-white p-8 sm:p-12">
+          <span className="inline-flex items-center rounded-full bg-brand-red/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red">
+            Phase 0 — Foundation
+          </span>
+          <h2 className="mt-4 font-serif text-3xl leading-tight text-ink-900 sm:text-4xl">
+            Brand tokens, fonts and shell wired up.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base text-ink-600">
+            {t("comingSoon")} Next comes the full SEO infrastructure
+            (metadata, sitemaps, structured data, OG image generation),
+            then the marketing pages: For Vendors, Riders, Agents, Careers,
+            About and the city/cuisine landing matrix.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <ButtonLink href={siteConfig.appUrl} external variant="primary">
+              Open the customer app
+            </ButtonLink>
+            <ButtonLink href="/about" variant="outline">
+              About BiteExpress
+            </ButtonLink>
+          </div>
         </div>
-      </main>
-    </div>
+      </Container>
+    </>
   );
 }

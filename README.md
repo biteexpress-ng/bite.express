@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BiteExpress Web
 
-## Getting Started
+The public marketing site for [bite.express](https://bite.express) — built to drive
+discovery, conversions, and SEO at the level of UberEats, DoorDash, Wolt and
+Deliveroo. The customer order-flow lives separately on
+[app.bite.express](https://app.bite.express).
 
-First, run the development server:
+## Stack
+
+| Layer          | Choice                                      |
+| -------------- | ------------------------------------------- |
+| Framework      | Next.js 16 (App Router) + React 19          |
+| Language       | TypeScript                                  |
+| Styling        | Tailwind CSS v4 (CSS-first `@theme` config) |
+| Typography     | DM Serif Display + DM Sans (via next/font)  |
+| i18n           | next-intl (English, multi-locale ready)     |
+| Forms          | React Hook Form + Zod                       |
+| Animation      | Framer Motion                               |
+| Icons          | lucide-react                                |
+| Hosting        | Vercel                                      |
+| Domain (apex)  | bite.express (Cloudflare DNS, DNS-only)     |
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # populate values as needed
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Brand
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Logo, color palette and favicon live in [`branding_materials/`](./branding_materials/).
+CSS brand tokens are defined in [`src/app/globals.css`](./src/app/globals.css) under
+the `@theme { ... }` block. When updating brand colors, edit **both** the palette
+file and the `@theme` block, in that order.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+src/
+  app/                    Routes (App Router)
+  components/
+    brand/                Logo and brand-specific marks
+    layout/               Site-wide layout (header, footer)
+    ui/                   Generic primitives (Button, Container, ...)
+  i18n/                   Locale registry + next-intl request config
+  lib/                    Pure helpers (fonts, site config, cn util)
+messages/
+  en.json                 Source of truth for English copy
+public/
+  brand/                  Public-served brand assets
+branding_materials/       Brand kit (logo, palette, favicons)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Routing principles
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- All marketing pages are statically generated (ISR) for SEO + speed.
+- The order/checkout flow is **not** in this repo — those routes live on
+  `app.bite.express`. The home page captures a delivery address, sets cookies on
+  `.bite.express`, and hands users off to the customer app.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Phase status
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Phase 0 — Foundation** ✅ Brand tokens, fonts, base layout, i18n skeleton
+- **Phase 1 — SEO infrastructure** ⏳ Metadata, sitemap, robots, structured data, OG images
+- **Phase 2 — Marketing pages** ⏳ Home, vendors, riders, agents, about, legal
+- **Phase 3 — Careers** ⏳ Jobs board + applications (with `JobPosting` schema)
+- **Phase 4 — Programmatic SEO** ⏳ Cities, cuisines, neighbourhood pages
+- **Phase 5 — Content** ⏳ Blog + newsroom
