@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { cities } from "@/lib/cities";
+import { jobs } from "@/lib/jobs";
 
 /**
- * Dynamic sitemap. Sources today: static routes + curated cities.
- * As phases land, append from: jobs (Phase 3), zones API (Phase 4),
- * blog/press (Phase 5).
+ * Dynamic sitemap. Sources today: static routes + curated cities + jobs.
+ * Phase 4 will append the dynamic zones API; Phase 5 the blog/press.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -37,5 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...cityRoutes];
+  const jobRoutes: MetadataRoute.Sitemap = jobs.map((j) => ({
+    url: absoluteUrl(`/careers/${j.slug}`),
+    lastModified: new Date(j.datePosted),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...cityRoutes, ...jobRoutes];
 }

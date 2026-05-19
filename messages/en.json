@@ -286,6 +286,21 @@
       }
     }
   },
+  "careers": {
+    "hero": {
+      "eyebrow": "Careers at BiteExpress",
+      "title": "Build the future of delivery in Nigeria.",
+      "subtitle": "We're hiring across engineering, operations, growth and customer support — in our cities and remote. If you want to ship things customers feel, we'd love to meet you."
+    },
+    "values": {
+      "title": "What we look for"
+    },
+    "noOpenings": "No openings listed in your area of interest right now. Drop us a line at careers@bite.express and we'll get in touch when something opens.",
+    "apply": {
+      "title": "Apply",
+      "subtitle": "Tell us about you. We read every application."
+    }
+  },
   "agents": {
     "hero": {
       "eyebrow": "BiteExpress Agent Programme",
