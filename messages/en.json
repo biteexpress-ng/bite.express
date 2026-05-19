@@ -8,7 +8,8 @@
     "getStarted": "Get started",
     "signUp": "Sign up",
     "signIn": "Sign in",
-    "exploreApp": "Explore the app"
+    "exploreApp": "Explore the app",
+    "applyNow": "Apply now"
   },
   "nav": {
     "orderFood": "Order Food",
@@ -119,6 +120,247 @@
       "subtitle": "Open the app or place your first order right from your browser.",
       "primary": "Open the app",
       "secondary": "Browse on the web"
+    }
+  },
+  "vendors": {
+    "hero": {
+      "eyebrow": "For restaurants, stores and pharmacies",
+      "title": "Grow your business with BiteExpress.",
+      "subtitle": "Reach thousands of hungry customers in your neighbourhood. Simple onboarding, transparent commissions, weekly payouts — and full ownership of your customer relationships.",
+      "cta": "Start onboarding"
+    },
+    "why": {
+      "eyebrow": "Why partner with BiteExpress",
+      "title": "Built for vendors, not against them."
+    },
+    "benefits": {
+      "reach": {
+        "title": "Reach new customers daily",
+        "description": "Tens of thousands of orders flow through BiteExpress every week. Show up where people are already searching for what you sell."
+      },
+      "easy": {
+        "title": "Simple onboarding",
+        "description": "Upload your menu, set your hours, accept your first order. Most vendors go live within 48 hours of signing up."
+      },
+      "payouts": {
+        "title": "Weekly payouts",
+        "description": "Reliable settlement every week to your bank account, with a dashboard showing every order, refund and commission line."
+      },
+      "tools": {
+        "title": "Vendor tools that pay for themselves",
+        "description": "Promotions, flash sales, smart bundling, inventory sync and a tablet POS — all designed to grow basket size."
+      }
+    },
+    "how": {
+      "eyebrow": "Onboarding",
+      "title": "Live in under a week.",
+      "subtitle": "We've made joining BiteExpress as painless as we know how.",
+      "step1": {
+        "title": "Apply in 3 minutes",
+        "description": "Tell us about your business — what you sell, where you are, how many locations."
+      },
+      "step2": {
+        "title": "Quick verification call",
+        "description": "Our partner team walks you through commissions, payout setup and content guidelines."
+      },
+      "step3": {
+        "title": "Upload menu & photos",
+        "description": "Use our self-serve dashboard or let our content team build it for you for free."
+      },
+      "step4": {
+        "title": "Go live",
+        "description": "Switch on. Take your first order. Receive your first payout the following week."
+      }
+    },
+    "form": {
+      "eyebrow": "Apply",
+      "title": "Tell us about your business.",
+      "subtitle": "We'll come back within 2 business days with next steps."
+    },
+    "faq": {
+      "eyebrow": "Vendor FAQ",
+      "title": "Common vendor questions.",
+      "items": {
+        "q1": {
+          "question": "What does it cost to join BiteExpress?",
+          "answer": "Signing up is free. We charge a per-order commission that we agree with you upfront based on your category and city. No setup fees, no monthly minimums."
+        },
+        "q2": {
+          "question": "How quickly will I get paid?",
+          "answer": "Weekly settlements every Tuesday to your verified bank account. Your dashboard shows every order, commission and refund in real time."
+        },
+        "q3": {
+          "question": "Who delivers my orders — my staff or yours?",
+          "answer": "Our rider network handles delivery. You focus on preparing great orders; we get them to the customer."
+        },
+        "q4": {
+          "question": "Can I run promotions on BiteExpress?",
+          "answer": "Yes. Run flash sales, percentage discounts, BOGO deals, free-delivery campaigns and curated bundles — all from the vendor dashboard."
+        },
+        "q5": {
+          "question": "Will I keep my customer data?",
+          "answer": "BiteExpress is the customer-facing brand, but you get aggregated insights into reorder rate, peak hours, top items and customer ratings — everything you need to grow."
+        }
+      }
+    }
+  },
+  "riders": {
+    "hero": {
+      "eyebrow": "For riders",
+      "title": "Earn on your schedule. Get paid every week.",
+      "subtitle": "Use your own bike, motorbike or car. Choose when you ride — for an hour after work or full-time. No quotas, no surprises, just rides.",
+      "cta": "Apply to ride"
+    },
+    "why": {
+      "eyebrow": "Why ride with BiteExpress",
+      "title": "Fair pay. Real flexibility."
+    },
+    "benefits": {
+      "schedule": {
+        "title": "Ride when you want",
+        "description": "Go online whenever it suits you. No minimum hours, no schedule lock-ins — just open the app and start earning."
+      },
+      "payouts": {
+        "title": "Weekly cashouts",
+        "description": "Settled to your bank every week, no hidden delays. Track every trip and every naira in your rider app."
+      },
+      "bonuses": {
+        "title": "Bonuses that actually pay",
+        "description": "Hit weekly milestones, peak-hour boosts and rider-of-the-month rewards. Earn more for showing up when it matters."
+      },
+      "support": {
+        "title": "Support that has your back",
+        "description": "In-app help, incident response, insurance at peak hours, and a rider community across our cities."
+      }
+    },
+    "how": {
+      "eyebrow": "Getting started",
+      "title": "From application to first ride in days.",
+      "subtitle": "Our rider onboarding is quick — you can be earning before the end of the week.",
+      "step1": {
+        "title": "Apply online",
+        "description": "Tell us your city, what you ride and when you're available. Takes 3 minutes."
+      },
+      "step2": {
+        "title": "Verify your documents",
+        "description": "Upload your ID, vehicle papers and a clear photo. We verify within 2 business days."
+      },
+      "step3": {
+        "title": "Activate your account",
+        "description": "Download the BiteExpress Rider app, link your bank and you're ready."
+      },
+      "step4": {
+        "title": "Start earning",
+        "description": "Go online during peak hours and watch your earnings grow trip by trip."
+      }
+    },
+    "form": {
+      "eyebrow": "Apply",
+      "title": "Become a BiteExpress rider.",
+      "subtitle": "Tell us a little about yourself. We'll reply within 2 business days."
+    },
+    "faq": {
+      "eyebrow": "Rider FAQ",
+      "title": "Common rider questions.",
+      "items": {
+        "q1": {
+          "question": "Do I need to own a vehicle?",
+          "answer": "Yes — a working bicycle, motorbike or car you own or have permission to use. We're piloting BiteExpress-leased motorbikes in select cities; ask during onboarding."
+        },
+        "q2": {
+          "question": "How much can I earn?",
+          "answer": "Earnings depend on your city, vehicle type, hours and bonus tier. Most active riders earn meaningful side or full-time income — your trip earnings and bonuses show live in the app."
+        },
+        "q3": {
+          "question": "How and when do I get paid?",
+          "answer": "Every week, directly to your bank account. You can also use the in-app wallet to cash out anytime — fees apply for instant cashout."
+        },
+        "q4": {
+          "question": "Do I need a smartphone?",
+          "answer": "Yes — the Rider app runs on Android and iOS and needs a stable mobile data plan. The app is light on data."
+        },
+        "q5": {
+          "question": "What if my vehicle breaks down?",
+          "answer": "Mark yourself offline in the app and contact rider support. We'll reassign your active trip and help you get back on the road."
+        }
+      }
+    }
+  },
+  "agents": {
+    "hero": {
+      "eyebrow": "BiteExpress Agent Programme",
+      "title": "Build your network. Earn recurring commission.",
+      "subtitle": "Bring vendors, riders and customers onto BiteExpress and earn a share of their activity — on every order, every week, for life.",
+      "cta": "Apply to be an agent"
+    },
+    "why": {
+      "eyebrow": "Why become an agent",
+      "title": "Turn your network into recurring income."
+    },
+    "benefits": {
+      "recurring": {
+        "title": "Recurring, not one-off",
+        "description": "Earn an ongoing commission on every order from vendors and riders you sign up — not just a one-time bonus."
+      },
+      "tools": {
+        "title": "Agent toolkit included",
+        "description": "Branded sign-up links, vendor pitch deck, rider flyers, training videos and a live performance dashboard."
+      },
+      "support": {
+        "title": "Dedicated agent manager",
+        "description": "A real human at BiteExpress assigned to your region, available on WhatsApp and weekly group calls."
+      },
+      "tiers": {
+        "title": "Tiered rewards",
+        "description": "Move up agent tiers as your network grows. Higher tiers unlock bigger commission rates, sponsored events and trips."
+      }
+    },
+    "how": {
+      "eyebrow": "How the programme works",
+      "title": "Four steps to your first commission.",
+      "step1": {
+        "title": "Apply with your network",
+        "description": "Tell us about the vendors, riders or communities you have reach into."
+      },
+      "step2": {
+        "title": "Get accepted & onboarded",
+        "description": "Complete a short training, get your agent toolkit and unique sign-up links."
+      },
+      "step3": {
+        "title": "Refer & onboard",
+        "description": "Use your toolkit to sign up vendors, riders and customers in your area."
+      },
+      "step4": {
+        "title": "Earn weekly commission",
+        "description": "Watch your dashboard fill with referrals — and your bank account fill every week."
+      }
+    },
+    "form": {
+      "eyebrow": "Apply",
+      "title": "Join the agent programme.",
+      "subtitle": "Selective intake — we onboard a limited number of agents per city per quarter."
+    },
+    "faq": {
+      "eyebrow": "Agent FAQ",
+      "title": "Common agent questions.",
+      "items": {
+        "q1": {
+          "question": "Is this a job?",
+          "answer": "No — the BiteExpress Agent Programme is an independent earner programme. You set your own pace and aren't an employee of BiteExpress."
+        },
+        "q2": {
+          "question": "How much commission do I earn?",
+          "answer": "Commissions vary by tier and what kind of activity you generate. We share the full schedule during onboarding so you know exactly what you'll earn."
+        },
+        "q3": {
+          "question": "Do I need experience in tech sales?",
+          "answer": "Not at all. Some of our best agents are community leaders, student union reps or established traders — what matters is your reach in your community."
+        },
+        "q4": {
+          "question": "Is there a cost to join?",
+          "answer": "Joining is free. There's no kit fee, no monthly subscription, no minimum spend. You earn when your network earns."
+        }
+      }
     }
   },
   "footer": {
