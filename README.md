@@ -28,6 +28,28 @@ cp .env.example .env.local   # populate values as needed
 npm run dev                  # http://localhost:3000
 ```
 
+## Sign-up form delivery (Mailgun)
+
+Every public form on the site (Vendor, Rider, Agent, Contact, Job
+Application) sends a notification email via Mailgun when configured.
+Without Mailgun env vars, forms still validate and succeed for the
+user but log a warning server-side — they degrade gracefully so
+preview deploys never break.
+
+Required server-side env vars:
+
+| Variable | Purpose |
+| --- | --- |
+| `MAILGUN_API_KEY` | Private API key |
+| `MAILGUN_DOMAIN` | Sending domain (e.g. `office.bite.express`) |
+| `MAILGUN_FROM_EMAIL` | Optional From override |
+| `MAILGUN_BASE_URL` | Optional, EU region: `https://api.eu.mailgun.net` |
+| `NOTIFY_EMAIL_*` | Per-audience recipient overrides (see `.env.example`) |
+
+Add these in Vercel → Settings → Environment Variables (Production,
+Preview and Development). Mailgun does **not** need to be set up in
+local development — forms will log and succeed.
+
 ## Brand
 
 Logo, color palette and favicon live in [`branding_materials/`](./branding_materials/).
