@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { cities } from "@/lib/cities";
+import { cuisines } from "@/lib/cuisines";
 import { jobs } from "@/lib/jobs";
 
 /**
- * Dynamic sitemap. Sources today: static routes + curated cities + jobs.
- * Phase 4 will append the dynamic zones API; Phase 5 the blog/press.
+ * Dynamic sitemap. Sources today: static routes + curated cities +
+ * cuisines + jobs. Phase 5 will append blog/press.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -16,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/riders", priority: 0.9, changeFrequency: "weekly" as const },
     { path: "/agents", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/careers", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/cities", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/cuisines", priority: 0.9, changeFrequency: "weekly" as const },
     { path: "/about", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/help", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.5, changeFrequency: "monthly" as const },
@@ -37,6 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const cuisineRoutes: MetadataRoute.Sitemap = cuisines.map((c) => ({
+    url: absoluteUrl(`/cuisines/${c.slug}`),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
   const jobRoutes: MetadataRoute.Sitemap = jobs.map((j) => ({
     url: absoluteUrl(`/careers/${j.slug}`),
     lastModified: new Date(j.datePosted),
@@ -44,5 +54,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...cityRoutes, ...jobRoutes];
+  return [...staticRoutes, ...cityRoutes, ...cuisineRoutes, ...jobRoutes];
 }

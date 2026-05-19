@@ -5,6 +5,7 @@ import type {
   JobPosting,
   LocalBusiness,
   Organization,
+  Service,
   WebSite,
   WithContext,
 } from "schema-dts";
@@ -112,6 +113,36 @@ export function allLocalBusinessesSchema(): WithContext<LocalBusiness>[] {
   return cities.map((c) =>
     localBusinessSchema({ ...c, country: c.country }),
   );
+}
+
+/**
+ * Service schema for a cuisine / category landing page. Lets Google
+ * understand "BiteExpress delivers [cuisine]" as a discrete service
+ * with a defined provider and service area.
+ */
+export function cuisineServiceSchema(input: {
+  cuisineName: string;
+  cuisineSlug: string;
+  description: string;
+  cityNames: string[];
+}): WithContext<Service> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${input.cuisineName} delivery`,
+    serviceType: `${input.cuisineName} delivery`,
+    description: input.description,
+    url: absoluteUrl(`/cuisines/${input.cuisineSlug}`),
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.legalName,
+      url: siteUrl(),
+    },
+    areaServed: input.cityNames.map((name) => ({
+      "@type": "City",
+      name,
+    })),
+  };
 }
 
 export function breadcrumbSchema(
