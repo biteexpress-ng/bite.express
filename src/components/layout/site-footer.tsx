@@ -64,7 +64,7 @@ export function SiteFooter() {
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
-            <Logo variant="dark" width={148} />
+            <Logo variant="dark" className="h-10 md:h-12" />
             <p className="mt-5 max-w-xs text-sm text-white/70">
               Delivery, reimagined for every neighbourhood.
             </p>

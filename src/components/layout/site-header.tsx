@@ -36,7 +36,7 @@ export function SiteHeader() {
       )}
     >
       <Container className="flex h-16 items-center justify-between md:h-20">
-        <Logo width={132} priority />
+        <Logo priority />
 
         {/* Desktop nav */}
         <nav
