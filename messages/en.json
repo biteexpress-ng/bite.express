@@ -7,7 +7,8 @@
     "learnMore": "Learn more",
     "getStarted": "Get started",
     "signUp": "Sign up",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "exploreApp": "Explore the app"
   },
   "nav": {
     "orderFood": "Order Food",
@@ -25,9 +26,100 @@
       "title": "Everything you crave. Delivered fast.",
       "subtitle": "Order from thousands of restaurants, supermarkets, pharmacies and local shops. Live tracking, fair prices, every neighbourhood.",
       "addressPlaceholder": "Enter your delivery address",
-      "cta": "Find food"
+      "cta": "Find food",
+      "trust": "Trusted by thousands across 10+ cities in Nigeria"
     },
-    "comingSoon": "Full landing page coming in Phase 2 — foundation is live."
+    "modules": {
+      "eyebrow": "Everything in one app",
+      "title": "More than just food.",
+      "subtitle": "From a midnight snack to your weekly shop, BiteExpress brings you what you need — across every category, all in one app."
+    },
+    "stats": {
+      "orders": "Orders delivered",
+      "vendors": "Active vendors",
+      "riders": "Riders on the road",
+      "cities": "Cities served"
+    },
+    "howItWorks": {
+      "eyebrow": "How BiteExpress works",
+      "title": "Three taps to your door.",
+      "subtitle": "No phone calls. No long forms. Just pick, pay and track.",
+      "step1": {
+        "title": "Tell us where you are",
+        "description": "Drop a pin or type your address — we'll show you what's available right now in your neighbourhood."
+      },
+      "step2": {
+        "title": "Pick what you crave",
+        "description": "Browse restaurants, supermarkets and pharmacies near you. Filter by cuisine, price, ratings or open-now."
+      },
+      "step3": {
+        "title": "Track every step",
+        "description": "Watch your order get prepared, picked up and brought to you live on the map. Chat your rider if you need to."
+      }
+    },
+    "cities": {
+      "eyebrow": "Across Nigeria",
+      "title": "Now serving 10 cities — with more on the way.",
+      "subtitle": "Wherever you are in our zones, BiteExpress is just a few taps away. Don't see your city? Tell us where to launch next."
+    },
+    "vendorBand": {
+      "eyebrow": "For restaurants, stores and pharmacies",
+      "title": "Grow your business with BiteExpress.",
+      "subtitle": "Reach thousands of new customers in your area. Simple onboarding, fair commissions, weekly payouts.",
+      "cta": "Become a partner"
+    },
+    "riderBand": {
+      "eyebrow": "For riders",
+      "title": "Earn on your schedule. Get paid every week.",
+      "subtitle": "Use your own bike, motorbike or car. Choose when you want to ride. Cash out fast.",
+      "cta": "Ride with us"
+    },
+    "appShowcase": {
+      "eyebrow": "The BiteExpress app",
+      "title": "Everything you need, in your pocket.",
+      "subtitle": "Live order tracking, in-app chat with your rider, BitePass member savings, group orders, scheduled deliveries, multi-stop parcel, and more — all on iOS and Android.",
+      "bullet1": "Live map tracking from kitchen to door",
+      "bullet2": "In-app chat with your rider and the vendor",
+      "bullet3": "BitePass — save on every order with member pricing",
+      "bullet4": "Schedule orders ahead — never run out of breakfast"
+    },
+    "faq": {
+      "eyebrow": "Frequently asked",
+      "title": "Everything you might be wondering.",
+      "subtitle": "Quick answers to the questions we hear most. Need more? Reach out to our support team — we're real humans.",
+      "items": {
+        "q1": {
+          "question": "Where does BiteExpress deliver?",
+          "answer": "We currently operate in Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran — with more cities launching every quarter. Drop in your address and we'll tell you instantly if we cover you."
+        },
+        "q2": {
+          "question": "How long does delivery usually take?",
+          "answer": "Most orders arrive within 25–45 minutes. You'll see a live ETA before you confirm and live tracking on the map once your rider is on the way."
+        },
+        "q3": {
+          "question": "What payment methods do you accept?",
+          "answer": "Card, bank transfer, and cash on delivery — pick whichever works for you at checkout. Your card details are tokenised; we never store them."
+        },
+        "q4": {
+          "question": "Can I order from multiple stores at once?",
+          "answer": "Each order is from a single vendor so we can guarantee freshness and speed — but you can place back-to-back orders effortlessly. We're rolling out grouped multi-vendor checkout for select cities soon."
+        },
+        "q5": {
+          "question": "What if something goes wrong with my order?",
+          "answer": "Open in-app support and we'll resolve it fast — refunds, replacements or BitePoints credit, your choice. Our refund policy is straightforward and customer-first."
+        },
+        "q6": {
+          "question": "Is there a BiteExpress membership?",
+          "answer": "Yes — BitePass gives you free delivery on eligible orders, exclusive vendor discounts and priority support. Try it free for your first month."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Get something good. Today.",
+      "subtitle": "Open the app or place your first order right from your browser.",
+      "primary": "Open the app",
+      "secondary": "Browse on the web"
+    }
   },
   "footer": {
     "company": "Company",
