@@ -12,6 +12,12 @@ export const siteConfig = {
     "Order from your favourite restaurants, supermarkets, pharmacies and local stores. Fast delivery, live tracking, and exclusive offers — only on BiteExpress.",
   url: "https://bite.express",
   appUrl: "https://app.bite.express",
+  /**
+   * Where "Order now" / cart / "Open the app" CTAs route users TODAY.
+   * Currently `/coming-soon` while the new customer app is being built.
+   * Flip to `appUrl` once the customer app v0 ships at app.bite.express.
+   */
+  shopHref: "/coming-soon",
   ogImage: "/brand/og-default.png",
   locale: "en_NG",
   twitter: "@biteexpress",
@@ -48,7 +54,7 @@ export type NavItem = {
 
 /** Primary navigation (header) */
 export const primaryNav: readonly NavItem[] = [
-  { label: "Order Food", href: siteConfig.appUrl, external: true },
+  { label: "Order Food", href: siteConfig.shopHref },
   { label: "For Vendors", href: "/vendors" },
   { label: "For Riders", href: "/riders" },
   { label: "For Agents", href: "/agents" },
@@ -72,11 +78,7 @@ export const footerNav: Record<string, readonly NavItem[]> = {
   support: [
     { label: "Help Center", href: "/help" },
     { label: "Contact", href: "/contact" },
-    {
-      label: "Track Order",
-      href: `${siteConfig.appUrl}/track-order`,
-      external: true,
-    },
+    { label: "Track Order", href: siteConfig.shopHref },
   ],
   legal: [
     { label: "Terms of Service", href: "/terms" },

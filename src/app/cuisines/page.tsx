@@ -100,7 +100,7 @@ export default function CuisinesPage() {
         title="Open the app and search."
         subtitle="The full catalogue updates constantly. Browse every vendor in your area on the BiteExpress app."
         cta={
-          <ButtonLink href={siteConfig.appUrl} external variant="primary" size="lg">
+          <ButtonLink href={siteConfig.shopHref} variant="primary" size="lg">
             Open the app
           </ButtonLink>
         }

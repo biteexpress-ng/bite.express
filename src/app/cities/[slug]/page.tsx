@@ -147,8 +147,7 @@ export default async function CityPage({ params }: RouteProps) {
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <ButtonLink
-                href={`${siteConfig.appUrl}/home?city=${city.slug}`}
-                external
+                href={siteConfig.shopHref}
                 variant="primary"
                 size="lg"
               >
@@ -306,8 +305,7 @@ export default async function CityPage({ params }: RouteProps) {
         subtitle="Open the app or place your first order from your browser."
         cta={
           <ButtonLink
-            href={`${siteConfig.appUrl}/home?city=${city.slug}`}
-            external
+            href={siteConfig.shopHref}
             variant="secondary"
             size="lg"
           >

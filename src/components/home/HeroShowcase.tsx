@@ -86,7 +86,7 @@ export function HeroShowcase({
             {/* Address picker — clean white pill, red CTA */}
             <form
               className="mt-9 flex w-full max-w-md flex-col gap-2 rounded-full bg-white p-1.5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
-              action={siteConfig.appUrl}
+              action={siteConfig.shopHref}
               method="get"
             >
               <label className="relative flex min-w-0 flex-1 items-center">

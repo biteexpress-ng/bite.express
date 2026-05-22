@@ -131,8 +131,7 @@ export default async function CuisinePage({ params }: RouteProps) {
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <ButtonLink
-                  href={`${siteConfig.appUrl}/home?category=${cuisine.slug}`}
-                  external
+                  href={siteConfig.shopHref}
                   variant="primary"
                   size="lg"
                 >
@@ -245,8 +244,7 @@ export default async function CuisinePage({ params }: RouteProps) {
         title={`Get ${cuisine.name.toLowerCase()} delivered now.`}
         cta={
           <ButtonLink
-            href={`${siteConfig.appUrl}/home?category=${cuisine.slug}`}
-            external
+            href={siteConfig.shopHref}
             variant="secondary"
             size="lg"
           >

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -15,6 +15,8 @@ import { cn } from "@/lib/cn";
  *   - Sits transparently over the dark hero on `/` until the user
  *     scrolls past 8px, then flips to the opaque white treatment.
  *   - Stays in the opaque white treatment on every other route.
+ *   - Shows a cart icon button that opens the customer app
+ *     (currently `/coming-soon` until app v0 ships).
  *
  * Lazy hydration is fine — the initial server render assumes the
  * default white treatment, which is what every non-home page wants
@@ -77,27 +79,55 @@ export function SiteHeader() {
           ))}
         </nav>
 
+        {/* Desktop right cluster — Cart + Order now */}
         <div className="hidden items-center gap-3 md:flex">
-          <ButtonLink href={siteConfig.appUrl} external variant="primary" size="sm">
+          <Link
+            href={siteConfig.shopHref}
+            aria-label="Cart"
+            className={cn(
+              "relative inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
+              overDark
+                ? "border-white/20 text-white/90 hover:bg-white/10 hover:text-white"
+                : "border-ink-200 text-ink-900 hover:bg-ink-50 hover:text-brand-red",
+            )}
+          >
+            <ShoppingBag size={17} strokeWidth={1.8} />
+          </Link>
+          <ButtonLink href={siteConfig.shopHref} variant="primary" size="sm">
             Order now
           </ButtonLink>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          className={cn(
-            "-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors md:hidden",
-            overDark
-              ? "text-white hover:bg-white/10"
-              : "text-ink-900 hover:bg-ink-100",
-          )}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile right cluster — Cart + hamburger */}
+        <div className="-mr-2 flex items-center gap-1 md:hidden">
+          <Link
+            href={siteConfig.shopHref}
+            aria-label="Cart"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+              overDark
+                ? "text-white hover:bg-white/10"
+                : "text-ink-900 hover:bg-ink-100",
+            )}
+          >
+            <ShoppingBag size={20} strokeWidth={1.8} />
+          </Link>
+          <button
+            type="button"
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+              overDark
+                ? "text-white hover:bg-white/10"
+                : "text-ink-900 hover:bg-ink-100",
+            )}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </Container>
 
       {/* Mobile sheet */}
@@ -128,8 +158,7 @@ export function SiteHeader() {
               ),
             )}
             <ButtonLink
-              href={siteConfig.appUrl}
-              external
+              href={siteConfig.shopHref}
               variant="primary"
               size="md"
               className="mt-2 w-full"

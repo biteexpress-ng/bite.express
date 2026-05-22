@@ -180,7 +180,7 @@ export default function AboutPage() {
           </ButtonLink>
         }
         secondaryCta={
-          <ButtonLink href={siteConfig.appUrl} external variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
+          <ButtonLink href={siteConfig.shopHref} variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
             Or just order something
           </ButtonLink>
         }

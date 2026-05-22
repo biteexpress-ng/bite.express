@@ -255,7 +255,7 @@ export default async function BlogIndexPage({ searchParams }: RouteProps) {
         title="Get our best stories in your inbox."
         subtitle="Subscribe to the BiteExpress newsletter — no spam, just the good stuff."
         cta={
-          <ButtonLink href={siteConfig.appUrl} external variant="primary" size="lg">
+          <ButtonLink href={siteConfig.shopHref} variant="primary" size="lg">
             Open the app
           </ButtonLink>
         }

@@ -39,7 +39,7 @@ export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
             </p>
 
             <form
-              action={siteConfig.appUrl}
+              action={siteConfig.shopHref}
               method="get"
               className="mx-auto mt-10 flex max-w-2xl flex-col gap-3 rounded-[2rem] border border-white/20 bg-white/[0.18] p-2 backdrop-blur sm:flex-row"
             >
