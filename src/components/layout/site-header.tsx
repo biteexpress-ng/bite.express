@@ -15,8 +15,8 @@ import { cn } from "@/lib/cn";
  *   - Sits transparently over the dark hero on `/` until the user
  *     scrolls past 8px, then flips to the opaque white treatment.
  *   - Stays in the opaque white treatment on every other route.
- *   - Shows a cart icon button that opens the customer app
- *     (currently `/coming-soon` until app v0 ships).
+ *   - Shows a cart icon button that opens the customer app at
+ *     siteConfig.shopHref (app.bite.express).
  *
  * Lazy hydration is fine — the initial server render assumes the
  * default white treatment, which is what every non-home page wants

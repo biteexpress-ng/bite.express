@@ -13,11 +13,12 @@ export const siteConfig = {
   url: "https://bite.express",
   appUrl: "https://app.bite.express",
   /**
-   * Where "Order now" / cart / "Open the app" CTAs route users TODAY.
-   * Currently `/coming-soon` while the new customer app is being built.
-   * Flip to `appUrl` once the customer app v0 ships at app.bite.express.
+   * Where "Order now" / cart / "Open the app" CTAs route users.
+   * Points at the live customer app on the app subdomain — keep
+   * this in sync with appUrl above unless we ever re-host the
+   * shopping flow inside this marketing app.
    */
-  shopHref: "/coming-soon",
+  shopHref: "https://app.bite.express",
   ogImage: "/brand/og-default.png",
   locale: "en_NG",
   twitter: "@biteexpress",
