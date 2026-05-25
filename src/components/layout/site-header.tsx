@@ -32,11 +32,24 @@ export function SiteHeader() {
   const overDark = isHome && !scrolled && !open;
 
   useEffect(() => {
+    // Only mount the scroll listener on the home route — every other
+    // page renders the opaque white treatment unconditionally and
+    // doesn't need a listener at all.
+    if (!isHome) {
+      setScrolled(false);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    // Deliberately NOT firing onScroll() once on mount. Browser
+    // scroll-restoration may have placed scrollY > 0 before our
+    // effect runs, which would snap the header to white even though
+    // the user is visually at the top. Reading initial scrollY also
+    // raced with layout-shift in practice. Start transparent and let
+    // the first real scroll event flip us — the listener fires
+    // synchronously on the first wheel / touch / arrow press.
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
