@@ -2,7 +2,7 @@ import type { SVGProps } from "react";
 
 /**
  * Inline brand-mark SVGs. lucide-react removed these for trademark reasons,
- * so we ship minimal CC0/simple-icons-style paths ourselves.
+ * so we ship minimal & CC0/simple-icons-style paths ourselves.
  */
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number };
