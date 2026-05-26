@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { ButtonLink } from "@/components/ui/button";
@@ -27,29 +27,26 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   const isHome = pathname === "/";
   const overDark = isHome && !scrolled && !open;
 
   useEffect(() => {
-    // Only mount the scroll listener on the home route — every other
-    // page renders the opaque white treatment unconditionally and
-    // doesn't need a listener at all.
-    if (!isHome) {
-      setScrolled(false);
-      return;
-    }
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    // Deliberately NOT firing onScroll() once on mount. Browser
-    // scroll-restoration may have placed scrollY > 0 before our
-    // effect runs, which would snap the header to white even though
-    // the user is visually at the top. Reading initial scrollY also
-    // raced with layout-shift in practice. Start transparent and let
-    // the first real scroll event flip us — the listener fires
-    // synchronously on the first wheel / touch / arrow press.
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When sentinel is OUT of view → user has scrolled past it → header should be white
+        setScrolled(!entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: "0px" },
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -60,14 +57,23 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        overDark
-          ? "border-b border-transparent bg-transparent"
-          : "border-b border-ink-200/60 bg-white/90 backdrop-blur shadow-sm",
-      )}
-    >
+    <>
+      {/* Sentinel: when this scrolls out of view, the header flips to white.
+          Placed absolutely at the top of the document so it's reliably detected
+          by IntersectionObserver regardless of overflow/container quirks. */}
+      <div
+        ref={sentinelRef}
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 h-2 w-px"
+      />
+      <header
+        className={cn(
+          "sticky top-0 z-50 w-full transition-all duration-300",
+          overDark
+            ? "border-b border-transparent bg-black"
+            : "border-b border-ink-200/60 bg-white/80 backdrop-blur shadow-sm",
+        )}
+      >
       <Container className="flex h-16 items-center justify-between md:h-20">
         <Logo variant={overDark ? "dark" : "light"} priority />
 
@@ -182,5 +188,6 @@ export function SiteHeader() {
         </div>
       )}
     </header>
+    </>
   );
 }

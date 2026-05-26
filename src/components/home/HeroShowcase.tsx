@@ -8,7 +8,7 @@ import { PhoneOrderPreview } from "./PhoneOrderPreview";
 
 type Props = {
   eyebrow: string;
-  title: string;            // accessibility / SEO fallback only
+  title: string; // accessibility / SEO fallback only
   subtitle: string;
   addressPlaceholder: string;
   cta: string;
@@ -42,7 +42,7 @@ export function HeroShowcase({
 }: Props) {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#050505] pt-24 pb-44 text-white sm:pt-28 sm:pb-48 lg:pt-32 lg:pb-56"
+      className="relative isolate overflow-hidden bg-[#050505] pt-16 pb-44 text-white sm:pt-20 sm:pb-48 lg:pt-24 lg:pb-56"
       aria-label={title}
     >
       {/* Subtle background texture — a barely-there dot grid + a very
@@ -58,7 +58,7 @@ export function HeroShowcase({
       />
 
       <Container className="relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
           {/* LEFT — copy + form */}
           <div className="max-w-2xl">
             {/* Eyebrow — plain red uppercase, no pill */}
@@ -85,7 +85,7 @@ export function HeroShowcase({
 
             {/* Address picker — clean white pill, red CTA */}
             <form
-              className="mt-9 flex w-full max-w-md flex-col gap-2 rounded-full bg-white p-1.5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
+              className="mt-9 flex w-full max-w-md flex-col gap-0 rounded-full bg-white p-1.5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
               action={siteConfig.shopHref}
               method="get"
             >
@@ -99,12 +99,12 @@ export function HeroShowcase({
                   name="q"
                   placeholder={addressPlaceholder}
                   aria-label={addressPlaceholder}
-                  className="h-11 w-full rounded-full bg-transparent pl-10 pr-4 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
+                  className="h-8 w-full rounded-full bg-transparent pl-10 pr-4 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
                 />
               </label>
               <button
                 type="submit"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-brand-red px-5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(222,22,0,0.4)] transition-colors hover:bg-brand-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-brand-red px-5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(222,22,0,0.4)] transition-colors hover:bg-brand-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Search size={15} />
                 {cta}
