@@ -4,17 +4,21 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
+  WhatsAppIcon,
   XIcon,
+  YouTubeIcon,
 } from "@/components/brand/social-icons";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { Container } from "@/components/ui/container";
 import { footerNav, siteConfig } from "@/lib/site-config";
 
 const social = [
+  { href: siteConfig.social.facebook, label: "Facebook", Icon: FacebookIcon },
   { href: siteConfig.social.twitter, label: "X (Twitter)", Icon: XIcon },
   { href: siteConfig.social.instagram, label: "Instagram", Icon: InstagramIcon },
-  { href: siteConfig.social.facebook, label: "Facebook", Icon: FacebookIcon },
   { href: siteConfig.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
+  { href: siteConfig.social.youtube, label: "YouTube", Icon: YouTubeIcon },
+  { href: siteConfig.social.whatsapp, label: "WhatsApp", Icon: WhatsAppIcon },
 ] as const;
 
 function FooterColumn({

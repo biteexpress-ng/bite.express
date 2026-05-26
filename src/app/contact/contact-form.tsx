@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
@@ -13,10 +13,20 @@ import {
   type ContactFormValues,
 } from "@/lib/forms/contact";
 
+function rand(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+
+  // Stable per-mount: math challenge + render timestamp.
+  const { mathA, mathB, startedAt } = useMemo(
+    () => ({ mathA: rand(1, 9), mathB: rand(1, 9), startedAt: Date.now() }),
+    [],
+  );
 
   const {
     register,
@@ -24,6 +34,12 @@ export function ContactForm() {
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
+    defaultValues: {
+      website: "",
+      mathA,
+      mathB,
+      startedAt,
+    },
   });
 
   const onSubmit = (values: ContactFormValues) => {
@@ -53,7 +69,7 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="grid gap-5 sm:grid-cols-2"
+      className="relative grid gap-5 sm:grid-cols-2"
     >
       <TextField
         label="Full name"
@@ -87,6 +103,34 @@ export function ContactForm() {
         error={errors.message?.message}
         className="sm:col-span-2"
         {...register("message")}
+      />
+
+      {/* Honeypot — visually hidden, off-screen, no autofill. Bots fill it; humans don't see it. */}
+      <div aria-hidden className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
+        <label>
+          Leave this field empty
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register("website")}
+          />
+        </label>
+      </div>
+
+      <input type="hidden" {...register("mathA", { valueAsNumber: true })} />
+      <input type="hidden" {...register("mathB", { valueAsNumber: true })} />
+      <input type="hidden" {...register("startedAt", { valueAsNumber: true })} />
+
+      <TextField
+        label={`Spam check: what is ${mathA} + ${mathB}?`}
+        type="number"
+        inputMode="numeric"
+        required
+        placeholder="Your answer"
+        error={errors.mathAnswer?.message}
+        className="sm:col-span-2"
+        {...register("mathAnswer", { valueAsNumber: true })}
       />
 
       {serverError && (
