@@ -2,91 +2,85 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { MapPin, Search, Truck } from "lucide-react";
-import { cn } from "@/lib/cn";
 
-type Step = {
-  title: string;
-  description: string;
-};
+type Step = { title: string; description: string };
 
 type Props = {
   eyebrow: string;
   title: string;
-  subtitle: string;
   steps: Step[];
 };
 
-const icons = [MapPin, Search, Truck];
+const ICONS = [MapPin, Search, Truck];
 
-export function HowItWorksTimeline({ eyebrow, title, subtitle, steps }: Props) {
+export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="bg-white py-20 sm:py-28">
-      <div className="mx-auto w-full max-w-[80rem] px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="section-eyebrow mx-auto">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-            {eyebrow}
+    <section className="bg-white py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-14 lg:flex-row lg:items-start lg:gap-20">
+
+          {/* ── Left: eyebrow + heading ───────────────────────────────── */}
+          <div className="lg:w-[38%] lg:shrink-0">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-red">
+              {eyebrow}
+            </p>
+            <h2 className="mt-5 font-serif text-4xl leading-[1.08] tracking-normal text-ink-900 sm:text-5xl">
+              {title}
+            </h2>
           </div>
-          <h2 className="mt-6 font-serif text-4xl leading-[1.05] tracking-normal text-ink-900 sm:text-5xl md:text-6xl">
-            {title}
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-ink-600">
-            {subtitle}
-          </p>
-        </div>
 
-        <div className="relative mt-16">
-          <div
-            aria-hidden
-            className="absolute left-8 top-8 bottom-8 w-px bg-ink-200 lg:left-[8%] lg:right-[8%] lg:top-10 lg:bottom-auto lg:h-px lg:w-auto"
-          />
-          <motion.div
-            aria-hidden
-            className="absolute left-8 top-8 bottom-8 w-px origin-top bg-brand-red lg:left-[8%] lg:right-[8%] lg:top-10 lg:bottom-auto lg:h-px lg:w-auto lg:origin-left"
-            initial={reducedMotion ? false : { scaleY: 0, scaleX: 0 }}
-            whileInView={reducedMotion ? {} : { scaleY: 1, scaleX: 1 }}
-            viewport={{ once: true, margin: "-20%" }}
-            transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          />
+          {/* ── Right: 3 steps ───────────────────────────────────────── */}
+          <div className="flex-1">
+            <div className="relative grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6">
 
-          <div className="grid gap-6 lg:grid-cols-3">
-            {steps.map((step, index) => {
-              const Icon = icons[index] ?? Search;
-              return (
-                <motion.article
-                  key={step.title}
-                  className="relative rounded-[1.75rem] border border-ink-200 bg-white p-6 pl-20 shadow-soft lg:p-8"
-                  initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-                  whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-15%" }}
-                  transition={{
-                    duration: 0.55,
-                    delay: index * 0.08,
-                    ease: [0.25, 1, 0.5, 1],
-                  }}
-                >
-                  <span
-                    className={cn(
-                      "absolute left-5 top-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-brand-red/25 bg-white text-brand-red shadow-lg shadow-brand-red/10 lg:left-8 lg:top-4",
-                    )}
+              {/* Dashed connector running through the circle centres (desktop).
+                  left/right = 1/6 of grid width ≈ centre of first/last column. */}
+              <div
+                aria-hidden
+                className="absolute top-7 left-[calc(100%/6)] right-[calc(100%/6)] hidden border-t-2 border-dashed border-ink-200 sm:block"
+              />
+
+              {steps.map((step, index) => {
+                const Icon = ICONS[index] ?? MapPin;
+                return (
+                  <motion.div
+                    key={step.title}
+                    className="relative z-10 flex flex-col items-center"
+                    initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-15%" }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.1,
+                      ease: [0.25, 1, 0.5, 1],
+                    }}
                   >
-                    <Icon size={20} strokeWidth={1.8} />
-                  </span>
-                  <span className="text-sm font-semibold uppercase text-brand-red">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 font-serif text-2xl leading-tight tracking-normal text-ink-900">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-base leading-7 text-ink-600">
-                    {step.description}
-                  </p>
-                </motion.article>
-              );
-            })}
+                    {/* Circle icon — white bg breaks the dashed line behind it */}
+                    <div className="relative mb-7">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-full border border-ink-200 bg-white shadow-sm">
+                        <Icon size={22} strokeWidth={1.5} className="text-ink-700" />
+                      </span>
+                      {/* Step number badge — bottom-left of circle */}
+                      <span className="absolute -bottom-2.5 left-0 flex h-[22px] min-w-[2rem] items-center justify-center rounded-full bg-brand-red px-1.5 text-[10px] font-bold leading-none text-white">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                    {/* Text — full-width, left-aligned */}
+                    <h3 className="w-full text-left text-base font-semibold leading-snug text-ink-900">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2.5 w-full text-left text-sm leading-6 text-ink-600">
+                      {step.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
+
         </div>
       </div>
     </section>

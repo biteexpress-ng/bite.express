@@ -173,7 +173,7 @@ export default function HelpPage() {
             How can we help?
           </h1>
           <p className="mt-5 text-lg text-ink-600">
-            Search topics below or reach our support team directly — we're real
+            Search topics below or reach our support team directly — we&apos;re real
             humans, available across the BiteExpress operating hours.
           </p>
         </Container>
@@ -246,10 +246,10 @@ export default function HelpPage() {
       <Section background="dark" padding="md">
         <Container size="narrow" className="text-center">
           <h2 className="font-serif text-3xl text-white sm:text-4xl">
-            Didn't find what you needed?
+            Didn&apos;t find what you needed?
           </h2>
           <p className="mt-3 text-base text-white/70">
-            Reach out and we'll get back to you — usually within a few hours.
+            Reach out and we&apos;ll get back to you — usually within a few hours.
           </p>
           <div className="mt-8">
             <ButtonLink href="/contact" variant="primary" size="lg">

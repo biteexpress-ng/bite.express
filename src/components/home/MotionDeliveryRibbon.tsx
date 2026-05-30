@@ -1,93 +1,118 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-import { cn } from "@/lib/cn";
+/* ───────────────────────────────────────────────────────────────────────────
+ * MotionDeliveryRibbon — lightweight CSS-only marquee bands.
+ *
+ * Two rotated strips of scrolling text sit at the bottom of the hero,
+ * crossing each other in an X-pattern. The entire effect uses plain HTML
+ * divs + a single CSS @keyframes translateX animation, making it
+ * dramatically cheaper than the previous SVG textPath approach.
+ *
+ * Performance notes:
+ *   • No SVG, no <textPath>, no Bézier path calculations.
+ *   • Animation runs on `transform` (GPU-composited, no layout/paint).
+ *   • `will-change: transform` promotes each strip to its own layer.
+ *   • Only two duplicated text spans per band (minimum for seamless loop).
+ * ─────────────────────────────────────────────────────────────────────────*/
 
-const ribbonText =
-  "FOOD • GROCERY • PHARMACY • PARCEL • PETROL • DELIVERED";
+const ITEMS = ["FOOD", "GROCERY", "PHARMACY", "PARCEL", "PETROL", "DELIVERY"];
+const SEPARATOR = "   •   ";
+// Repeat the items sufficiently so a single block spans well over any screen width
+const REPEATED_ITEMS = Array(10).fill(ITEMS).flat();
+const TEXT = REPEATED_ITEMS.join(SEPARATOR) + SEPARATOR;
 
 /**
- * Diagonal glowing red "delivery" ribbon that sweeps across the
- * bottom of the hero. Composed from:
- *   - Two thin glowing edge lines (top + bottom).
- *   - Two stacked text marquees moving in opposite directions for
- *     parallax depth.
- *   - A faint diagonal red wash behind everything.
- *
- * Purely decorative — aria-hidden, pointer-events-none, and the
- * marquee falls back to a static state under prefers-reduced-motion
- * (the .motion-ribbon-track CSS keyframe is suppressed globally).
+ * A single scrolling text strip. The text is duplicated once so the second
+ * copy slides in seamlessly as the first scrolls away.
  */
-export function MotionDeliveryRibbon() {
-  const reduced = useReducedMotion();
+function MarqueeStrip({
+  reverse = false,
+  duration = "30s",
+}: {
+  reverse?: boolean;
+  duration?: string;
+}) {
+  return (
+    <div className="flex w-max" style={{ willChange: "transform" }}>
+      <span
+        className="flex shrink-0 items-center"
+        style={{
+          animation: `marquee-scroll ${duration} linear infinite`,
+          animationDirection: reverse ? "reverse" : "normal",
+        }}
+      >
+        <span className="px-2">{TEXT}</span>
+        <span className="px-2">{TEXT}</span>
+      </span>
+      <span
+        aria-hidden
+        className="flex shrink-0 items-center"
+        style={{
+          animation: `marquee-scroll ${duration} linear infinite`,
+          animationDirection: reverse ? "reverse" : "normal",
+        }}
+      >
+        <span className="px-2">{TEXT}</span>
+        <span className="px-2">{TEXT}</span>
+      </span>
+    </div>
+  );
+}
 
+export function MotionDeliveryRibbon() {
   return (
     <div
       aria-hidden
       role="presentation"
-      className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-72 overflow-hidden sm:h-80 lg:h-96"
+      className="pointer-events-none absolute inset-x-0 bottom-0 top-0 z-0 overflow-hidden"
     >
-      {/* The rotating band — wider than viewport so the diagonal
-          rotation doesn't expose its ends. */}
-      <div
-        className={cn(
-          "absolute left-1/2 top-1/2 w-[180%] -translate-x-1/2 -translate-y-1/2 -rotate-[8deg]",
-        )}
-      >
-        {/* Faint red wash behind the ribbon */}
-        <div
-          aria-hidden
-          className="absolute inset-x-0 top-1/2 -z-10 h-40 -translate-y-1/2 bg-gradient-to-b from-transparent via-brand-red/8 to-transparent blur-2xl"
-        />
+      <style>{`
+        @keyframes marquee-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
 
-        {/* Top glowing edge */}
-        <div className="h-px bg-brand-red shadow-[0_0_18px_3px_rgba(222,22,0,0.55),0_0_4px_1px_rgba(255,107,74,0.7)]" />
-        <div className="mt-2 h-px bg-brand-red/30" />
+      {/* Band A */}
+      <div className="absolute bottom-[8%] left-[50%] w-[150vw] -translate-x-1/2 -rotate-3">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#de1600] to-transparent opacity-80 shadow-[0_0_8px_rgba(222,22,0,0.6),0_0_24px_rgba(222,22,0,0.3)]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#de1600] to-transparent opacity-80 shadow-[0_0_8px_rgba(222,22,0,0.6),0_0_24px_rgba(222,22,0,0.3)]" />
 
-        {/* Marquee row 1 — moves left */}
-        <div className="motion-ribbon mt-3 bg-gradient-to-r from-transparent via-brand-red/10 to-transparent">
-          <div className="motion-ribbon-track text-base font-bold tracking-[0.22em] text-brand-red/80 sm:text-lg">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={`a-${i}`} className="inline-flex items-center gap-3">
-                <span>{ribbonText}</span>
-                <span aria-hidden className="h-1 w-1 rounded-full bg-brand-orange/80" />
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Marquee row 2 — moves the opposite way for depth */}
-        <div
-          className={cn(
-            "motion-ribbon mt-1 bg-gradient-to-r from-transparent via-brand-red/15 to-transparent",
-          )}
-        >
+        <div className="overflow-hidden bg-[#080101]/90 py-2.5">
           <div
-            className="motion-ribbon-track text-base font-bold tracking-[0.22em] text-brand-red/55 sm:text-lg"
-            style={
-              reduced
-                ? undefined
-                : { animationDirection: "reverse", animationDuration: "30s" }
-            }
+            className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 sm:text-xs"
+            style={{
+              textShadow:
+                "0 0 4px rgba(255,255,255,0.9), 0 0 10px rgba(255,107,74,0.8), 0 0 22px rgba(222,22,0,0.6)",
+            }}
           >
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={`b-${i}`} className="inline-flex items-center gap-3">
-                <span>{ribbonText}</span>
-                <span aria-hidden className="h-1 w-1 rounded-full bg-brand-orange/60" />
-              </span>
-            ))}
+            <MarqueeStrip duration="28s" />
           </div>
         </div>
-
-        {/* Bottom glowing edge */}
-        <div className="mt-3 h-px bg-brand-red/30" />
-        <div className="mt-2 h-px bg-brand-red shadow-[0_0_18px_3px_rgba(222,22,0,0.55),0_0_4px_1px_rgba(255,107,74,0.7)]" />
       </div>
 
-      {/* Top fade so the ribbon dissolves into the hero, no hard edge */}
+      {/* Band B */}
+      <div className="absolute bottom-[4%] left-[50%] w-[150vw] -translate-x-1/2 rotate-2">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#de1600] to-transparent opacity-80 shadow-[0_0_8px_rgba(222,22,0,0.6),0_0_24px_rgba(222,22,0,0.3)]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#de1600] to-transparent opacity-80 shadow-[0_0_8px_rgba(222,22,0,0.6),0_0_24px_rgba(222,22,0,0.3)]" />
+
+        <div className="overflow-hidden bg-[#080101]/90 py-2.5">
+          <div
+            className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 sm:text-xs"
+            style={{
+              textShadow:
+                "0 0 4px rgba(255,255,255,0.9), 0 0 10px rgba(255,107,74,0.8), 0 0 22px rgba(222,22,0,0.6)",
+            }}
+          >
+            <MarqueeStrip reverse duration="34s" />
+          </div>
+        </div>
+      </div>
+
+      {/* Bloom */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#050505] to-transparent"
+        className="absolute bottom-[4%] left-[68%] h-48 w-72 -translate-x-1/2 rounded-full bg-brand-red/20 blur-3xl"
       />
     </div>
   );

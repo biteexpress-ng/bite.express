@@ -1,33 +1,24 @@
-import {
-  Bike,
-  MapPinned,
-  PackageCheck,
-  Store,
-  type LucideIcon,
-} from "lucide-react";
+import { Bike, MapPinned, PackageCheck, Store, type LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
-type StatItem = {
-  value: string;
-  label: string;
-  icon: LucideIcon;
-};
+type StatItem = { value: string; label: string; icon: LucideIcon };
 
 const stats: StatItem[] = [
-  { value: "10+", label: "Cities Served", icon: MapPinned },
-  { value: "500+", label: "Active Vendors", icon: Store },
-  { value: "1,200+", label: "Riders on the Road", icon: Bike },
-  { value: "100K+", label: "Orders Delivered", icon: PackageCheck },
+  { value: "10+",    label: "Cities Served",      icon: MapPinned    },
+  { value: "500+",   label: "Active Vendors",      icon: Store        },
+  { value: "1,200+", label: "Riders on the Road",  icon: Bike         },
+  { value: "100K+",  label: "Orders Delivered",    icon: PackageCheck },
 ];
 
 export function PremiumStatsBand() {
   return (
     <section className="bg-[#f8f3ee] px-5 py-8 sm:px-6 lg:px-8">
       <Container className="px-0">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-black px-6 py-10 text-white shadow-2xl sm:px-10 lg:px-14">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-black px-8 py-12 text-white shadow-2xl sm:px-12 lg:px-16">
+          {/* Decorative background curves */}
           <svg
             aria-hidden
-            className="absolute inset-0 h-full w-full opacity-25"
+            className="absolute inset-0 h-full w-full opacity-[0.18]"
             viewBox="0 0 1200 320"
             fill="none"
             preserveAspectRatio="none"
@@ -46,28 +37,33 @@ export function PremiumStatsBand() {
             />
           </svg>
 
-          <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          <div className="relative grid grid-cols-2 gap-10 sm:grid-cols-4 lg:gap-0">
             {stats.map(({ value, label, icon: Icon }, index) => (
               <div
                 key={label}
-                className="relative flex items-center gap-5 lg:px-8 first:lg:pl-0 last:lg:pr-0"
+                className="relative flex flex-col items-center text-center lg:px-10 first:lg:pl-0 last:lg:pr-0"
               >
+                {/* Vertical rule between columns (desktop) */}
                 {index > 0 && (
                   <span
                     aria-hidden
-                    className="absolute left-0 top-1/2 hidden h-20 -translate-y-1/2 border-l border-white/10 lg:block"
+                    className="absolute left-0 top-1/2 hidden h-16 -translate-y-1/2 border-l border-white/10 lg:block"
                   />
                 )}
-                <span className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-2xl border border-brand-red/35 bg-brand-red/10 text-brand-orange">
-                  <Icon size={21} strokeWidth={1.8} />
+
+                {/* Icon */}
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-brand-red/30 bg-brand-red/10 text-brand-orange">
+                  <Icon size={20} strokeWidth={1.8} />
                 </span>
-                <span>
-                  <span className="block font-serif text-4xl leading-none tracking-normal text-white sm:text-5xl">
-                    {value}
-                  </span>
-                  <span className="mt-2 block text-xs font-semibold uppercase text-white/50">
-                    {label}
-                  </span>
+
+                {/* Value */}
+                <span className="mt-4 block font-serif text-4xl leading-none text-white sm:text-5xl">
+                  {value}
+                </span>
+
+                {/* Label */}
+                <span className="mt-2.5 block text-[11px] font-semibold uppercase tracking-widest text-white/45">
+                  {label}
                 </span>
               </div>
             ))}

@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { Eyebrow } from "@/components/ui/eyebrow";
 import { Markdown } from "@/components/content/markdown";
 import { JsonLd } from "@/components/seo/json-ld";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
@@ -73,7 +72,12 @@ export default async function BlogPostPage({ params }: RouteProps) {
           { name: "Home", path: "/" },
           { name: "Blog", path: "/blog" },
           ...(post.category
-            ? [{ name: post.category.name, path: `/blog?category=${post.category.slug}` }]
+            ? [
+                {
+                  name: post.category.name,
+                  path: `/blog?category=${post.category.slug}`,
+                },
+              ]
             : []),
           { name: post.title, path: `/blog/${post.slug}` },
         ])}
@@ -92,7 +96,7 @@ export default async function BlogPostPage({ params }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-10 pb-12 sm:pt-14">
+      <section className="relative overflow-hidden bg-linear-to-b from-ink-50 to-white pt-10 pb-12 sm:pt-14">
         <Container size="narrow">
           <Link
             href="/blog"
@@ -119,7 +123,9 @@ export default async function BlogPostPage({ params }: RouteProps) {
           </h1>
 
           {post.excerpt && (
-            <p className="mt-5 text-lg text-ink-600 sm:text-xl">{post.excerpt}</p>
+            <p className="mt-5 text-lg text-ink-600 sm:text-xl">
+              {post.excerpt}
+            </p>
           )}
 
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-600">
@@ -138,7 +144,9 @@ export default async function BlogPostPage({ params }: RouteProps) {
                 </div>
               )}
               <div>
-                <div className="font-semibold text-ink-900">{post.author.name}</div>
+                <div className="font-semibold text-ink-900">
+                  {post.author.name}
+                </div>
                 {post.author.role && (
                   <div className="text-xs text-ink-600">{post.author.role}</div>
                 )}
@@ -163,7 +171,7 @@ export default async function BlogPostPage({ params }: RouteProps) {
       {/* COVER IMAGE */}
       {post.cover_image_url && (
         <Container size="narrow" className="mb-10">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-ink-100">
+          <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-ink-100">
             <Image
               src={post.cover_image_url}
               alt={post.cover_image_alt ?? post.title}

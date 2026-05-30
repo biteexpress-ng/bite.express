@@ -56,7 +56,7 @@ export default async function CitiesPage() {
             <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
               BiteExpress brings food, groceries, pharmacy and parcel delivery
               to neighbourhoods across Northern Nigeria and beyond. Pick your
-              city to see what we deliver, how we operate locally, and what's
+              city to see what we deliver, how we operate locally, and what&apos;s
               popular this week.
             </p>
           </div>

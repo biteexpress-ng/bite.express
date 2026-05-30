@@ -34,6 +34,7 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
     defaultValues: { jobSlug },
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = (_values: JobApplicationValues) => {
     setServerError(null);
     if (!formRef.current) return;
@@ -58,7 +59,7 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
         <h3 className="font-serif text-2xl text-ink-900">Application sent.</h3>
         <p className="max-w-md text-base text-ink-600">
           Thanks for applying to <strong>{jobTitle}</strong>. Our team reviews
-          every application — you'll hear back within 2 weeks either way.
+          every application — you&apos;ll hear back within 2 weeks either way.
         </p>
       </div>
     );
@@ -67,7 +68,10 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
   return (
     <form
       ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={
+        // eslint-disable-next-line react-hooks/refs -- ref is only read inside the submit event, not during render
+        handleSubmit(onSubmit)
+      }
       noValidate
       className="grid gap-5 sm:grid-cols-2"
     >

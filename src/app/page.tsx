@@ -90,20 +90,23 @@ export default async function HomePage() {
       <Section background="white" padding="xl">
         <Container>
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeading
-              eyebrow={t("modules.eyebrow")}
-              title={t("modules.title")}
-              subtitle={t("modules.subtitle")}
-            />
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-red">
+                {t("modules.eyebrow")}
+              </p>
+              <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-normal text-ink-900 sm:text-5xl">
+                {t("modules.title")}
+              </h2>
+            </div>
             <ButtonLink href="/cuisines" variant="outline" size="sm">
               View all services
-              <ChevronRight size={14} />
+              <ArrowRight size={14} />
             </ButtonLink>
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {deliveryModules.map((m, i) => (
-              <HomeServiceCard key={m.slug} service={m} index={i} />
+            {deliveryModules.map((m) => (
+              <HomeServiceCard key={m.slug} service={m} />
             ))}
           </div>
         </Container>
@@ -116,7 +119,6 @@ export default async function HomePage() {
       <HowItWorksTimeline
         eyebrow={t("howItWorks.eyebrow")}
         title={t("howItWorks.title")}
-        subtitle={t("howItWorks.subtitle")}
         steps={[
           {
             title: t("howItWorks.step1.title"),
@@ -136,34 +138,26 @@ export default async function HomePage() {
       {/* 5. PREMIUM BENEFITS BAND (dark) */}
       <BenefitsBand
         eyebrow="Why choose BiteExpress"
-        title="Smart delivery. Thoughtful by design."
-        subtitle="Every detail of BiteExpress is designed for speed, trust and the realities of Nigerian neighbourhoods."
+        title="Smart delivery. Thoughtful"
+        titleHighlight="by design."
         benefits={[
           {
             title: "Live tracking",
-            description: "Follow your order from kitchen to door in real time.",
+            description: "Follow your order in real time.",
           },
           {
             title: "Fast & reliable",
-            description: "Average delivery in 25–45 minutes across our cities.",
+            description: "Average delivery in 25–45 mins.",
           },
           {
             title: "Secure payments",
-            description: "Pay your way — card, transfer or cash on delivery.",
+            description: "Pay your way — cash or digital.",
           },
           {
             title: "24/7 support",
-            description: "Real humans when something needs a real human.",
+            description: "We're here when you need us.",
           },
         ]}
-      />
-
-      {/* 6. CITIES COVERAGE */}
-      <CitiesCoverage
-        eyebrow={t("cities.eyebrow")}
-        title={t("cities.title")}
-        subtitle={t("cities.subtitle")}
-        cities={cities}
       />
 
       {/* 7. VENDOR CTA */}
@@ -309,17 +303,16 @@ export default async function HomePage() {
         </Container>
       </Section>
 
-      {/* PARTNER TRUST STRIP */}
-      <PartnerTrustStrip
-        title="Loved by customers. Powered by partners."
-        items={[
-          "Top Restaurants",
-          "Supermarkets",
-          "Pharmacies",
-          "Local Bakeries",
-          "Fuel Stations",
-        ]}
+      {/* 11. CITIES COVERAGE */}
+      <CitiesCoverage
+        eyebrow={t("cities.eyebrow")}
+        title={t("cities.title")}
+        subtitle={t("cities.subtitle")}
+        cities={cities}
       />
+
+      {/* 12. PARTNER TRUST STRIP */}
+      <PartnerTrustStrip />
 
       {/* 11. FINAL CTA */}
       <HomeFinalCTA

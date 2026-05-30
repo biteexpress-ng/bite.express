@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Briefcase, Calendar, CheckCircle2, MapPin } from "lucide-react";
+import {
+  ArrowLeft,
+  Briefcase,
+  Calendar,
+  CheckCircle2,
+  MapPin,
+} from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
@@ -93,7 +99,7 @@ export default async function JobDetailPage({ params }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-12 pb-16 sm:pt-16 sm:pb-20">
+      <section className="relative overflow-hidden bg-linear-to-b from-ink-50 to-white pt-12 pb-16 sm:pt-16 sm:pb-20">
         <Container>
           <Link
             href="/careers"
@@ -147,11 +153,13 @@ export default async function JobDetailPage({ params }: RouteProps) {
       {/* DESCRIPTION */}
       <Section background="white" padding="md">
         <Container size="narrow">
-          {job.description && <Markdown content={job.description} className="text-lg" />}
+          {job.description && (
+            <Markdown content={job.description} className="text-lg" />
+          )}
 
           {job.responsibilities.length > 0 && (
             <article className="legal-prose mt-10">
-              <h2>What you'll do</h2>
+              <h2>What you&#39;ll do</h2>
               <ul>
                 {job.responsibilities.map((r) => (
                   <li key={r}>{r}</li>
@@ -162,7 +170,7 @@ export default async function JobDetailPage({ params }: RouteProps) {
 
           {job.requirements.length > 0 && (
             <article className="legal-prose mt-8">
-              <h2>What we're looking for</h2>
+              <h2>What we&#39;re looking for</h2>
               <ul>
                 {job.requirements.map((r) => (
                   <li key={r}>{r}</li>
@@ -184,11 +192,14 @@ export default async function JobDetailPage({ params }: RouteProps) {
 
           {job.perks.length > 0 && (
             <article className="legal-prose mt-8">
-              <h2>What you'll get</h2>
+              <h2>What you&#39;ll get</h2>
               <ul>
                 {job.perks.map((p) => (
                   <li key={p} className="flex items-start gap-2">
-                    <CheckCircle2 size={18} className="mt-1 flex-none text-brand-red" />
+                    <CheckCircle2
+                      size={18}
+                      className="mt-1 flex-none text-brand-red"
+                    />
                     <span>{p}</span>
                   </li>
                 ))}

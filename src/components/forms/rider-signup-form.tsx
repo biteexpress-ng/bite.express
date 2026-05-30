@@ -119,7 +119,7 @@ export function RiderSignupForm() {
           {...register("consent")}
         />
         <span>
-          I agree BiteExpress can contact me about riding, and I've read the{" "}
+          I agree BiteExpress can contact me about riding, and I&apos;ve read the{" "}
           <a href="/privacy" className="text-brand-red underline-offset-4 hover:underline">
             Privacy Policy
           </a>

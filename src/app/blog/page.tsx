@@ -4,7 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { CTABand } from "@/components/ui/cta-band";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -48,7 +47,7 @@ function PostCard({ post }: { post: BlogPostListItem }) {
       href={`/blog/${post.slug}`}
       className="group flex flex-col overflow-hidden rounded-3xl border border-ink-200 bg-white transition-all hover:-translate-y-0.5 hover:shadow-elevated"
     >
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink-100">
+      <div className="relative aspect-16/9 w-full overflow-hidden bg-ink-100">
         {post.cover_image_url ? (
           <Image
             src={post.cover_image_url}

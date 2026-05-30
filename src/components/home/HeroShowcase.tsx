@@ -42,7 +42,7 @@ export function HeroShowcase({
 }: Props) {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#050505] pt-16 pb-44 text-white sm:pt-20 sm:pb-48 lg:pt-24 lg:pb-56"
+      className="relative isolate overflow-hidden bg-[#050505] pt-6 pb-44 text-white sm:pt-8 sm:pb-48 lg:pt-10 lg:pb-56"
       aria-label={title}
     >
       {/* Subtle background texture — a barely-there dot grid + a very
@@ -54,7 +54,7 @@ export function HeroShowcase({
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 -right-32 h-[36rem] w-[36rem] rounded-full bg-brand-red/15 blur-[120px]"
+        className="pointer-events-none absolute -bottom-32 -right-32 h-144 w-144 rounded-full bg-brand-red/15 blur-[120px]"
       />
 
       <Container className="relative z-10">
@@ -85,7 +85,7 @@ export function HeroShowcase({
 
             {/* Address picker — clean white pill, red CTA */}
             <form
-              className="mt-9 flex w-full max-w-md flex-col gap-0 rounded-full bg-white p-1.5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
+              className="mt-9 flex w-full max-w-md flex-col gap-0 rounded-full bg-white p-[0.8] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
               action={siteConfig.shopHref}
               method="get"
             >
@@ -125,22 +125,65 @@ export function HeroShowcase({
             </ul>
           </div>
 
-          {/* RIGHT — phone + 5 floating cards */}
-          <div className="relative mx-auto h-full w-full max-w-[26rem] lg:max-w-none lg:min-h-[40rem]">
-            <PhoneOrderPreview />
+          {/* RIGHT — phone flanked by floating service cards.
+              Mobile/tablet shows just the phone; on lg+ the layout
+              becomes a 3-column flank (2 cards | phone | 3 cards)
+              matching the design reference. */}
+          <div className="relative mx-auto w-full max-w-104 lg:max-w-none">
+            {/* Mobile / tablet — phone only */}
+            <div className="lg:hidden">
+              <PhoneOrderPreview />
+            </div>
 
-            {heroCards.map((card) => (
-              <FloatingServiceCard
-                key={card.key}
-                label={card.label}
-                detail={card.detail}
-                imagePath={card.imagePath}
-                iconKey={card.iconKey}
-                placeholderAccent={card.placeholderAccent}
-                delay={card.delay}
-                className={card.position}
-              />
-            ))}
+            {/* lg+ flank composition */}
+            <div className="hidden lg:flex lg:items-start lg:justify-center lg:gap-2 xl:gap-4">
+              {/* Left column — 2 SQUARE cards (Food, Grocery). Square
+                  tiles are tall, so a moderate gap is enough to span
+                  the vertical extent of the right column's 3 wide
+                  tiles. */}
+              <div className="flex flex-col gap-16 pt-10 xl:gap-20 xl:pt-14">
+                {heroCards
+                  .filter((card) => card.column === "left")
+                  .map((card) => (
+                    <FloatingServiceCard
+                      key={card.key}
+                      label={card.label}
+                      detail={card.detail}
+                      imagePath={card.imagePath}
+                      iconKey={card.iconKey}
+                      placeholderAccent={card.placeholderAccent}
+                      variant="square"
+                      delay={card.delay}
+                    />
+                  ))}
+              </div>
+
+              {/* Phone — centred between the flanking card columns */}
+              <div className="flex-none">
+                <PhoneOrderPreview />
+              </div>
+
+              {/* Right column — 3 WIDE cards (Pharmacy, Parcel,
+                  Petrol). Each tile is short, so a larger gap is
+                  needed to keep the column visually proportional to
+                  the phone. */}
+              <div className="flex flex-col gap-10 pt-8 xl:gap-12 xl:pt-10">
+                {heroCards
+                  .filter((card) => card.column === "right")
+                  .map((card) => (
+                    <FloatingServiceCard
+                      key={card.key}
+                      label={card.label}
+                      detail={card.detail}
+                      imagePath={card.imagePath}
+                      iconKey={card.iconKey}
+                      placeholderAccent={card.placeholderAccent}
+                      variant="wide"
+                      delay={card.delay}
+                    />
+                  ))}
+              </div>
+            </div>
           </div>
         </div>
       </Container>

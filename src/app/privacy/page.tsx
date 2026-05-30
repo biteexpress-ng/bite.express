@@ -29,11 +29,11 @@ export default function PrivacyPage() {
       <LegalPage title="Privacy Policy" lastUpdated="19 May 2026">
         <p>
           This Privacy Policy explains how {siteConfig.legalName} (
-          <strong>"BiteExpress"</strong>, <strong>"we"</strong>,{" "}
-          <strong>"our"</strong>, <strong>"us"</strong>) collects, uses, shares
+          <strong>&ldquo;BiteExpress&rdquo;</strong>, <strong>&ldquo;we&rdquo;</strong>,{" "}
+          <strong>&ldquo;our&rdquo;</strong>, <strong>&ldquo;us&rdquo;</strong>) collects, uses, shares
           and protects your personal information when you use bite.express, the
           BiteExpress mobile apps, and any related services (together, the{" "}
-          <strong>"Services"</strong>).
+          <strong>&ldquo;Services&rdquo;</strong>).
         </p>
         <p>
           We are committed to handling your information transparently and in
@@ -167,8 +167,8 @@ export default function PrivacyPage() {
         <h2>9. Changes to this policy</h2>
         <p>
           We may update this Privacy Policy from time to time. If changes are
-          material, we'll notify you in-app or by email before they take
-          effect. The "Last updated" date at the top of this page reflects the
+          material, we&apos;ll notify you in-app or by email before they take
+          effect. The &ldquo;Last updated&rdquo; date at the top of this page reflects the
           current version.
         </p>
 

@@ -188,7 +188,7 @@ export default async function CuisinePage({ params }: RouteProps) {
               ))}
             </div>
             <p className="mt-8 text-sm text-ink-600">
-              Don't see your city?{" "}
+              Don&apos;t see your city?{" "}
               <Link href="/contact" className="font-medium text-brand-red underline-offset-4 hover:underline">
                 Tell us where to launch next
               </Link>

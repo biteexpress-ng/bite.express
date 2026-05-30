@@ -7,9 +7,9 @@ type ContainerProps<T extends ElementType> = {
 } & Omit<ComponentPropsWithoutRef<T>, "as" | "size">;
 
 const sizeMap = {
-  page: "max-w-[80rem]",
-  prose: "max-w-[42rem]",
-  narrow: "max-w-[56rem]",
+  page: "max-w-7xl",
+  prose: "max-w-2xl",
+  narrow: "max-w-4xl",
 } as const;
 
 export function Container<T extends ElementType = "div">({

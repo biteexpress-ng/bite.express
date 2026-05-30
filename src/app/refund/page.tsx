@@ -32,7 +32,7 @@ export default function RefundPage() {
         </p>
 
         <h2>1. When we issue refunds</h2>
-        <p>You're eligible for a refund (full or partial) when:</p>
+        <p>You&apos;re eligible for a refund (full or partial) when:</p>
         <ul>
           <li>The order was cancelled before the vendor began preparing it.</li>
           <li>
@@ -82,16 +82,16 @@ export default function RefundPage() {
         <p>
           Cancellation is free before the vendor accepts your order. Once
           preparation has started, partial fees may apply — typically the cost
-          of any food the vendor has already cooked or perishable items they've
+          of any food the vendor has already cooked or perishable items they&apos;ve
           opened. We try to be fair to both you and the vendor.
         </p>
 
         <h2>5. Riders, weather and unforeseen events</h2>
         <p>
-          If a delivery fails because of factors outside everyone's control
-          (severe weather, road closures, unsafe areas), we'll refund or
-          re-attempt as appropriate. We don't penalise you for issues you
-          couldn't avoid.
+          If a delivery fails because of factors outside everyone&apos;s control
+          (severe weather, road closures, unsafe areas), we&apos;ll refund or
+          re-attempt as appropriate. We don&apos;t penalise you for issues you
+          couldn&apos;t avoid.
         </p>
 
         <h2>6. Abuse of the refund process</h2>
@@ -103,7 +103,7 @@ export default function RefundPage() {
 
         <h2>7. Questions</h2>
         <p>
-          We're real humans, and we want every refund issue resolved cleanly.
+          We&apos;re real humans, and we want every refund issue resolved cleanly.
           Email{" "}
           <a href={`mailto:${siteConfig.supportEmail}`}>
             {siteConfig.supportEmail}

@@ -31,10 +31,10 @@ export default function AboutPage() {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-16 pb-20 sm:pt-24 sm:pb-28">
+      <section className="relative overflow-hidden bg-linear-to-b from-ink-50 to-white pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-32 -right-32 h-[24rem] w-[24rem] rounded-full bg-brand-red/10 blur-3xl"
+          className="pointer-events-none absolute -top-32 -right-32 h-96 w-[24rem] rounded-full bg-brand-red/10 blur-3xl"
         />
         <Container className="relative">
           <div className="max-w-3xl">
@@ -44,7 +44,7 @@ export default function AboutPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
               BiteExpress is the on-demand delivery platform connecting local
-              vendors, independent riders and Nigerian households. We're
+              vendors, independent riders and Nigerian households. We&#39;re
               building the most-trusted way to move food, essentials and
               everyday things between the people who make them and the people
               who want them — fast, fairly, and at scale.
@@ -143,26 +143,25 @@ export default function AboutPage() {
           <div className="mt-10 space-y-5 text-lg text-ink-600">
             <p>
               BiteExpress launched in Kaduna with a small team, a handful of
-              restaurants, and the conviction that there was a better way to
-              run delivery in Nigeria than the playbooks being imported from
-              abroad.
+              restaurants, and the conviction that there was a better way to run
+              delivery in Nigeria than the playbooks being imported from abroad.
             </p>
             <p>
               The reception was immediate. Customers found a service that
-              respected their time and wallet. Vendors found a partner who
-              cared about their margins. Riders found a platform that treated
-              them as the professionals they are.
+              respected their time and wallet. Vendors found a partner who cared
+              about their margins. Riders found a platform that treated them as
+              the professionals they are.
             </p>
             <p>
-              We've since expanded to ten cities across Northern Nigeria and
+              We&#39;ve since expanded to ten cities across Northern Nigeria and
               beyond, added groceries, pharmacies, parcel delivery and more —
               all whilst keeping the basics excellent: hot food, fast delivery,
               and a phone you can actually pick up when something goes wrong.
             </p>
             <p>
-              We're building toward a future where ordering anything you need
-              is as simple as opening BiteExpress, no matter where in Nigeria
-              you live.
+              We&#39;re building toward a future where ordering anything you
+              need is as simple as opening BiteExpress, no matter where in
+              Nigeria you live.
             </p>
           </div>
         </Container>
@@ -173,14 +172,19 @@ export default function AboutPage() {
         variant="dark"
         eyebrow="Join us"
         title="Build the future of delivery in Nigeria."
-        subtitle="We're hiring across engineering, operations and partnerships in every city we serve."
+        subtitle="We&#39;re hiring across engineering, operations and partnerships in every city we serve."
         cta={
           <ButtonLink href="/careers" variant="primary" size="lg">
             See open roles
           </ButtonLink>
         }
         secondaryCta={
-          <ButtonLink href={siteConfig.shopHref} variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
+          <ButtonLink
+            href={siteConfig.shopHref}
+            variant="outline"
+            size="lg"
+            className="border-white/30 bg-transparent text-white hover:bg-white/10"
+          >
             Or just order something
           </ButtonLink>
         }

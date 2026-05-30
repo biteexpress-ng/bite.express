@@ -15,7 +15,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, localBusinessSchema } from "@/lib/jsonld";
 import { cities, getCity } from "@/lib/cities";
-import { cuisines, getCuisine } from "@/lib/cuisines";
+import { getCuisine } from "@/lib/cuisines";
 import { deliveryModules } from "@/lib/modules";
 import { siteConfig } from "@/lib/site-config";
 

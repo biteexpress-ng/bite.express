@@ -5,63 +5,53 @@ import { cn } from "@/lib/cn";
 
 type Props = {
   service: DeliveryModule;
-  index: number;
 };
 
-export function HomeServiceCard({ service, index }: Props) {
-  void index; // retained in API for future variant work; not used today.
+export function HomeServiceCard({ service }: Props) {
   const Icon = service.icon;
 
   return (
     <Link
       href={service.href}
-      className={cn(
-        "group relative min-h-[19rem] overflow-hidden rounded-[1.75rem] border border-ink-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-red/35 hover:shadow-elevated",
-      )}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-red/25 hover:shadow-elevated"
     >
+      {/* ── Visual area — product image or icon on accent background ─── */}
       <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink-50 to-transparent"
-      />
-      <svg
-        aria-hidden
-        className="absolute right-0 top-0 h-40 w-52 text-brand-red/10 transition duration-300 group-hover:text-brand-red/20"
-        viewBox="0 0 240 180"
-        fill="none"
+        className={cn(
+          "relative flex h-52 items-center justify-center overflow-hidden",
+          service.accent,
+        )}
       >
-        <path
-          d="M18 146C65 92 91 164 136 108C166 71 187 57 222 42"
-          stroke="currentColor"
-          strokeWidth="18"
-          strokeLinecap="round"
-          strokeDasharray="1 28"
-        />
-      </svg>
+        {service.image ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={service.image}
+            alt=""
+            draggable={false}
+            className="h-full w-full select-none object-contain p-8 transition duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <Icon
+            size={64}
+            strokeWidth={1.2}
+            className="transition duration-300 group-hover:scale-110"
+          />
+        )}
+      </div>
 
-      <div className="relative z-10 flex h-full flex-col">
-        <div
-          className={cn(
-            "inline-flex h-16 w-16 items-center justify-center rounded-2xl ring-1 ring-black/5",
-            service.accent,
-          )}
-        >
-          <Icon size={31} />
-        </div>
-
-        <div className="mt-10 max-w-md">
-          <h3 className="font-serif text-3xl leading-none tracking-normal text-ink-900">
-            {service.name}
-          </h3>
-          <p className="mt-4 text-base leading-7 text-ink-600">
-            {service.description}
-          </p>
-        </div>
-
-        <div className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-brand-red">
+      {/* ── Text area ────────────────────────────────────────────────── */}
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
+        <h3 className="text-base font-bold leading-snug text-ink-900">
+          {service.name}
+        </h3>
+        <p className="mt-1.5 text-sm leading-[1.65] text-ink-500">
+          {service.description}
+        </p>
+        <div className="mt-auto flex items-center gap-1.5 pt-4 text-sm font-semibold text-brand-red">
           Explore
           <ArrowRight
-            size={16}
-            className="transition group-hover:translate-x-1"
+            size={14}
+            className="transition-transform duration-200 group-hover:translate-x-1"
           />
         </div>
       </div>

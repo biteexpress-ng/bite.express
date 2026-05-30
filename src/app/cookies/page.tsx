@@ -54,7 +54,7 @@ export default function CookiePolicyPage() {
         <h3>Preferences</h3>
         <p>
           Remember choices like your address, language and module. These make
-          BiteExpress easier to use but aren't essential.
+          BiteExpress easier to use but aren&apos;t essential.
         </p>
 
         <h3>Analytics</h3>
@@ -83,14 +83,14 @@ export default function CookiePolicyPage() {
         <p>
           Some pages embed third-party content (for example, Google Maps,
           YouTube videos, payment provider widgets) which may set their own
-          cookies. Those cookies are governed by the third party's own
+          cookies. Those cookies are governed by the third party&apos;s own
           policies.
         </p>
 
         <h2>5. Changes to this policy</h2>
         <p>
           We may update this Cookie Policy as the cookies we use change. The
-          "Last updated" date at the top reflects the current version.
+          &ldquo;Last updated&rdquo; date at the top reflects the current version.
         </p>
 
         <h2>6. Contact</h2>

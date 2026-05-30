@@ -27,11 +27,11 @@ export default function TermsPage() {
       />
       <LegalPage title="Terms of Service" lastUpdated="19 May 2026">
         <p>
-          These Terms of Service (<strong>"Terms"</strong>) govern your use of
+          These Terms of Service (<strong>&ldquo;Terms&rdquo;</strong>) govern your use of
           bite.express, the BiteExpress mobile apps, and any related services
-          (together, the <strong>"Services"</strong>) provided by{" "}
-          {siteConfig.legalName} (<strong>"BiteExpress"</strong>,{" "}
-          <strong>"we"</strong>, <strong>"our"</strong>, <strong>"us"</strong>).
+          (together, the <strong>&ldquo;Services&rdquo;</strong>) provided by{" "}
+          {siteConfig.legalName} (<strong>&ldquo;BiteExpress&rdquo;</strong>,{" "}
+          <strong>&ldquo;we&rdquo;</strong>, <strong>&ldquo;our&rdquo;</strong>, <strong>&ldquo;us&rdquo;</strong>).
           By using the Services, you agree to these Terms.
         </p>
 
@@ -120,7 +120,7 @@ export default function TermsPage() {
 
         <h2>8. Disclaimers</h2>
         <p>
-          The Services are provided "as is" without warranties of any kind,
+          The Services are provided &ldquo;as is&rdquo; without warranties of any kind,
           express or implied, to the maximum extent permitted by law. We do
           not warrant that the Services will be uninterrupted, error-free, or
           meet every requirement.
@@ -145,7 +145,7 @@ export default function TermsPage() {
         <h2>11. Changes to these Terms</h2>
         <p>
           We may update these Terms from time to time. If changes are material
-          we'll notify you in-app or by email before they take effect. Your
+          we&apos;ll notify you in-app or by email before they take effect. Your
           continued use of the Services after a change means you accept the
           revised Terms.
         </p>

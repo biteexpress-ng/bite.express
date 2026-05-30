@@ -35,8 +35,8 @@ export type HeroCard = {
   iconKey: HeroCardIconKey;
   /** Tailwind classes for the placeholder tile background + icon color. */
   placeholderAccent: string;
-  /** Absolute positioning relative to the hero right column. */
-  position: string;
+  /** Which side of the phone this card sits on (lg+ layout). */
+  column: "left" | "right";
   /** Reveal delay (seconds) — gives the cards a staggered entrance. */
   delay: number;
 };
@@ -50,7 +50,7 @@ export const heroCards: readonly HeroCard[] = [
     iconKey: "food",
     placeholderAccent:
       "bg-gradient-to-br from-amber-500/25 via-amber-700/15 to-transparent text-amber-200",
-    position: "left-[2%] top-[8%]",
+    column: "left",
     delay: 0.05,
   },
   {
@@ -61,7 +61,7 @@ export const heroCards: readonly HeroCard[] = [
     iconKey: "pharmacy",
     placeholderAccent:
       "bg-gradient-to-br from-sky-500/25 via-sky-700/15 to-transparent text-sky-200",
-    position: "right-[2%] top-[8%]",
+    column: "right",
     delay: 0.14,
   },
   {
@@ -72,7 +72,7 @@ export const heroCards: readonly HeroCard[] = [
     iconKey: "grocery",
     placeholderAccent:
       "bg-gradient-to-br from-emerald-500/25 via-emerald-700/15 to-transparent text-emerald-200",
-    position: "left-[2%] top-[42%]",
+    column: "left",
     delay: 0.22,
   },
   {
@@ -83,7 +83,7 @@ export const heroCards: readonly HeroCard[] = [
     iconKey: "parcel",
     placeholderAccent:
       "bg-gradient-to-br from-orange-500/25 via-orange-700/15 to-transparent text-orange-200",
-    position: "right-[2%] top-[40%]",
+    column: "right",
     delay: 0.3,
   },
   {
@@ -94,7 +94,7 @@ export const heroCards: readonly HeroCard[] = [
     iconKey: "petrol",
     placeholderAccent:
       "bg-gradient-to-br from-rose-500/25 via-rose-700/15 to-transparent text-rose-200",
-    position: "right-[4%] top-[72%]",
+    column: "right",
     delay: 0.38,
   },
 ];

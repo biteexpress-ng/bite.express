@@ -92,7 +92,7 @@ export function AgentSignupForm() {
         />
         <span>
           I agree BiteExpress can contact me about the agent programme, and
-          I've read the{" "}
+          I&apos;ve read the{" "}
           <a href="/privacy" className="text-brand-red underline-offset-4 hover:underline">
             Privacy Policy
           </a>

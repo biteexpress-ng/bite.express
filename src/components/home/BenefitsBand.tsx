@@ -1,133 +1,92 @@
-import {
-  Headphones,
-  ShieldCheck,
-  Timer,
-  Waypoints,
-  type LucideIcon,
-} from "lucide-react";
-import { Container } from "@/components/ui/container";
-import { cn } from "@/lib/cn";
+import { CreditCard, Headphones, MapPin, Timer, type LucideIcon } from "lucide-react";
 
-type Benefit = {
-  title: string;
-  description: string;
-};
+type Benefit = { title: string; description: string };
 
 type Props = {
   eyebrow: string;
   title: string;
-  subtitle: string;
+  /** Rendered on its own line in brand-red italic — e.g. "by design." */
+  titleHighlight?: string;
   benefits: Benefit[];
 };
 
-const icons: LucideIcon[] = [Waypoints, Timer, ShieldCheck, Headphones];
+const ICONS: LucideIcon[] = [MapPin, Timer, CreditCard, Headphones];
 
-export function BenefitsBand({ eyebrow, title, subtitle, benefits }: Props) {
+export function BenefitsBand({
+  eyebrow,
+  title,
+  titleHighlight,
+  benefits,
+}: Props) {
   return (
-    <section className="relative overflow-hidden bg-brand-black py-20 text-white sm:py-28">
+    <section className="relative overflow-hidden bg-[#0d0d0d]">
+      {/* Subtle ambient red glow — top-right corner */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(222,22,0,0.26),transparent_33%),radial-gradient(circle_at_14%_75%,rgba(255,107,74,0.12),transparent_30%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_72%_50%,rgba(222,22,0,0.18),transparent)]"
       />
-      <Container className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.92fr]">
-          <div>
-            <div className="section-eyebrow border-white/15 bg-white/10 text-white/80">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
-              {eyebrow}
-            </div>
-            <h2 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.05] tracking-normal text-white sm:text-5xl md:text-6xl">
-              {title}
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/65">
-              {subtitle}
-            </p>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {benefits.map(({ title: benefitTitle, description }, index) => {
-                const Icon = icons[index] ?? Waypoints;
-                return (
-                  <article
-                    key={benefitTitle}
-                    className="rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-5 backdrop-blur"
-                  >
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-red/15 text-brand-orange ring-1 ring-brand-red/25">
-                      <Icon size={20} strokeWidth={1.8} />
-                    </span>
-                    <h3 className="mt-5 font-serif text-2xl tracking-normal text-white">
-                      {benefitTitle}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-white/55">
-                      {description}
-                    </p>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
+      <div className="relative flex min-h-[260px] flex-col lg:flex-row lg:items-stretch">
 
-          <div className="relative min-h-[34rem] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-2xl backdrop-blur">
-            <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.3)_1px,transparent_1px)] [background-size:22px_22px]" />
-            <svg
-              aria-hidden
-              className="absolute inset-0 h-full w-full"
-              viewBox="0 0 520 620"
-              fill="none"
-            >
-              <path
-                d="M72 530C135 375 171 446 239 299C299 167 370 191 453 82"
-                stroke="#de1600"
-                strokeWidth="5"
-                strokeLinecap="round"
-                strokeDasharray="14 16"
-              />
-              <path
-                d="M62 208C144 140 219 240 302 175C369 123 394 91 466 100"
-                stroke="#ff6b4a"
-                strokeWidth="2"
-                strokeLinecap="round"
-                opacity="0.5"
-              />
-            </svg>
+        {/* ── Left: eyebrow + heading ────────────────────────────────
+            Aligned with the standard site container on the left edge. */}
+        <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:w-[28%] lg:shrink-0 lg:px-12 xl:pl-[max(3rem,calc(50vw-40rem))]">
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-brand-red">
+            {eyebrow}
+          </p>
+          <h2 className="mt-4 font-serif text-3xl leading-[1.1] text-white sm:text-4xl">
+            {title}
+            {titleHighlight && (
+              <>
+                <br />
+                <em className="text-brand-red">{titleHighlight}</em>
+              </>
+            )}
+          </h2>
+        </div>
 
-            <div className="relative z-10 mt-10 rounded-[1.75rem] border border-white/10 bg-black/55 p-5 shadow-2xl backdrop-blur">
-              <p className="text-xs uppercase text-white/45">Priority dispatch</p>
-              <div className="mt-5 flex items-center justify-between gap-4">
-                <div>
-                  <h3 className="font-serif text-3xl tracking-normal">
-                    Rider matched
+        {/* ── Middle: 2 × 2 benefit cards ──────────────────────────── */}
+        <div className="flex flex-1 items-center px-6 py-8 sm:px-8 lg:px-8">
+          <div className="grid w-full grid-cols-2 gap-2.5">
+            {benefits.map(({ title: t, description }, i) => {
+              const Icon = ICONS[i] ?? MapPin;
+              return (
+                <article
+                  key={t}
+                  className="rounded-xl bg-white/[0.07] px-4 py-3.5"
+                >
+                  <Icon size={17} strokeWidth={1.7} className="text-white/75" />
+                  <h3 className="mt-2.5 text-[13px] font-semibold leading-snug text-white">
+                    {t}
                   </h3>
-                  <p className="mt-2 text-sm text-white/55">
-                    Kaduna central to Barnawa. Estimated arrival: 24 min.
+                  <p className="mt-1 text-[11px] leading-[1.55] text-white/48">
+                    {description}
                   </p>
-                </div>
-                <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-red text-white">
-                  <Waypoints size={25} />
-                </span>
-              </div>
-            </div>
-
-            <div className="relative z-10 mt-6 grid grid-cols-2 gap-4">
-              {["Vendor ready", "Rider en route", "Payment secured", "Support online"].map(
-                (item, index) => (
-                  <div
-                    key={item}
-                    className={cn(
-                      "rounded-2xl border border-white/10 bg-white/[0.08] p-4 text-sm text-white/70",
-                      index === 1 && "bg-brand-red/20 text-white",
-                    )}
-                  >
-                    <span className="block font-serif text-xl text-white">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="mt-2 block">{item}</span>
-                  </div>
-                ),
-              )}
-            </div>
+                </article>
+              );
+            })}
           </div>
         </div>
-      </Container>
+
+        {/* ── Right: delivery rider image ───────────────────────────
+            Fills remaining width; bleeds to the section's right edge.
+            Gradient on the left fades it into the dark background.   */}
+        <div className="relative hidden overflow-hidden lg:block lg:w-[30%] lg:shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/rider.webp"
+            alt=""
+            draggable={false}
+            className="h-full w-full select-none object-cover object-center"
+          />
+          {/* Left-to-dark gradient */}
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#0d0d0d] to-transparent"
+          />
+        </div>
+
+      </div>
     </section>
   );
 }
