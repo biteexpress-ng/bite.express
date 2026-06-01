@@ -12,12 +12,12 @@ export function FeatureCard({ icon: Icon, title, description, className }: Props
   return (
     <div
       className={cn(
-        "group relative flex flex-col gap-4 rounded-2xl border border-ink-200 bg-white p-6 transition-shadow hover:shadow-soft sm:p-8",
+        "group card-luxe relative flex flex-col gap-4 p-6 sm:p-8",
         className,
       )}
     >
       {Icon && (
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-red/10 text-brand-red transition-colors group-hover:bg-brand-red group-hover:text-white">
+        <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-brand-red/12 to-brand-orange/10 text-brand-red shadow-[var(--shadow-bevel)] transition-all duration-200 ease-out-expo group-hover:from-brand-red group-hover:to-brand-red-600 group-hover:text-white group-hover:shadow-glow-sm">
           <Icon size={22} />
         </div>
       )}

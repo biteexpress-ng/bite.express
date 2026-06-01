@@ -14,12 +14,12 @@ export function CityChip({ name, state, href, className }: Props) {
     <Link
       href={href}
       className={cn(
-        "group relative flex items-center justify-between gap-4 rounded-2xl border border-ink-200 bg-white p-5 transition-all hover:border-brand-red hover:shadow-soft",
+        "group relative flex items-center justify-between gap-4 rounded-2xl border border-ink-200 bg-surface p-5 shadow-card transition-[transform,box-shadow,border-color] duration-[280ms] ease-out-expo hover:-translate-y-[3px] hover:border-brand-red/30 hover:shadow-floating",
         className,
       )}
     >
       <div className="flex items-center gap-3">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-red/10 text-brand-red transition-colors group-hover:bg-brand-red group-hover:text-white">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-brand-red/12 to-brand-orange/10 text-brand-red shadow-[var(--shadow-bevel)] transition-all duration-200 ease-out-expo group-hover:from-brand-red group-hover:to-brand-red-600 group-hover:text-white group-hover:shadow-glow-sm">
           <MapPin size={18} />
         </span>
         <div>

@@ -18,8 +18,9 @@ type CommonProps = {
 };
 
 const baseField =
-  "block w-full rounded-2xl border bg-white px-4 py-3 text-base text-ink-900 placeholder:text-ink-400 transition-shadow shadow-sm " +
-  "focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/25";
+  "block w-full rounded-2xl border bg-surface px-4 py-3 text-base text-ink-900 placeholder:text-ink-400 shadow-soft " +
+  "transition-[box-shadow,border-color] duration-200 ease-out-expo " +
+  "hover:border-ink-400 focus:border-brand-red focus:outline-none focus:ring-4 focus:ring-brand-red/15";
 
 const okBorder = "border-ink-200";
 const errBorder = "border-error focus:border-error focus:ring-error/25";

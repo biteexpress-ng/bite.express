@@ -12,7 +12,7 @@ export function Step({ number, title, description, className }: Props) {
   return (
     <div className={cn("relative flex gap-5", className)}>
       <div className="flex-none">
-        <div className="font-serif text-5xl leading-none text-brand-red sm:text-6xl">
+        <div className="font-mono text-3xl font-medium leading-none tracking-tight text-brand-red tabular-nums sm:text-4xl">
           {String(number).padStart(2, "0")}
         </div>
       </div>
