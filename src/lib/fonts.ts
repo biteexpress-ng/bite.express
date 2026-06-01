@@ -1,4 +1,4 @@
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { DM_Sans, DM_Serif_Display, Geist_Mono } from "next/font/google";
 
 export const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -13,4 +13,11 @@ export const dmSerifDisplay = DM_Serif_Display({
   display: "swap",
   weight: ["400"],
   style: ["normal", "italic"],
+});
+
+export const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
 });

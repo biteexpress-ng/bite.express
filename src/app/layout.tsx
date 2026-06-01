@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { dmSans, dmSerifDisplay } from "@/lib/fonts";
+import { dmSans, dmSerifDisplay, geistMono } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site-config";
 import { siteUrl } from "@/lib/seo";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
@@ -73,7 +73,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${dmSans.variable} ${dmSerifDisplay.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${dmSerifDisplay.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         {/* Brand-wide structured data — emitted on every page */}

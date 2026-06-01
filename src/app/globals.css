@@ -1,19 +1,33 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
- * BiteExpress brand tokens
- * Edit colors in branding_materials/biteexpress_brand_color_palette.txt
+ * BiteExpress design system — "Warm Obsidian / Editorial Luxury"
+ * Brand anchor stays #de1600. Neutrals, neon and gradients orbit it.
+ * Edit brand colors in branding_materials/biteexpress_brand_color_palette.txt
  * and mirror changes here.
  * ------------------------------------------------------------------------- */
 
 @theme {
   /* Brand palette -------------------------------------------------------- */
   --color-brand-black: #000000;
-  --color-brand-red: #de1600;
+  --color-brand-red-400: #ff4a36; /* lighter ramp tier (NEW) */
+  --color-brand-red: #de1600; /* anchor — do not replace */
   --color-brand-red-600: #c01200;
   --color-brand-red-700: #a30f00;
   --color-brand-orange: #ff6b4a;
   --color-brand-orange-600: #f04e29;
+
+  /* Neon / flame — glows, gradient stops, hover reflections ONLY.
+     Never a flat fill. */
+  --color-flame: #ff5026;
+  --color-flame-soft: #ff7a52;
+
+  /* Canvas & obsidian surfaces ------------------------------------------ */
+  --color-canvas: #fafaf7; /* warm off-white page background */
+  --color-canvas-2: #f4f2ec; /* slightly deeper warm panel */
+  --color-obsidian: #050505; /* hero / footer / key dark cards */
+  --color-obsidian-800: #0c0a09; /* warm-tinted near-black */
+  --color-obsidian-700: #141110;
 
   /* Neutrals ------------------------------------------------------------- */
   --color-ink-900: #111111;
@@ -26,16 +40,22 @@
   --color-ink-50: #fafafa;
   --color-ink-0: #ffffff;
 
-  /* Status --------------------------------------------------------------- */
+  /* Status + soft tints -------------------------------------------------- */
   --color-success: #16a34a;
+  --color-success-soft: #e7f6ec;
   --color-warning: #f59e0b;
+  --color-warning-soft: #fdf3e2;
   --color-error: #dc2626;
+  --color-error-soft: #fbeaea;
+  --color-info: #2563eb;
+  --color-info-soft: #e8effd;
 
   /* Semantic aliases (use these in components) --------------------------- */
-  --color-background: var(--color-ink-0);
+  --color-background: var(--color-canvas);
   --color-foreground: var(--color-ink-900);
   --color-muted: var(--color-ink-600);
-  --color-surface: var(--color-ink-50);
+  --color-surface: var(--color-ink-0); /* cards lift off the warm canvas */
+  --color-surface-2: var(--color-canvas-2);
   --color-border: var(--color-ink-200);
   --color-primary: var(--color-brand-red);
   --color-primary-foreground: var(--color-ink-0);
@@ -47,26 +67,37 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: var(--font-dm-serif-display), ui-serif, Georgia, "Times New Roman",
     serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", "Cascadia Mono",
+    Menlo, monospace;
 
   /* Display sizes (marketing-tuned) -------------------------------------- */
+  --text-display-3xl: 5.75rem; /* 92px */
+  --text-display-3xl--line-height: 1.0;
+  --text-display-3xl--letter-spacing: -0.03em;
+
   --text-display-2xl: 4.5rem; /* 72px */
-  --text-display-2xl--line-height: 1.05;
-  --text-display-2xl--letter-spacing: -0.02em;
+  --text-display-2xl--line-height: 1.04;
+  --text-display-2xl--letter-spacing: -0.028em;
 
   --text-display-xl: 3.75rem; /* 60px */
   --text-display-xl--line-height: 1.05;
-  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-xl--letter-spacing: -0.025em;
 
   --text-display-lg: 3rem; /* 48px */
   --text-display-lg--line-height: 1.1;
-  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--letter-spacing: -0.022em;
 
   --text-display-md: 2.25rem; /* 36px */
   --text-display-md--line-height: 1.15;
-  --text-display-md--letter-spacing: -0.01em;
+  --text-display-md--letter-spacing: -0.018em;
 
   --text-display-sm: 1.875rem; /* 30px */
   --text-display-sm--line-height: 1.2;
+  --text-display-sm--letter-spacing: -0.012em;
+
+  --text-eyebrow: 0.75rem; /* 12px */
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.22em;
 
   /* Radius --------------------------------------------------------------- */
   --radius-xs: 0.25rem;
@@ -76,21 +107,89 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
+  --radius-pill: 999px;
 
-  /* Shadow --------------------------------------------------------------- */
+  /* Shadow ladder — longer Y offsets, softer blurs than defaults --------- */
+  --shadow-hairline: 0 0 0 1px rgba(17, 17, 17, 0.05);
   --shadow-soft: 0 1px 2px rgba(17, 17, 17, 0.04), 0 4px 16px rgba(17, 17, 17, 0.06);
+  --shadow-card: 0 2px 4px rgba(17, 17, 17, 0.04),
+    0 10px 28px -8px rgba(17, 17, 17, 0.10);
   --shadow-elevated: 0 4px 12px rgba(17, 17, 17, 0.08),
-    0 12px 32px rgba(17, 17, 17, 0.08);
+    0 18px 40px -12px rgba(17, 17, 17, 0.12);
+  --shadow-floating: 0 8px 16px -6px rgba(17, 17, 17, 0.10),
+    0 28px 56px -16px rgba(17, 17, 17, 0.18);
+  --shadow-luxe: 0 40px 90px -28px rgba(0, 0, 0, 0.30),
+    0 8px 24px -12px rgba(0, 0, 0, 0.16);
   --shadow-premium: 0 24px 80px rgba(0, 0, 0, 0.28),
     0 6px 24px rgba(222, 22, 0, 0.16);
+  /* Brand glow — for CTAs */
+  --shadow-glow: 0 12px 36px -8px rgba(222, 22, 0, 0.55);
+  --shadow-glow-sm: 0 8px 22px -8px rgba(222, 22, 0, 0.50);
+  /* Micro-bevel for dark buttons */
+  --shadow-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   /* Page width ----------------------------------------------------------- */
   --container-page: 80rem; /* 1280px */
   --container-prose: 42rem; /* 672px */
 
   /* Motion --------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Animations (Tailwind v4 exposes these as animate-* utilities) -------- */
+  --animate-fade-up: fade-up 0.42s var(--ease-out-expo) both;
+  --animate-rise: rise 0.52s var(--ease-out-expo) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-live-pulse: live-pulse 2s var(--ease-out-quart) infinite;
+}
+
+/* ---------------------------------------------------------------------------
+ * Keyframes
+ * ------------------------------------------------------------------------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 250% 0;
+  }
+}
+
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(222, 22, 0, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(222, 22, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(222, 22, 0, 0);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -124,6 +223,12 @@
     letter-spacing: 0;
   }
 
+  /* Numbers read as data — align them */
+  .tabular,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+
   /* Selection */
   ::selection {
     background: var(--color-brand-red);
@@ -135,6 +240,26 @@
     outline: 2px solid var(--color-brand-red);
     outline-offset: 2px;
     border-radius: 2px;
+  }
+
+  /* Premium scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(17, 17, 17, 0.22) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(17, 17, 17, 0.22);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(17, 17, 17, 0.34);
+    background-clip: padding-box;
   }
 }
 
@@ -215,28 +340,143 @@
 }
 
 /* ---------------------------------------------------------------------------
- * Premium homepage utilities
+ * Atmosphere — backgrounds
  * ------------------------------------------------------------------------- */
 
+/* Obsidian hero with stacked brand + flame orbs and a linear vignette. */
+.hero-radial-bg {
+  background:
+    radial-gradient(circle at 74% 22%, rgba(222, 22, 0, 0.34), transparent 34%),
+    radial-gradient(circle at 18% 78%, rgba(255, 80, 38, 0.16), transparent 32%),
+    linear-gradient(180deg, #050505 0%, #0b0605 54%, #000000 100%);
+}
+
+/* Subtle warm aurora wash from the top corners for light pages. */
+.aurora-bg {
+  background:
+    radial-gradient(60% 50% at 0% 0%, rgba(222, 22, 0, 0.06), transparent 60%),
+    radial-gradient(55% 45% at 100% 0%, rgba(255, 107, 74, 0.07), transparent 60%),
+    var(--color-canvas);
+}
+
+/* Faint dotted texture that fades out via a radial mask. */
+.grid-texture {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.10) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000, transparent 75%);
+}
+
+/* Cursor-tracking spotlight — drive --mx / --my from pointermove. */
+.spotlight {
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 80, 38, 0.16),
+    transparent 65%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+ * Surfaces
+ * ------------------------------------------------------------------------- */
+
+/* Dark glass — for cards over the obsidian hero. */
 .glass-card {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06)),
     rgba(0, 0, 0, 0.28);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.26);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* Light glass — for frosted overlays on warm canvas. */
+.glass-light {
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.7)
+  );
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+/* Luxe card — hairline border + soft shadow, lifts and warms on hover. */
+.card-luxe {
+  border: 1px solid var(--color-ink-200);
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.28s var(--ease-out-expo),
+    box-shadow 0.28s var(--ease-out-expo),
+    border-color 0.28s var(--ease-out-expo);
+}
+.card-luxe:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-floating);
+  border-color: rgba(222, 22, 0, 0.28);
+}
+
+/* Hairline gradient border via masked composite. */
+.hairline-gradient {
+  position: relative;
+}
+.hairline-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    145deg,
+    rgba(222, 22, 0, 0.55),
+    rgba(255, 107, 74, 0.15) 40%,
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Image scrim — transparent → black for text legibility over photos. */
+.image-scrim {
+  position: relative;
+}
+.image-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
 }
 
 .premium-shadow {
   box-shadow: var(--shadow-premium);
 }
 
-.hero-radial-bg {
-  background:
-    radial-gradient(circle at 74% 22%, rgba(222, 22, 0, 0.34), transparent 34%),
-    radial-gradient(circle at 18% 78%, rgba(255, 107, 74, 0.16), transparent 32%),
-    linear-gradient(180deg, #050505 0%, #0b0605 54%, #000000 100%);
+/* Hairline divider that fades at both ends. */
+.divider-fade {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(17, 17, 17, 0.12) 20%,
+    rgba(17, 17, 17, 0.12) 80%,
+    transparent
+  );
 }
+
+/* ---------------------------------------------------------------------------
+ * Components — eyebrow, buttons, indicators
+ * ------------------------------------------------------------------------- */
 
 .section-eyebrow {
   display: inline-flex;
@@ -247,15 +487,122 @@
   background: rgba(255, 255, 255, 0.82);
   padding: 0.375rem 0.75rem;
   color: var(--color-ink-700);
-  font-size: 0.75rem;
+  font-size: var(--text-eyebrow);
   font-weight: 700;
   line-height: 1;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
+
+/* Flame CTA — brand fill with a glow shadow and a -1px tactile lift. */
+.btn-flame {
+  background: var(--color-brand-red);
+  color: #fff;
+  box-shadow: var(--shadow-glow-sm);
+  transition:
+    transform 0.18s var(--ease-out-expo),
+    box-shadow 0.18s var(--ease-out-expo),
+    background-color 0.18s var(--ease-out-expo);
+}
+.btn-flame:hover {
+  background: var(--color-brand-red-600);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+.btn-flame:active {
+  transform: translateY(0);
+  background: var(--color-brand-red-700);
+}
+
+/* Obsidian CTA — dark fill with a micro-bevel highlight. */
+.btn-obsidian {
+  background: var(--color-obsidian);
+  color: #fff;
+  box-shadow: var(--shadow-bevel), var(--shadow-card);
+  transition:
+    transform 0.18s var(--ease-out-expo),
+    box-shadow 0.18s var(--ease-out-expo),
+    background-color 0.18s var(--ease-out-expo);
+}
+.btn-obsidian:hover {
+  background: var(--color-obsidian-700);
+  box-shadow: var(--shadow-bevel), var(--shadow-elevated);
+  transform: translateY(-1px);
+}
+.btn-obsidian:active {
+  transform: translateY(0);
+}
+
+/* Live indicator dot — pulsing radial halo. */
+.live-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-brand-red);
+  animation: var(--animate-live-pulse);
+}
+.live-dot--success {
+  background: var(--color-success);
+}
+
+/* ---------------------------------------------------------------------------
+ * Motion utilities
+ * ------------------------------------------------------------------------- */
+
+.fade-up {
+  animation: var(--animate-fade-up);
+}
+.rise {
+  animation: var(--animate-rise);
+}
+
+/* Stagger helpers — pair with .fade-up / .rise on sibling sections. */
+.delay-1 {
+  animation-delay: 120ms;
+}
+.delay-2 {
+  animation-delay: 220ms;
+}
+.delay-3 {
+  animation-delay: 340ms;
+}
+
+/* Shimmer skeleton — use for loading placeholders, not spinners. */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-ink-100) 25%,
+    var(--color-ink-200) 37%,
+    var(--color-ink-100) 63%
+  );
+  background-size: 400% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* ---------------------------------------------------------------------------
+ * Reduced motion — kill every custom animation & transition flourish.
+ * ------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-up,
+  .rise {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
