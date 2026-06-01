@@ -10,7 +10,11 @@ import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
 
 const social = [
-  { href: siteConfig.social.instagram, label: "Instagram", Icon: InstagramIcon },
+  {
+    href: siteConfig.social.instagram,
+    label: "Instagram",
+    Icon: InstagramIcon,
+  },
   { href: siteConfig.social.facebook, label: "Facebook", Icon: FacebookIcon },
   { href: siteConfig.social.twitter, label: "X (Twitter)", Icon: XIcon },
   { href: siteConfig.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
@@ -90,7 +94,7 @@ function AppleLogo() {
   return (
     <svg
       viewBox="0 0 384 512"
-      className="h-[20px] w-[16px] flex-none fill-current text-white"
+      className="h-5 w-4 flex-none fill-current text-white"
     >
       <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-48.7-19.1-78.2-18.6-38.2.6-73.4 22.2-93 56.4-40.1 69.8-10.2 173 29.1 229.2 19.2 27.5 41.8 58 71.3 56.9 29.2-1.1 40.3-18.9 75.5-18.9s45.3 18.9 75.5 17.8c30.2-1.1 50-27.5 69.1-55.1 22.3-32.1 31.3-63.1 31.7-64.8-.9-.4-61.9-23.7-62.4-94.1zM252.1 74.9c19.1-23.1 31.9-55.2 28.4-86.9-27.3 1.1-60.6 18.2-80.1 41-16.7 19.3-31.3 51.8-27.4 82.9 30.3 2.4 61.2-14 79.1-37z" />
     </svg>
@@ -99,7 +103,7 @@ function AppleLogo() {
 
 function GooglePlayLogo() {
   return (
-    <svg viewBox="0 0 512 512" className="h-[20px] w-[20px] flex-none">
+    <svg viewBox="0 0 512 512" className="h-5 w-5 flex-none">
       <path
         fill="#00E5FF"
         d="M40.3,12.2c-5.7,5.9-9.1,14.6-9.1,25.3v449c0,10.7,3.4,19.4,9.1,25.3l2.2,2.2L265,286.5V259v-27.5L42.5,10L40.3,12.2z"
@@ -127,7 +131,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1.8fr]">
           {/* Logo & Info column */}
           <div className="flex h-full flex-col items-start">
-            <Logo variant="dark" className="h-[28px] w-auto" />
+            <Logo variant="dark" className="h-7 w-auto" />
             <div className="mt-6 flex flex-col text-[13px] leading-relaxed text-[#8e8e93]">
               <p>Everything you crave.</p>
               <p>Delivered fast.</p>
@@ -140,7 +144,7 @@ export function SiteFooter() {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-[32px] w-[32px] items-center justify-center rounded-full border border-white/20 text-[#8e8e93] transition-all duration-200 hover:border-white/40 hover:text-white"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[#8e8e93] transition-all duration-200 hover:border-white/40 hover:text-white"
                 >
                   <Icon size={15} />
                 </a>
@@ -164,12 +168,12 @@ export function SiteFooter() {
                 href={siteConfig.appStore.ios}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-[8px] border border-white/20 bg-black px-[14px] py-[8px] transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+                className="flex items-center gap-2.5 rounded-md border border-white/20 bg-black px-3.5 py-2 transition-all duration-200 hover:border-white/40 hover:bg-white/5"
                 aria-label="Download on the App Store"
               >
                 <AppleLogo />
                 <div className="flex flex-col text-left">
-                  <span className="text-[8px] font-sans font-medium uppercase leading-[1.1] tracking-[0.05em] text-white/70">
+                  <span className="text-[8px] font-sans font-medium uppercase leading-[1.1] tracking-wider text-white/70">
                     Download on the
                   </span>
                   <span className="mt-0.5 text-[13px] font-sans font-semibold leading-[1.1] text-white">
@@ -182,12 +186,12 @@ export function SiteFooter() {
                 href={siteConfig.appStore.android}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-[8px] border border-white/20 bg-black px-[14px] py-[8px] transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+                className="flex items-center gap-2.5 rounded-md border border-white/20 bg-black px-3.5 py-2 transition-all duration-200 hover:border-white/40 hover:bg-white/5"
                 aria-label="Get it on Google Play"
               >
                 <GooglePlayLogo />
                 <div className="flex flex-col text-left">
-                  <span className="text-[8px] font-sans font-medium uppercase leading-[1.1] tracking-[0.05em] text-white/70">
+                  <span className="text-[8px] font-sans font-medium uppercase leading-[1.1] tracking-wider text-white/70">
                     GET IT ON
                   </span>
                   <span className="mt-0.5 text-[13px] font-sans font-semibold leading-[1.1] text-white">

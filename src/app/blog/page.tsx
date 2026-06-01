@@ -85,7 +85,9 @@ function PostCard({ post }: { post: BlogPostListItem }) {
           <span>
             {post.author.name}
             {post.published_at ? ` · ${formatDate(post.published_at)}` : ""}
-            {post.reading_time_minutes ? ` · ${post.reading_time_minutes} min` : ""}
+            {post.reading_time_minutes
+              ? ` · ${post.reading_time_minutes} min`
+              : ""}
           </span>
           <ArrowUpRight
             size={16}
@@ -193,7 +195,7 @@ export default async function BlogIndexPage({ searchParams }: RouteProps) {
                   href={`/blog/${featured.slug}`}
                   className="group mb-12 grid items-center gap-8 lg:grid-cols-2"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-ink-100">
+                  <div className="relative aspect-16/10 w-full overflow-hidden rounded-3xl bg-ink-100">
                     {featured.cover_image_url ? (
                       <Image
                         src={featured.cover_image_url}
@@ -212,7 +214,8 @@ export default async function BlogIndexPage({ searchParams }: RouteProps) {
                       <div
                         className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-wider"
                         style={{
-                          backgroundColor: (featured.category.color ?? "#DE1600") + "1A",
+                          backgroundColor:
+                            (featured.category.color ?? "#DE1600") + "1A",
                           color: featured.category.color ?? "#DE1600",
                         }}
                       >
@@ -229,8 +232,12 @@ export default async function BlogIndexPage({ searchParams }: RouteProps) {
                     )}
                     <div className="mt-6 text-sm text-ink-600">
                       {featured.author.name}
-                      {featured.published_at ? ` · ${formatDate(featured.published_at)}` : ""}
-                      {featured.reading_time_minutes ? ` · ${featured.reading_time_minutes} min read` : ""}
+                      {featured.published_at
+                        ? ` · ${formatDate(featured.published_at)}`
+                        : ""}
+                      {featured.reading_time_minutes
+                        ? ` · ${featured.reading_time_minutes} min read`
+                        : ""}
                     </div>
                   </div>
                 </Link>

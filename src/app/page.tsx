@@ -226,7 +226,7 @@ export default async function HomePage() {
 
             {/* Decorative phone-mockup placeholder for showcase */}
             <div className="relative mx-auto w-full max-w-md">
-              <div className="relative aspect-[9/16] w-full rounded-[3rem] border-[10px] border-brand-black bg-brand-black premium-shadow">
+              <div className="relative aspect-9/16 w-full rounded-[3rem] border-10 border-brand-black bg-brand-black premium-shadow">
                 <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] bg-gradient-to-b from-ink-50 to-white">
                   <div className="mx-auto mt-3 h-5 w-24 rounded-full bg-brand-black" />
                   <div className="p-6">
@@ -250,7 +250,9 @@ export default async function HomePage() {
                           <div className="font-semibold text-ink-900">
                             {item.name}
                           </div>
-                          <div className="text-xs text-ink-600">{item.meta}</div>
+                          <div className="text-xs text-ink-600">
+                            {item.meta}
+                          </div>
                         </div>
                       ))}
                     </div>
