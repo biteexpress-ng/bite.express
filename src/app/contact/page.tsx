@@ -85,7 +85,7 @@ export default function ContactPage() {
                   {siteConfig.supportEmail}
                 </a>
                 <a
-                  href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+                  href={`tel:${siteConfig.phoneTel}`}
                   className="mt-2 flex items-start gap-3 text-base font-semibold text-ink-900 hover:text-brand-red"
                 >
                   <Phone size={20} className="mt-0.5 flex-none text-brand-red" />
@@ -103,6 +103,7 @@ export default function ContactPage() {
                 <div className="mt-2 flex items-start gap-3 text-base text-ink-900">
                   <MapPin size={20} className="mt-0.5 flex-none text-brand-red" />
                   <span>
+                    {siteConfig.address.streetAddress},{" "}
                     {siteConfig.address.addressLocality},{" "}
                     {siteConfig.address.addressRegion}, Nigeria
                   </span>

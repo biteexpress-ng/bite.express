@@ -23,11 +23,12 @@ export function jsonLdScript(value: unknown): string {
 }
 
 const socialUrls = [
+  siteConfig.social.facebook,
   siteConfig.social.twitter,
   siteConfig.social.instagram,
-  siteConfig.social.facebook,
   siteConfig.social.linkedin,
-  siteConfig.social.tiktok,
+  siteConfig.social.youtube,
+  siteConfig.social.whatsapp,
 ] as string[];
 
 /** Brand-level Organization schema; lives on every page via the root layout. */
