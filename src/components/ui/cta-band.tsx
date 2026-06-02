@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { Container } from "./container";
 
@@ -20,8 +23,8 @@ const variants = {
 } as const;
 
 /**
- * Full-width call-to-action band. Used between content sections to
- * route partners (vendors / riders / agents) into sign-up flows.
+ * Full-width call-to-action band with animated background mesh,
+ * scroll-triggered entrance, and atmospheric orbs.
  */
 export function CTABand({
   eyebrow,
@@ -33,23 +36,23 @@ export function CTABand({
   className,
 }: Props) {
   const invert = variant !== "light";
+  const reducedMotion = useReducedMotion();
+
   return (
     <section
       className={cn("relative isolate overflow-hidden", variants[variant], className)}
     >
-      {/* Atmosphere — neon orbs + faint grid over dark/brand bands. */}
       {invert && (
         <>
-          <div
+          <motion.div
             aria-hidden
-            className={cn(
-              "pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full blur-[130px]",
-              variant === "brand" ? "bg-white/10" : "bg-brand-red/14",
-            )}
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-flame/10 blur-[140px]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent,rgba(222,22,0,0.18)_42%,transparent_72%)]"
+            animate={
+              reducedMotion
+                ? undefined
+                : { opacity: [0.55, 0.9, 0.55] }
+            }
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
           <div
             aria-hidden
@@ -59,7 +62,13 @@ export function CTABand({
       )}
       <Container className="relative z-10 py-20 sm:py-24">
         <div className="grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
-          <div className="flex flex-col gap-5">
+          <motion.div
+            className="flex flex-col gap-5"
+            initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+          >
             {eyebrow && (
               <div className={cn("text-xs font-semibold uppercase tracking-wider", invert ? "text-white/60" : "text-ink-600")}>
                 {eyebrow}
@@ -83,11 +92,17 @@ export function CTABand({
                 {subtitle}
               </p>
             )}
-          </div>
-          <div className="flex flex-wrap items-center gap-3 lg:justify-end">
+          </motion.div>
+          <motion.div
+            className="flex flex-wrap items-center gap-3 lg:justify-end"
+            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
+          >
             {cta}
             {secondaryCta}
-          </div>
+          </motion.div>
         </div>
       </Container>
     </section>

@@ -4,9 +4,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
-  WhatsAppIcon,
   XIcon,
-  YouTubeIcon,
 } from "@/components/brand/social-icons";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";

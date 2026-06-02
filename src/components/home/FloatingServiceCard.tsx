@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Fuel,
@@ -42,16 +42,8 @@ type Props = {
 };
 
 /**
- * Glass card with an image at the top and label/detail below — the
- * card style around the hero phone in the design reference.
- *
- * If the imagePath PNG hasn't been provided yet, we render a styled
- * placeholder tile (gradient + lucide icon) so the composition reads
- * as finished. The moment real PNGs land in /public/brand/hero/, the
- * <Image> swap happens automatically (we just hide the placeholder
- * once load succeeds).
- *
- * Purely decorative — aria-hidden on the wrapper, never tab-stopped.
+ * Glass card with cursor-aware lighting, organic float animation, and
+ * blur-to-sharp entrance. Decorative — aria-hidden, never tab-stopped.
  */
 export function FloatingServiceCard({
   label,
@@ -65,13 +57,24 @@ export function FloatingServiceCard({
 }: Props) {
   const FallbackIcon = iconLookup[iconKey];
   const reducedMotion = useReducedMotion();
-  // Start by assuming the asset is missing; flip to true on a clean
-  // load. If <Image> errors, this state never changes -> placeholder
-  // stays visible.
   const [imgLoaded, setImgLoaded] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  // Both variants share the same outer wrapper styling (animation +
-  // golden glass surface). Width and inner layout differ.
+  // Cursor-aware glow — update CSS custom properties on pointermove
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (reducedMotion) return;
+      const el = cardRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      el.style.setProperty("--card-glow-x", `${x}%`);
+      el.style.setProperty("--card-glow-y", `${y}%`);
+    },
+    [reducedMotion],
+  );
+
   const widthClasses =
     variant === "wide"
       ? "w-48 xl:w-56"
@@ -81,23 +84,35 @@ export function FloatingServiceCard({
     <motion.div
       aria-hidden
       className={cn("hidden lg:block", widthClasses, className)}
-      initial={reducedMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
-      animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 1, 0.5, 1] }}
+      initial={reducedMotion ? false : { opacity: 0, y: 24, scale: 0.92, filter: "blur(8px)" }}
+      animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.8, delay, ease: [0.25, 1, 0.5, 1] }}
     >
       <motion.div
-        animate={reducedMotion ? undefined : { y: [0, -8, 0] }}
+        ref={cardRef}
+        onPointerMove={handlePointerMove}
+        animate={reducedMotion ? undefined : {
+          y: [0, -8, 4, 0],
+          rotate: [0, 0.5, -0.3, 0],
+        }}
         transition={{
           duration: 9 + delay,
           repeat: Infinity,
           ease: [0.45, 0, 0.55, 1],
         }}
-        className={cn(
-          "relative overflow-hidden rounded-[1.15rem] border border-amber-200/15 bg-gradient-to-br from-amber-100/[0.10] via-amber-700/[0.04] to-black/[0.4] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,210,140,0.10)] backdrop-blur-xl",
-        )}
+        className="relative overflow-hidden rounded-lg border border-amber-200/15 bg-gradient-to-br from-amber-100/[0.10] via-amber-700/[0.04] to-black/[0.4] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,210,140,0.10)] backdrop-blur-xl"
       >
-        {/* Warm amber corner glow — gives each card the glassy
-            golden tint shown in the design reference. */}
+        {/* Cursor-aware glow overlay */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] opacity-0 transition-opacity duration-300 hover:opacity-100"
+          style={{
+            background:
+              "radial-gradient(200px circle at var(--card-glow-x, 50%) var(--card-glow-y, 50%), rgba(255, 210, 140, 0.12), transparent 60%)",
+          }}
+        />
+
+        {/* Warm amber corner glow */}
         <div
           aria-hidden
           className="pointer-events-none absolute -top-8 -right-8 h-20 w-20 rounded-full bg-amber-400/25 blur-2xl"
@@ -108,13 +123,10 @@ export function FloatingServiceCard({
         />
 
         {variant === "wide" ? (
-          /* Wide horizontal layout: square icon tile on the left,
-             label + detail stacked on the right. Used for right-side
-             cards (Pharmacy, Parcel, Petrol). */
           <div className="relative flex items-center gap-3 p-2.5">
             <div
               className={cn(
-                "relative h-12 w-12 flex-none overflow-hidden rounded-xl",
+                "relative h-12 w-12 flex-none overflow-hidden rounded-md",
               )}
             >
               <div
@@ -150,11 +162,6 @@ export function FloatingServiceCard({
             </div>
           </div>
         ) : (
-          /* Square (image-top + text-below) layout. Used for
-             left-side cards (Food, Grocery). The outer flex column is
-             fixed to aspect-square so the *whole tile* is a square —
-             image takes the remaining space, text strip is shrink-0
-             at the bottom. */
           <div className="relative flex aspect-square flex-col">
             <div className="relative w-full flex-1">
               <div

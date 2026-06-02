@@ -1,4 +1,7 @@
-import { MapPin, Search } from "lucide-react";
+"use client";
+
+import { ArrowRight, Clock3, MapPin, Search, ShieldCheck } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
 import { heroCards } from "@/lib/hero-cards";
@@ -6,10 +9,11 @@ import { FloatingServiceCard } from "./FloatingServiceCard";
 import { HeroSpotlight } from "./HeroSpotlight";
 import { MotionDeliveryRibbon } from "./MotionDeliveryRibbon";
 import { PhoneOrderPreview } from "./PhoneOrderPreview";
+import { HeroTextReveal } from "./HeroTextReveal";
 
 type Props = {
   eyebrow: string;
-  title: string; // accessibility / SEO fallback only
+  title: string;
   subtitle: string;
   addressPlaceholder: string;
   cta: string;
@@ -18,19 +22,12 @@ type Props = {
   chipPayments: string;
 };
 
-/**
- * Premium dark hero matching the design reference:
- *   - Red uppercase eyebrow (no pill).
- *   - 3-line serif headline with the brand-red italic "Delivered" word.
- *   - Compact white-pill address picker with red CTA.
- *   - Dot-style trust chips row.
- *   - Phone mockup centred in the right column with 5 floating glass
- *     cards positioned around it (lg+ only).
- *   - Glowing diagonal delivery ribbon across the bottom.
- *
- * Server component — the only client islands are the framer-motion
- * pieces inside FloatingServiceCard and MotionDeliveryRibbon.
- */
+const marketSignals = [
+  { value: "10+", label: "cities" },
+  { value: "500+", label: "partners" },
+  { value: "100k+", label: "orders" },
+];
+
 export function HeroShowcase({
   eyebrow,
   title,
@@ -41,117 +38,163 @@ export function HeroShowcase({
   chipEta,
   chipPayments,
 }: Props) {
+  const reducedMotion = useReducedMotion();
+  const chipLabels = [chipTracking, chipEta, chipPayments];
+
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#050505] pt-6 pb-44 text-white sm:pt-8 sm:pb-48 lg:pt-10 lg:pb-56"
+      className="relative isolate overflow-hidden bg-[#050505] pt-24 pb-36 text-white sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-44"
       aria-label={title}
     >
-      {/* Subtle background texture — a barely-there dot grid + a very
-          gentle red wash from the bottom-right. Toned down vs the
-          radial-bg utility so the ribbon and phone do the heavy lifting. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(255,255,255,1)_1px,transparent_1px)] [background-size:34px_34px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.55)_1px,transparent_1px)] [background-size:72px_72px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 -right-32 h-144 w-144 rounded-full bg-brand-red/15 blur-[120px]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(222,22,0,0.24)_0%,rgba(222,22,0,0.05)_26%,transparent_56%),radial-gradient(ellipse_at_50%_100%,rgba(255,255,255,0.08),transparent_48%)]"
       />
-      {/* Balancing flame orb, top-left */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 -top-24 h-120 w-120 rounded-full bg-flame/10 blur-[130px]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-black via-black/85 to-transparent"
       />
 
-      {/* Cursor-tracking spotlight (lg+, motion-safe) */}
       <HeroSpotlight />
 
       <Container className="relative z-10">
-        <div className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
-          {/* LEFT — copy + form */}
-          <div className="max-w-2xl">
-            {/* Eyebrow — plain red uppercase, no pill */}
-            <p className="fade-up text-xs font-bold uppercase tracking-[0.22em] text-brand-red">
+        <div className="grid min-w-0 items-start gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
+          <div className="w-full min-w-0 max-w-[calc(100vw-2.5rem)] sm:max-w-2xl">
+            <motion.p
+              className="inline-flex items-center gap-2.5 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-white/78 backdrop-blur-xl"
+              initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <span className="live-dot" />
               {eyebrow}
-            </p>
+            </motion.p>
 
-            {/* Headline — 3 lines, "Delivered" in red italic.
-                The h1 still contains the full sentence for screen
-                readers and SEO; visual line breaks are done with
-                explicit <br/> so they're not at the mercy of width. */}
-            <h1 className="fade-up delay-1 mt-5 font-serif text-[clamp(3rem,7vw,5.75rem)] leading-[1.02] tracking-tight text-white">
-              <span className="block">Everything</span>
-              <span className="block">you crave.</span>
-              <span className="block">
-                <span className="bg-linear-to-r from-brand-red via-flame to-brand-red-400 bg-clip-text italic text-transparent">
-                  Delivered
-                </span>{" "}
-                <span>fast.</span>
-              </span>
-            </h1>
+            <HeroTextReveal
+              className="mt-6 font-serif text-5xl leading-[0.98] tracking-normal text-white sm:text-6xl lg:text-7xl xl:text-[5.4rem]"
+              lines={[
+                { text: "Everything" },
+                { text: "you crave." },
+                { text: "Delivered", gradient: true, suffix: " fast." },
+              ]}
+            />
 
-            <p className="fade-up delay-2 mt-7 max-w-md text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+            <motion.p
+              className="mt-7 max-w-xl text-base leading-7 text-white/68 sm:text-lg sm:leading-8"
+              initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.6,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+            >
               {subtitle}
-            </p>
+            </motion.p>
 
-            {/* Address picker — clean white pill, red CTA */}
-            <form
-              className="fade-up delay-3 mt-9 flex w-full max-w-md flex-col gap-0 rounded-full bg-white p-[0.8] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
+            <motion.form
+              className="mt-9 flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-2 rounded-lg border border-white/12 bg-white p-1.5 shadow-[0_28px_70px_-26px_rgba(0,0,0,0.9)] sm:max-w-xl sm:flex-row sm:items-center"
               action={siteConfig.shopHref}
               method="get"
+              initial={
+                reducedMotion ? false : { opacity: 0, y: 20, scale: 0.97 }
+              }
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.75,
+                ease: [0.25, 1, 0.5, 1],
+              }}
             >
-              <label className="relative flex min-w-0 flex-1 items-center">
+              <label className="relative flex min-w-0 flex-1 items-center rounded-md bg-ink-50">
                 <MapPin
-                  size={16}
-                  className="pointer-events-none absolute left-4 text-ink-400"
+                  size={18}
+                  className="pointer-events-none absolute left-4 text-brand-red"
                 />
                 <input
                   type="text"
                   name="q"
                   placeholder={addressPlaceholder}
                   aria-label={addressPlaceholder}
-                  className="h-8 w-full rounded-full bg-transparent pl-10 pr-4 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
+                  className="h-13 w-full rounded-md bg-transparent pl-11 pr-4 text-[15px] font-medium text-ink-900 placeholder:text-ink-500 focus:outline-none"
                 />
               </label>
               <button
                 type="submit"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-brand-red px-5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(222,22,0,0.4)] transition-colors hover:bg-brand-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="inline-flex h-13 items-center justify-center gap-2 rounded-md bg-brand-red px-5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(222,22,0,0.34)] transition-all hover:-translate-y-px hover:bg-brand-red-600 hover:shadow-[0_14px_38px_rgba(222,22,0,0.44)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Search size={15} />
                 {cta}
               </button>
-            </form>
+            </motion.form>
 
-            {/* Trust chips — small red dot + label, no pill */}
-            <ul className="fade-up delay-3 mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 text-[13px] text-white/70">
-              {[chipTracking, chipEta, chipPayments].map((label) => (
-                <li key={label} className="inline-flex items-center gap-2">
-                  <span
-                    aria-hidden
-                    className="inline-block h-1.5 w-1.5 rounded-full bg-brand-red"
-                  />
+            <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] text-white/68">
+              {chipLabels.map((label, index) => (
+                <motion.li
+                  key={label}
+                  className="inline-flex items-center gap-2"
+                  initial={reducedMotion ? false : { opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.9 + index * 0.12,
+                    ease: [0.34, 1.56, 0.64, 1],
+                  }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
                   {label}
-                </li>
+                </motion.li>
               ))}
             </ul>
+
+            <motion.div
+              className="mt-9 grid w-full max-w-[calc(100vw-2.5rem)] grid-cols-3 border-y border-white/10 py-5 sm:max-w-xl"
+              initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.05,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+            >
+              {marketSignals.map((signal) => (
+                <div
+                  key={signal.label}
+                  className="border-white/10 pr-4 text-left not-first:border-l not-first:pl-4"
+                >
+                  <div className="font-serif text-2xl leading-none text-white sm:text-3xl">
+                    {signal.value}
+                  </div>
+                  <div className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/42">
+                    {signal.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* RIGHT — phone flanked by floating service cards.
-              Mobile/tablet shows just the phone; on lg+ the layout
-              becomes a 3-column flank (2 cards | phone | 3 cards)
-              matching the design reference. */}
-          <div className="relative mx-auto w-full max-w-104 lg:max-w-none">
-            {/* Mobile / tablet — phone only */}
+          <div className="relative mx-auto w-full min-w-0 max-w-104 lg:max-w-none">
+            <motion.div
+              aria-hidden
+              className="absolute -inset-x-8 top-8 bottom-8 hidden rounded-lg border border-white/10 bg-white/[0.025] lg:block"
+              initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.9,
+                delay: 0.35,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+            />
+
             <div className="lg:hidden">
               <PhoneOrderPreview />
             </div>
 
-            {/* lg+ flank composition */}
             <div className="hidden lg:flex lg:items-start lg:justify-center lg:gap-2 xl:gap-4">
-              {/* Left column — 2 SQUARE cards (Food, Grocery). Square
-                  tiles are tall, so a moderate gap is enough to span
-                  the vertical extent of the right column's 3 wide
-                  tiles. */}
               <div className="flex flex-col gap-16 pt-10 xl:gap-20 xl:pt-14">
                 {heroCards
                   .filter((card) => card.column === "left")
@@ -169,15 +212,10 @@ export function HeroShowcase({
                   ))}
               </div>
 
-              {/* Phone — centred between the flanking card columns */}
               <div className="flex-none">
                 <PhoneOrderPreview />
               </div>
 
-              {/* Right column — 3 WIDE cards (Pharmacy, Parcel,
-                  Petrol). Each tile is short, so a larger gap is
-                  needed to keep the column visually proportional to
-                  the phone. */}
               <div className="flex flex-col gap-10 pt-8 xl:gap-12 xl:pt-10">
                 {heroCards
                   .filter((card) => card.column === "right")
@@ -195,12 +233,31 @@ export function HeroShowcase({
                   ))}
               </div>
             </div>
+
+            <motion.div
+              className="absolute bottom-4 left-1/2 hidden w-[86%] -translate-x-1/2 items-center justify-between rounded-lg border border-white/10 bg-black/55 px-4 py-3 text-white shadow-luxe backdrop-blur-xl lg:flex"
+              initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.95,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+            >
+              <span className="inline-flex items-center gap-2 text-xs text-white/70">
+                <Clock3 size={14} className="text-brand-orange" />
+                Smart dispatch active
+              </span>
+              <span className="inline-flex items-center gap-2 text-xs text-white/70">
+                <ShieldCheck size={14} className="text-emerald-300" />
+                Verified partners
+              </span>
+              <ArrowRight size={15} className="text-white/40" />
+            </motion.div>
           </div>
         </div>
       </Container>
 
-      {/* Diagonal red ribbon at the bottom — visually anchors the hero
-          and references the design without crowding the form. */}
       <MotionDeliveryRibbon />
     </section>
   );

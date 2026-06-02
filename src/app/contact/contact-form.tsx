@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
@@ -13,24 +13,18 @@ import {
   type ContactFormValues,
 } from "@/lib/forms/contact";
 
-function rand(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
-  // Stable per-mount: math challenge + render timestamp.
-  const { mathA, mathB, startedAt } = useMemo(
-    () => ({ mathA: rand(1, 9), mathB: rand(1, 9), startedAt: Date.now() }),
-    [],
-  );
+  const mathA = 4;
+  const mathB = 7;
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -38,9 +32,13 @@ export function ContactForm() {
       website: "",
       mathA,
       mathB,
-      startedAt,
+      startedAt: 1,
     },
   });
+
+  useEffect(() => {
+    setValue("startedAt", Date.now());
+  }, [setValue]);
 
   const onSubmit = (values: ContactFormValues) => {
     setServerError(null);

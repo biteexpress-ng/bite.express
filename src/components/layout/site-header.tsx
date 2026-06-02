@@ -68,7 +68,8 @@ export function SiteHeader() {
       />
       <header
         className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-300 ease-out-expo",
+          "top-0 z-50 w-full transition-all duration-300 ease-out-expo",
+          isHome ? "fixed" : "sticky",
           overDark
             ? "border-b border-transparent bg-transparent"
             : "border-b border-ink-200/70 bg-[rgba(250,250,247,0.72)] shadow-card backdrop-blur-xl backdrop-saturate-150",

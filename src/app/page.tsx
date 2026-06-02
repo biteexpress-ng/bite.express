@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, CheckCircle2, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { AppBadges } from "@/components/ui/app-badges";
 import { CTABand } from "@/components/ui/cta-band";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { JsonLd } from "@/components/seo/json-ld";
+import { GrainOverlay } from "@/components/ui/GrainOverlay";
 
 import { HeroShowcase } from "@/components/home/HeroShowcase";
 import { HomeServiceCard } from "@/components/home/HomeServiceCard";
@@ -19,6 +19,7 @@ import { BenefitsBand } from "@/components/home/BenefitsBand";
 import { CitiesCoverage } from "@/components/home/CitiesCoverage";
 import { PartnerTrustStrip } from "@/components/home/PartnerTrustStrip";
 import { HomeFinalCTA } from "@/components/home/HomeFinalCTA";
+import { AppShowcase } from "@/components/home/AppShowcase";
 
 import { siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/seo";
@@ -66,6 +67,9 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Premium grain texture overlay */}
+      <GrainOverlay />
+
       {/* Brand-level JSON-LD: every city as a LocalBusiness, breadcrumb, FAQ */}
       <JsonLd id="ld-localbusiness" data={allLocalBusinessesSchema()} />
       <JsonLd
@@ -86,27 +90,54 @@ export default async function HomePage() {
         chipPayments={t("hero.chipPayments")}
       />
 
-      {/* 2. DELIVERY MODULES — One app. Every essential. */}
-      <Section background="white" padding="xl">
+      {/* 2. DELIVERY MODULES */}
+      <Section background="white" padding="xl" className="border-b border-ink-200/70">
         <Container>
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <div>
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.78fr] lg:items-end">
+            <div className="max-w-2xl">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-red">
                 {t("modules.eyebrow")}
               </p>
-              <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-normal text-ink-900 sm:text-5xl">
+              <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-normal text-ink-900 sm:text-5xl lg:text-6xl">
                 {t("modules.title")}
               </h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-ink-600">
+                {t("modules.subtitle")}
+              </p>
             </div>
-            <ButtonLink href="/cuisines" variant="outline" size="sm">
-              View all services
-              <ArrowRight size={14} />
-            </ButtonLink>
+            <div className="flex flex-col gap-5 lg:items-end">
+              <div className="grid w-full grid-cols-3 overflow-hidden rounded-lg border border-ink-200 bg-white shadow-soft lg:max-w-md">
+                {["Food", "Essentials", "Errands"].map((label) => (
+                  <div
+                    key={label}
+                    className="border-r border-ink-200 px-4 py-3 last:border-r-0"
+                  >
+                    <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-500">
+                      {label}
+                    </div>
+                    <div className="mt-1 h-1 rounded-full bg-brand-red/70" />
+                  </div>
+                ))}
+              </div>
+              <ButtonLink href="/cuisines" variant="outline" size="sm">
+                View all services
+                <ArrowRight size={14} />
+              </ButtonLink>
+            </div>
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {deliveryModules.map((m) => (
-              <HomeServiceCard key={m.slug} service={m} />
+            {deliveryModules.map((m, i) => (
+              <HomeServiceCard
+                key={m.slug}
+                slug={m.slug}
+                name={m.name}
+                description={m.description}
+                accent={m.accent}
+                image={m.image}
+                href={m.href}
+                index={i}
+              />
             ))}
           </div>
         </Container>
@@ -184,99 +215,17 @@ export default async function HomePage() {
       />
 
       {/* 8. APP SHOWCASE */}
-      <Section background="white" padding="xl">
-        <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <span className="section-eyebrow">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-                {t("appShowcase.eyebrow")}
-              </span>
-              <h2 className="mt-6 font-serif text-4xl leading-[1.05] tracking-tight text-ink-900 sm:text-5xl md:text-6xl">
-                {t("appShowcase.title")}
-              </h2>
-              <p className="mt-6 max-w-xl text-lg text-ink-600">
-                {t("appShowcase.subtitle")}
-              </p>
-
-              <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  t("appShowcase.bullet1"),
-                  t("appShowcase.bullet2"),
-                  t("appShowcase.bullet3"),
-                  t("appShowcase.bullet4"),
-                ].map((b) => (
-                  <li
-                    key={b}
-                    className="flex items-start gap-3 text-base text-ink-700"
-                  >
-                    <CheckCircle2
-                      size={20}
-                      className="mt-0.5 flex-none text-brand-red"
-                    />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10">
-                <AppBadges variant="dark" />
-              </div>
-            </div>
-
-            {/* Decorative phone-mockup placeholder for showcase */}
-            <div className="relative mx-auto w-full max-w-md">
-              <div className="relative aspect-9/16 w-full rounded-[3rem] border-10 border-brand-black bg-brand-black premium-shadow">
-                <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] bg-gradient-to-b from-ink-50 to-white">
-                  <div className="mx-auto mt-3 h-5 w-24 rounded-full bg-brand-black" />
-                  <div className="p-6">
-                    <div className="text-xs uppercase tracking-wider text-ink-600">
-                      Delivering to
-                    </div>
-                    <div className="font-serif text-xl text-ink-900">
-                      Samaru, Zaria
-                    </div>
-
-                    <div className="mt-6 grid gap-3">
-                      {[
-                        { name: "Mama's Kitchen", meta: "Jollof · 25 min" },
-                        { name: "Sahel Grills", meta: "Suya · 22 min" },
-                        { name: "Greenfield Market", meta: "Grocery · 35 min" },
-                      ].map((item) => (
-                        <div
-                          key={item.name}
-                          className="rounded-2xl border border-ink-200 bg-white p-4"
-                        >
-                          <div className="font-semibold text-ink-900">
-                            {item.name}
-                          </div>
-                          <div className="text-xs text-ink-600">
-                            {item.meta}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-6 flex items-center justify-between rounded-2xl bg-brand-red p-4 text-white">
-                      <div>
-                        <div className="text-xs uppercase tracking-wider opacity-80">
-                          Order on the way
-                        </div>
-                        <div className="font-semibold">Arriving 6:42pm</div>
-                      </div>
-                      <Sparkles size={22} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                aria-hidden
-                className="absolute -inset-10 -z-10 rounded-[4rem] bg-brand-red/10 blur-3xl"
-              />
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <AppShowcase
+        eyebrow={t("appShowcase.eyebrow")}
+        title={t("appShowcase.title")}
+        subtitle={t("appShowcase.subtitle")}
+        bullets={[
+          t("appShowcase.bullet1"),
+          t("appShowcase.bullet2"),
+          t("appShowcase.bullet3"),
+          t("appShowcase.bullet4"),
+        ]}
+      />
 
       {/* 9. RIDER CTA BAND */}
       <CTABand

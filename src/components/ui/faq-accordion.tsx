@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -14,15 +14,36 @@ type Props = {
   className?: string;
 };
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: i * 0.08,
+      ease: [0.25, 1, 0.5, 1] as const,
+    },
+  }),
+};
+
 export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
   const [openIndex, setOpenIndex] = useState<number>(defaultOpen);
+  const reducedMotion = useReducedMotion();
 
   return (
     <div className={cn("divide-y divide-ink-200 border-y border-ink-200", className)}>
       {items.map((item, i) => {
         const open = openIndex === i;
         return (
-          <div key={i}>
+          <motion.div
+            key={i}
+            custom={i}
+            variants={itemVariants}
+            initial={reducedMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-5%" }}
+          >
             <button
               type="button"
               aria-expanded={open}
@@ -32,14 +53,20 @@ export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
               <h3 className="font-serif text-lg leading-snug text-ink-900 sm:text-xl">
                 {item.question}
               </h3>
-              <span
+              <motion.span
                 className={cn(
-                  "inline-flex h-9 w-9 flex-none items-center justify-center rounded-full border border-ink-200 text-ink-700 transition-all duration-200 ease-out-expo",
-                  open && "rotate-45 border-brand-red bg-brand-red text-white shadow-glow-sm",
+                  "inline-flex h-9 w-9 flex-none items-center justify-center rounded-full border border-ink-200 text-ink-700 transition-colors duration-200 ease-out-expo",
+                  open && "border-brand-red bg-brand-red text-white shadow-glow-sm",
                 )}
+                animate={{ rotate: open ? 45 : 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 20,
+                }}
               >
                 <Plus size={18} />
-              </span>
+              </motion.span>
             </button>
             <AnimatePresence initial={false}>
               {open && (
@@ -47,7 +74,7 @@ export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
                   className="overflow-hidden"
                 >
                   <p className="pb-6 pr-12 text-base text-ink-600">
@@ -56,7 +83,7 @@ export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         );
       })}
     </div>

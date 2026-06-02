@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, ChevronRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import type { City } from "@/lib/cities";
 
@@ -13,13 +16,6 @@ type Props = {
 
 /* ───────────────────────────────────────────────────────────────────────────
  * City pin positions as percentages of the SVG viewBox (0 0 1536 1024).
- *
- * Calculated from geographic lat/lng mapped to the SVG coordinate space:
- *   x = (lon − 2.7) × 101.4 + 190   →   left% = x / 1536 × 100
- *   y = (13.9 − lat) × 94.4 + 83    →   top%  = y / 1024 × 100
- *
- * `label` controls which direction the city name renders relative to the
- * pin dot so nearby cities don't overlap (bottom is the default).
  * ─────────────────────────────────────────────────────────────────────────*/
 const cityPins: Record<
   string,
@@ -37,25 +33,41 @@ const cityPins: Record<
   "omu-aran": { left: "28.2%", top: "61.3%", label: "right" },
 };
 
-/**
- * Cities coverage section — dark-themed, featuring the actual
- * `nigeria_dotted_outline.svg` from `public/brand/` with animated
- * glowing pins for every active delivery city.
- */
-export function CitiesCoverage({ eyebrow, subtitle, cities }: Props) {
+const cityCardVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.45,
+      delay: i * 0.06,
+      ease: [0.25, 1, 0.5, 1] as const,
+    },
+  }),
+};
+
+export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
+  const reducedMotion = useReducedMotion();
+
   return (
     <section className="bg-white py-16 sm:py-24 lg:py-28">
       <Container className="max-w-[1400px]">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
           
           {/* 1. TEXT BLOCK (Left) */}
-          <div className="lg:col-span-4 xl:col-span-3">
+          <motion.div
+            className="lg:col-span-4 xl:col-span-3"
+            initial={reducedMotion ? false : { opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+          >
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-red">
               {eyebrow}
             </p>
-            <h2 className="mt-5 font-serif text-4xl leading-[1.1] tracking-tight text-[#1a1a1a] sm:text-[44px]">
-              Now serving 10 cities — <br className="hidden lg:block" />
-              with more on the way.
+            <h2 className="mt-5 font-serif text-4xl leading-[1.1] tracking-normal text-[#1a1a1a] sm:text-[44px]">
+              {title}
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-[#666666]">
               {subtitle}
@@ -63,16 +75,22 @@ export function CitiesCoverage({ eyebrow, subtitle, cities }: Props) {
             <div className="mt-8">
               <Link
                 href="/cities"
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-[#e5e5e5] px-6 text-[13px] font-semibold text-[#1a1a1a] transition-all hover:border-[#1a1a1a]"
+                className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#e5e5e5] px-6 text-[13px] font-semibold text-[#1a1a1a] transition-all hover:-translate-y-px hover:border-[#1a1a1a] hover:shadow-card"
               >
                 See all cities
                 <ArrowRight size={15} />
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          {/* 2. MAP (Middle) */}
-          <div className="relative mx-auto w-full max-w-lg lg:col-span-4 xl:col-span-4">
+          {/* 2. MAP (Middle) — with animated pin drops and pulse rings */}
+          <motion.div
+            className="relative mx-auto w-full max-w-lg rounded-lg border border-ink-200 bg-canvas p-6 shadow-card lg:col-span-4 xl:col-span-4"
+            initial={reducedMotion ? false : { opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
             <Image
               src="/brand/nigeria_dotted_outline.svg"
               alt="Map of Nigeria"
@@ -82,15 +100,46 @@ export function CitiesCoverage({ eyebrow, subtitle, cities }: Props) {
               className="block w-full select-none"
               style={{ filter: "brightness(0) opacity(0.08)" }}
             />
-            {cities.map((c) => {
+
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-8 top-1/2 h-px bg-brand-red/20 blur-sm"
+              animate={
+                reducedMotion
+                  ? undefined
+                  : { opacity: [0.35, 0.7, 0.35] }
+              }
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {cities.map((c, i) => {
               const pin = cityPins[c.slug];
               if (!pin) return null;
               return (
-                <div
+                <motion.div
                   key={c.slug}
                   className="absolute z-20 -translate-x-1/2 -translate-y-[100%]"
                   style={{ left: pin.left, top: pin.top }}
+                  initial={reducedMotion ? false : { y: -40, opacity: 0, scale: 0.3 }}
+                  whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: i * 0.08 + 0.3,
+                    ease: [0.34, 1.56, 0.64, 1],
+                  }}
                 >
+                  {/* Pulse ring */}
+                  <div className="absolute left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2">
+                    <span
+                      className="block h-3 w-3 rounded-full bg-brand-red/30"
+                      style={{
+                        animation: reducedMotion
+                          ? "none"
+                          : `pulse-ring 2.5s cubic-bezier(0.25,1,0.5,1) ${i * 0.3}s infinite`,
+                      }}
+                    />
+                  </div>
                   <svg
                     width="18"
                     height="24"
@@ -105,36 +154,44 @@ export function CitiesCoverage({ eyebrow, subtitle, cities }: Props) {
                     />
                     <circle cx="12" cy="11.5" r="4" fill="white" />
                   </svg>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
-          {/* 3. CITY GRID (Right) */}
+          {/* 3. CITY GRID (Right) — waterfall stagger entrance */}
           <div className="lg:col-span-4 xl:col-span-5">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {cities.map((c) => (
-                <Link
+              {cities.map((c, i) => (
+                <motion.div
                   key={c.slug}
-                  href={`/cities/${c.slug}`}
-                  className="group flex items-center gap-3 rounded-xl border border-ink-200 bg-surface px-4 py-3.5 shadow-card transition-[transform,box-shadow,border-color] duration-[280ms] ease-out-expo hover:-translate-y-[3px] hover:border-brand-red/30 hover:shadow-floating"
+                  custom={i}
+                  variants={cityCardVariants}
+                  initial={reducedMotion ? false : "hidden"}
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-5%" }}
                 >
-                  <div className="flex-none text-brand-red">
-                    <MapPin size={18} strokeWidth={2.5} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate font-serif text-[15px] font-semibold text-[#1a1a1a]">
-                      {c.name}
+                  <Link
+                    href={`/cities/${c.slug}`}
+                    className="group flex items-center gap-3 rounded-lg border border-ink-200 bg-surface px-4 py-3.5 shadow-card transition-[transform,box-shadow,border-color] duration-[280ms] ease-out-expo hover:-translate-y-[3px] hover:border-brand-red/30 hover:shadow-floating"
+                  >
+                    <div className="flex-none text-brand-red">
+                      <MapPin size={18} strokeWidth={2.5} />
                     </div>
-                    <div className="truncate text-[10px] text-[#8e8e93]">
-                      {c.state} State
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate font-serif text-[15px] font-semibold text-[#1a1a1a]">
+                        {c.name}
+                      </div>
+                      <div className="truncate text-[10px] text-[#8e8e93]">
+                        {c.state} State
+                      </div>
                     </div>
-                  </div>
-                  <ChevronRight
-                    size={14}
-                    className="flex-none text-[#cccccc] transition-colors group-hover:text-[#1a1a1a]"
-                  />
-                </Link>
+                    <ChevronRight
+                      size={14}
+                      className="flex-none text-[#cccccc] transition-colors group-hover:text-[#1a1a1a]"
+                    />
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </div>
