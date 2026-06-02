@@ -27,15 +27,15 @@ export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
               type="button"
               aria-expanded={open}
               onClick={() => setOpenIndex(open ? -1 : i)}
-              className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-brand-red"
+              className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-200 ease-out-expo hover:text-brand-red"
             >
               <h3 className="font-serif text-lg leading-snug text-ink-900 sm:text-xl">
                 {item.question}
               </h3>
               <span
                 className={cn(
-                  "inline-flex h-9 w-9 flex-none items-center justify-center rounded-full border border-ink-200 text-ink-700 transition-all",
-                  open && "rotate-45 bg-brand-red text-white border-brand-red",
+                  "inline-flex h-9 w-9 flex-none items-center justify-center rounded-full border border-ink-200 text-ink-700 transition-all duration-200 ease-out-expo",
+                  open && "rotate-45 border-brand-red bg-brand-red text-white shadow-glow-sm",
                 )}
               >
                 <Plus size={18} />

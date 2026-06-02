@@ -34,8 +34,30 @@ export function CTABand({
 }: Props) {
   const invert = variant !== "light";
   return (
-    <section className={cn("relative overflow-hidden", variants[variant], className)}>
-      <Container className="py-20 sm:py-24">
+    <section
+      className={cn("relative isolate overflow-hidden", variants[variant], className)}
+    >
+      {/* Atmosphere — neon orbs + faint grid over dark/brand bands. */}
+      {invert && (
+        <>
+          <div
+            aria-hidden
+            className={cn(
+              "pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full blur-[130px]",
+              variant === "brand" ? "bg-white/10" : "bg-brand-red/14",
+            )}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-flame/10 blur-[140px]"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(rgba(255,255,255,1)_1px,transparent_1px)] [background-size:34px_34px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000,transparent_75%)]"
+          />
+        </>
+      )}
+      <Container className="relative z-10 py-20 sm:py-24">
         <div className="grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
           <div className="flex flex-col gap-5">
             {eyebrow && (

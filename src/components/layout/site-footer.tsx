@@ -128,8 +128,19 @@ function GooglePlayLogo() {
 
 export function SiteFooter() {
   return (
-    <footer className="w-full bg-[#050505] text-white">
-      <Container className="py-16 md:py-20 lg:py-24">
+    <footer className="relative isolate w-full overflow-hidden bg-obsidian text-white">
+      {/* Neon orbs — brand + flame washes over the obsidian band. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-brand-red/12 blur-[130px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-flame/10 blur-[140px]"
+      />
+      {/* Fading top hairline */}
+      <div aria-hidden className="divider-fade absolute inset-x-0 top-0 opacity-60" />
+      <Container className="relative z-10 py-16 md:py-20 lg:py-24">
         <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1.8fr]">
           {/* Logo & Info column */}
           <div className="flex h-full flex-col items-start">
@@ -146,9 +157,9 @@ export function SiteFooter() {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[#8e8e93] transition-all duration-200 hover:border-white/40 hover:text-white"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-[#8e8e93] transition-all duration-200 ease-out-expo hover:-translate-y-px hover:border-brand-red/40 hover:text-white hover:shadow-glow-sm"
                 >
-                  <Icon size={15} />
+                  <Icon size={16} />
                 </a>
               ))}
             </div>
@@ -170,7 +181,7 @@ export function SiteFooter() {
                 href={siteConfig.appStore.ios}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-md border border-white/20 bg-black px-3.5 py-2 transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+                className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-black px-3.5 py-2 transition-all duration-200 ease-out-expo hover:-translate-y-px hover:border-white/40 hover:bg-white/5"
                 aria-label="Download on the App Store"
               >
                 <AppleLogo />
@@ -188,7 +199,7 @@ export function SiteFooter() {
                 href={siteConfig.appStore.android}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-md border border-white/20 bg-black px-3.5 py-2 transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+                className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-black px-3.5 py-2 transition-all duration-200 ease-out-expo hover:-translate-y-px hover:border-white/40 hover:bg-white/5"
                 aria-label="Get it on Google Play"
               >
                 <GooglePlayLogo />
@@ -203,7 +214,7 @@ export function SiteFooter() {
               </a>
             </div>
             <p className="mt-auto pt-8 text-[11.5px] text-[#666666]">
-              © 2024 BiteExpress. All rights reserved.
+              © 2026 BiteExpress. All rights reserved.
             </p>
           </div>
         </div>

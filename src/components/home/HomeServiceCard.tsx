@@ -13,7 +13,7 @@ export function HomeServiceCard({ service }: Props) {
   return (
     <Link
       href={service.href}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-red/25 hover:shadow-elevated"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-200 bg-surface shadow-card transition-[transform,box-shadow,border-color] duration-[280ms] ease-out-expo hover:-translate-y-[3px] hover:border-brand-red/30 hover:shadow-floating"
     >
       {/* ── Visual area — product image or icon on accent background ─── */}
       <div
@@ -28,7 +28,7 @@ export function HomeServiceCard({ service }: Props) {
             src={service.image}
             alt=""
             draggable={false}
-            className="h-full w-full select-none object-contain p-8 transition duration-300 group-hover:scale-105"
+            className="h-full w-full select-none object-contain p-8 transition duration-700 ease-out group-hover:scale-[1.06]"
           />
         ) : (
           <Icon

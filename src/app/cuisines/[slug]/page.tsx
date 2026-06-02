@@ -105,7 +105,7 @@ export default async function CuisinePage({ params }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-12 pb-20 sm:pt-20 sm:pb-24">
+      <section className="relative overflow-hidden aurora-bg pt-12 pb-20 sm:pt-20 sm:pb-24">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-32 -right-32 h-[24rem] w-[24rem] rounded-full bg-brand-red/10 blur-3xl"

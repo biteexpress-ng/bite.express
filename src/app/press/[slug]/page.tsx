@@ -95,7 +95,7 @@ export default async function PressItemPage({ params }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-10 pb-12 sm:pt-14">
+      <section className="relative overflow-hidden aurora-bg pt-10 pb-12 sm:pt-14">
         <Container size="narrow">
           <Link
             href="/press"

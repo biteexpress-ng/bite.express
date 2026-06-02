@@ -1,14 +1,17 @@
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { cn } from "@/lib/cn";
 
-type Background = "white" | "soft" | "dark" | "brand";
+type Background = "white" | "soft" | "dark" | "brand" | "aurora";
 type Padding = "sm" | "md" | "lg" | "xl";
 
 const backgrounds: Record<Background, string> = {
-  white: "bg-white text-ink-900",
-  soft: "bg-ink-50 text-ink-900",
-  dark: "bg-brand-black text-white",
+  // "white" now resolves to the warm editorial canvas so cards lift off it.
+  white: "bg-canvas text-ink-900",
+  soft: "bg-canvas-2 text-ink-900",
+  dark: "bg-obsidian text-white",
   brand: "bg-brand-red text-white",
+  // Subtle warm aurora wash from the top corners — for page intros.
+  aurora: "aurora-bg text-ink-900",
 };
 
 const paddings: Record<Padding, string> = {

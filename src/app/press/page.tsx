@@ -137,7 +137,7 @@ export default async function PressIndexPage({ searchParams }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-16 pb-12 sm:pt-24 sm:pb-16">
+      <section className="relative overflow-hidden aurora-bg pt-16 pb-12 sm:pt-24 sm:pb-16">
         <Container className="relative">
           <div className="max-w-3xl">
             <Eyebrow>Newsroom</Eyebrow>

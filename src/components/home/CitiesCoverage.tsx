@@ -117,7 +117,7 @@ export function CitiesCoverage({ eyebrow, subtitle, cities }: Props) {
                 <Link
                   key={c.slug}
                   href={`/cities/${c.slug}`}
-                  className="group flex items-center gap-3 rounded-xl border border-[#f0f0f0] bg-white px-4 py-3.5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#e0e0e0] hover:shadow-md"
+                  className="group flex items-center gap-3 rounded-xl border border-ink-200 bg-surface px-4 py-3.5 shadow-card transition-[transform,box-shadow,border-color] duration-[280ms] ease-out-expo hover:-translate-y-[3px] hover:border-brand-red/30 hover:shadow-floating"
                 >
                   <div className="flex-none text-brand-red">
                     <MapPin size={18} strokeWidth={2.5} />

@@ -96,7 +96,7 @@ export default async function BlogPostPage({ params }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-linear-to-b from-ink-50 to-white pt-10 pb-12 sm:pt-14">
+      <section className="relative overflow-hidden aurora-bg pt-10 pb-12 sm:pt-14">
         <Container size="narrow">
           <Link
             href="/blog"

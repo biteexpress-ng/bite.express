@@ -99,7 +99,7 @@ export default async function JobDetailPage({ params }: RouteProps) {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-linear-to-b from-ink-50 to-white pt-12 pb-16 sm:pt-16 sm:pb-20">
+      <section className="relative overflow-hidden aurora-bg pt-12 pb-16 sm:pt-16 sm:pb-20">
         <Container>
           <Link
             href="/careers"

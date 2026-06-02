@@ -76,7 +76,7 @@ export function NewsletterForm({ variant = "dark", className }: Props) {
           placeholder="you@example.com"
           aria-invalid={!!errors.email}
           className={cn(
-            "h-11 flex-1 rounded-full px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-red/40",
+            "h-11 flex-1 rounded-full px-4 text-sm shadow-soft transition-[box-shadow,border-color] duration-200 ease-out-expo focus:outline-none focus:ring-4 focus:ring-brand-red/15",
             isDark
               ? "border border-white/10 bg-white/5 text-white placeholder:text-white/40 focus:border-brand-red/60"
               : "border border-ink-200 bg-white text-ink-900 placeholder:text-ink-400 focus:border-brand-red",
@@ -86,7 +86,7 @@ export function NewsletterForm({ variant = "dark", className }: Props) {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-brand-red px-5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-red-600 disabled:opacity-60"
+          className="inline-flex h-11 items-center justify-center gap-1.5 rounded-pill bg-brand-red px-5 text-sm font-medium text-white shadow-glow-sm transition-[transform,box-shadow,background-color] duration-200 ease-out-expo hover:-translate-y-px hover:bg-brand-red-600 hover:shadow-glow active:translate-y-0 disabled:opacity-60 disabled:shadow-none"
         >
           {pending ? (
             <Loader2 size={16} className="animate-spin" />

@@ -28,14 +28,14 @@ export function ModuleCard({
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col gap-5 overflow-hidden rounded-3xl border border-ink-200 bg-white p-7 transition-all hover:-translate-y-0.5 hover:shadow-elevated sm:p-8",
+        "group relative flex flex-col gap-5 overflow-hidden rounded-3xl border border-ink-200 bg-surface p-7 shadow-card transition-[transform,box-shadow,border-color] duration-[280ms] ease-out-expo hover:-translate-y-[3px] hover:border-brand-red/30 hover:shadow-floating sm:p-8",
         className,
       )}
     >
       <div
         className={cn(
-          "inline-flex h-14 w-14 items-center justify-center rounded-2xl",
-          accentClassName ?? "bg-brand-red/10 text-brand-red",
+          "inline-flex h-14 w-14 items-center justify-center rounded-2xl shadow-[var(--shadow-bevel)] transition-all duration-200 ease-out-expo group-hover:text-white group-hover:shadow-glow-sm",
+          accentClassName ?? "bg-linear-to-br from-brand-red/12 to-brand-orange/10 text-brand-red group-hover:from-brand-red group-hover:to-brand-red-600",
         )}
       >
         <Icon size={26} />

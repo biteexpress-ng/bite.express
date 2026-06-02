@@ -31,7 +31,7 @@ export default function AboutPage() {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-linear-to-b from-ink-50 to-white pt-16 pb-20 sm:pt-24 sm:pb-28">
+      <section className="relative overflow-hidden aurora-bg pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-32 -right-32 h-96 w-[24rem] rounded-full bg-brand-red/10 blur-3xl"

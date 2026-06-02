@@ -15,10 +15,10 @@ type Props = {
 export function AppBadges({ variant = "dark", className }: Props) {
   const dark = variant === "dark";
   const base =
-    "inline-flex items-center gap-3 rounded-2xl px-5 py-3 transition-colors";
+    "inline-flex items-center gap-3 rounded-2xl px-5 py-3 transition-[transform,box-shadow,background-color] duration-200 ease-out-expo hover:-translate-y-px";
   const styles = dark
-    ? "bg-white text-ink-900 hover:bg-ink-100"
-    : "bg-ink-900 text-white hover:bg-brand-black border border-white/10";
+    ? "bg-white text-ink-900 shadow-card hover:bg-ink-50 hover:shadow-floating"
+    : "border border-white/10 bg-ink-900 text-white shadow-[var(--shadow-bevel)] hover:bg-brand-black hover:border-white/20";
 
   return (
     <div className={cn("flex flex-wrap items-center gap-3", className)}>

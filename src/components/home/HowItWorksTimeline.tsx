@@ -17,7 +17,7 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-canvas py-16 sm:py-24">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-14 lg:flex-row lg:items-start lg:gap-20">
 
@@ -59,7 +59,7 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
                   >
                     {/* Circle icon — white bg breaks the dashed line behind it */}
                     <div className="relative mb-7">
-                      <span className="flex h-14 w-14 items-center justify-center rounded-full border border-ink-200 bg-white shadow-sm">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-full border border-ink-200 bg-surface shadow-card">
                         <Icon size={22} strokeWidth={1.5} className="text-ink-700" />
                       </span>
                       {/* Step number badge — bottom-left of circle */}

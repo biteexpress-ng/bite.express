@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
 import { heroCards } from "@/lib/hero-cards";
 import { FloatingServiceCard } from "./FloatingServiceCard";
+import { HeroSpotlight } from "./HeroSpotlight";
 import { MotionDeliveryRibbon } from "./MotionDeliveryRibbon";
 import { PhoneOrderPreview } from "./PhoneOrderPreview";
 
@@ -56,13 +57,21 @@ export function HeroShowcase({
         aria-hidden
         className="pointer-events-none absolute -bottom-32 -right-32 h-144 w-144 rounded-full bg-brand-red/15 blur-[120px]"
       />
+      {/* Balancing flame orb, top-left */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 -top-24 h-120 w-120 rounded-full bg-flame/10 blur-[130px]"
+      />
+
+      {/* Cursor-tracking spotlight (lg+, motion-safe) */}
+      <HeroSpotlight />
 
       <Container className="relative z-10">
         <div className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
           {/* LEFT — copy + form */}
           <div className="max-w-2xl">
             {/* Eyebrow — plain red uppercase, no pill */}
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">
+            <p className="fade-up text-xs font-bold uppercase tracking-[0.22em] text-brand-red">
               {eyebrow}
             </p>
 
@@ -70,22 +79,24 @@ export function HeroShowcase({
                 The h1 still contains the full sentence for screen
                 readers and SEO; visual line breaks are done with
                 explicit <br/> so they're not at the mercy of width. */}
-            <h1 className="mt-5 font-serif text-[clamp(3rem,7vw,5.75rem)] leading-[1.02] tracking-tight text-white">
+            <h1 className="fade-up delay-1 mt-5 font-serif text-[clamp(3rem,7vw,5.75rem)] leading-[1.02] tracking-tight text-white">
               <span className="block">Everything</span>
               <span className="block">you crave.</span>
               <span className="block">
-                <span className="italic text-brand-red">Delivered</span>{" "}
+                <span className="bg-linear-to-r from-brand-red via-flame to-brand-red-400 bg-clip-text italic text-transparent">
+                  Delivered
+                </span>{" "}
                 <span>fast.</span>
               </span>
             </h1>
 
-            <p className="mt-7 max-w-md text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+            <p className="fade-up delay-2 mt-7 max-w-md text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
               {subtitle}
             </p>
 
             {/* Address picker — clean white pill, red CTA */}
             <form
-              className="mt-9 flex w-full max-w-md flex-col gap-0 rounded-full bg-white p-[0.8] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
+              className="fade-up delay-3 mt-9 flex w-full max-w-md flex-col gap-0 rounded-full bg-white p-[0.8] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center"
               action={siteConfig.shopHref}
               method="get"
             >
@@ -112,7 +123,7 @@ export function HeroShowcase({
             </form>
 
             {/* Trust chips — small red dot + label, no pill */}
-            <ul className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 text-[13px] text-white/70">
+            <ul className="fade-up delay-3 mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 text-[13px] text-white/70">
               {[chipTracking, chipEta, chipPayments].map((label) => (
                 <li key={label} className="inline-flex items-center gap-2">
                   <span

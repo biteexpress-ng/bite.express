@@ -68,10 +68,10 @@ export function SiteHeader() {
       />
       <header
         className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-300",
+          "sticky top-0 z-50 w-full transition-all duration-300 ease-out-expo",
           overDark
-            ? "border-b border-transparent bg-black"
-            : "border-b border-ink-200/60 bg-white/80 backdrop-blur shadow-sm",
+            ? "border-b border-transparent bg-transparent"
+            : "border-b border-ink-200/70 bg-[rgba(250,250,247,0.72)] shadow-card backdrop-blur-xl backdrop-saturate-150",
         )}
       >
       <Container className="flex h-16 items-center justify-between md:h-20">
@@ -87,7 +87,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                "text-sm font-medium transition-colors",
+                "text-sm font-medium transition-colors duration-200 ease-out-expo",
                 overDark
                   ? "text-white/85 hover:text-white"
                   : "text-ink-700 hover:text-brand-red",
@@ -104,10 +104,10 @@ export function SiteHeader() {
             href={siteConfig.shopHref}
             aria-label="Cart"
             className={cn(
-              "relative inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
+              "relative inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-200 ease-out-expo hover:-translate-y-px",
               overDark
-                ? "border-white/20 text-white/90 hover:bg-white/10 hover:text-white"
-                : "border-ink-200 text-ink-900 hover:bg-ink-50 hover:text-brand-red",
+                ? "border-white/20 text-white/90 hover:border-white/40 hover:bg-white/10 hover:text-white"
+                : "border-ink-200 text-ink-900 hover:border-brand-red/30 hover:text-brand-red hover:shadow-glow-sm",
             )}
           >
             <ShoppingBag size={17} strokeWidth={1.8} />
@@ -151,14 +151,14 @@ export function SiteHeader() {
 
       {/* Mobile sheet */}
       {open && (
-        <div className="border-t border-ink-200 bg-white md:hidden">
-          <Container className="flex flex-col gap-2 py-4">
+        <div className="fade-up origin-top border-t border-ink-200/70 bg-[rgba(250,250,247,0.94)] shadow-floating backdrop-blur-xl backdrop-saturate-150 md:hidden">
+          <Container className="flex flex-col gap-1 py-4">
             {primaryNav.map((item) =>
               item.external ? (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="rounded-lg px-3 py-3 text-base font-medium text-ink-900 hover:bg-ink-50"
+                  className="rounded-xl px-3 py-3 text-base font-medium text-ink-900 transition-colors duration-200 ease-out-expo hover:bg-ink-100 hover:text-brand-red"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
@@ -169,7 +169,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-lg px-3 py-3 text-base font-medium text-ink-900 hover:bg-ink-50"
+                  className="rounded-xl px-3 py-3 text-base font-medium text-ink-900 transition-colors duration-200 ease-out-expo hover:bg-ink-100 hover:text-brand-red"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

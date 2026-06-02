@@ -59,7 +59,7 @@ export default async function RidersPage() {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ink-50 to-white pt-16 pb-20 sm:pt-24 sm:pb-28">
+      <section className="relative overflow-hidden aurora-bg pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-32 -right-32 h-[24rem] w-[24rem] rounded-full bg-brand-orange/15 blur-3xl"
