@@ -20,6 +20,8 @@ import { VendorSignupForm } from "@/components/forms/vendor-signup-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema } from "@/lib/jsonld";
+import { AppStoreButtons } from "@/components/ui/app-store-buttons";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
   title: "Become a BiteExpress vendor — grow your restaurant, store or pharmacy",
@@ -174,6 +176,29 @@ export default async function VendorsPage() {
             <div className="rounded-3xl border border-ink-200 bg-white p-6 shadow-soft sm:p-8">
               <VendorSignupForm />
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* GET THE VENDOR APP */}
+      <Section background="white" padding="md">
+        <Container>
+          <div className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-ink-200 bg-ink-50 p-8 text-center sm:flex-row sm:text-left">
+            <div>
+              <h2 className="font-serif text-2xl text-ink-900 sm:text-[1.75rem]">
+                Already approved? Get the Vendor app.
+              </h2>
+              <p className="mt-2 max-w-xl text-ink-600">
+                Download the BiteExpress Vendor app to manage your menu, accept
+                orders and track your payouts.
+              </p>
+            </div>
+            <AppStoreButtons
+              ios={siteConfig.vendorAppStore.ios}
+              android={siteConfig.vendorAppStore.android}
+              size="lg"
+              className="shrink-0"
+            />
           </div>
         </Container>
       </Section>

@@ -20,6 +20,8 @@ import { RiderSignupForm } from "@/components/forms/rider-signup-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema } from "@/lib/jsonld";
+import { AppStoreButtons } from "@/components/ui/app-store-buttons";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
   title: "Become a BiteExpress rider — earn flexibly across Nigeria",
@@ -175,6 +177,29 @@ export default async function RidersPage() {
             <div className="rounded-3xl border border-ink-200 bg-white p-6 shadow-soft sm:p-8">
               <RiderSignupForm />
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* GET THE DRIVER APP */}
+      <Section background="white" padding="md">
+        <Container>
+          <div className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-ink-200 bg-ink-50 p-8 text-center sm:flex-row sm:text-left">
+            <div>
+              <h2 className="font-serif text-2xl text-ink-900 sm:text-[1.75rem]">
+                Already approved? Get the Driver app.
+              </h2>
+              <p className="mt-2 max-w-xl text-ink-600">
+                Download the BiteExpress Driver app to go online, accept
+                deliveries and cash out weekly.
+              </p>
+            </div>
+            <AppStoreButtons
+              ios={siteConfig.driverAppStore.ios}
+              android={siteConfig.driverAppStore.android}
+              size="lg"
+              className="shrink-0"
+            />
           </div>
         </Container>
       </Section>

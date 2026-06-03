@@ -41,10 +41,23 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@BiteExpressApp",
     whatsapp: "https://wa.me/2349123051662",
   },
+  /** BiteExpress customer app — used on the deep-link landing pages. */
   appStore: {
     ios: "https://apps.apple.com/ng/app/biteexpress/id6466211766",
     android:
       "https://play.google.com/store/apps/details?id=com.biteexpress.biteexpress",
+  },
+  /** BiteExpress Driver (rider) app — surfaced on /riders. */
+  driverAppStore: {
+    ios: "https://apps.apple.com/ng/app/biteexpress-drivers/id6467380622",
+    android:
+      "https://play.google.com/store/apps/details?id=com.biteexpress.bitex_drivers",
+  },
+  /** BiteExpress Vendor app — surfaced on /vendors. */
+  vendorAppStore: {
+    ios: "https://apps.apple.com/ng/app/biteexpress-vendors/id6466212225",
+    android:
+      "https://play.google.com/store/apps/details?id=com.biteexpress.bitex_vendors",
   },
 } as const;
 
