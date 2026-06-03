@@ -83,7 +83,7 @@ export function FloatingServiceCard({
   return (
     <motion.div
       aria-hidden
-      className={cn("hidden lg:block", widthClasses, className)}
+      className={cn(widthClasses, className)}
       initial={reducedMotion ? false : { opacity: 0, y: 24, scale: 0.92, filter: "blur(8px)" }}
       animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.8, delay, ease: [0.25, 1, 0.5, 1] }}

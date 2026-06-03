@@ -4,11 +4,9 @@ import { ArrowRight, Clock3, MapPin, Search, ShieldCheck } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
-import { heroCards } from "@/lib/hero-cards";
-import { FloatingServiceCard } from "./FloatingServiceCard";
+import { HeroCardCluster } from "./HeroCardCluster";
 import { HeroSpotlight } from "./HeroSpotlight";
 import { MotionDeliveryRibbon } from "./MotionDeliveryRibbon";
-import { PhoneOrderPreview } from "./PhoneOrderPreview";
 import { HeroTextReveal } from "./HeroTextReveal";
 
 type Props = {
@@ -190,49 +188,7 @@ export function HeroShowcase({
               }}
             />
 
-            <div className="lg:hidden">
-              <PhoneOrderPreview />
-            </div>
-
-            <div className="hidden lg:flex lg:items-start lg:justify-center lg:gap-0">
-              <div className="flex flex-col gap-16 pt-10 xl:gap-20 xl:pt-14">
-                {heroCards
-                  .filter((card) => card.column === "left")
-                  .map((card) => (
-                    <FloatingServiceCard
-                      key={card.key}
-                      label={card.label}
-                      detail={card.detail}
-                      imagePath={card.imagePath}
-                      iconKey={card.iconKey}
-                      placeholderAccent={card.placeholderAccent}
-                      variant="square"
-                      delay={card.delay}
-                    />
-                  ))}
-              </div>
-
-              <div className="relative z-10 flex-none -mx-5 xl:-mx-7">
-                <PhoneOrderPreview />
-              </div>
-
-              <div className="flex flex-col gap-10 pt-8 xl:gap-12 xl:pt-10">
-                {heroCards
-                  .filter((card) => card.column === "right")
-                  .map((card) => (
-                    <FloatingServiceCard
-                      key={card.key}
-                      label={card.label}
-                      detail={card.detail}
-                      imagePath={card.imagePath}
-                      iconKey={card.iconKey}
-                      placeholderAccent={card.placeholderAccent}
-                      variant="wide"
-                      delay={card.delay}
-                    />
-                  ))}
-              </div>
-            </div>
+            <HeroCardCluster />
 
             <motion.div
               className="absolute bottom-4 left-1/2 hidden w-[86%] -translate-x-1/2 items-center justify-between rounded-lg border border-white/10 bg-black/55 px-4 py-3 text-white shadow-luxe backdrop-blur-xl lg:flex"
