@@ -33,6 +33,7 @@ const partnerLinks = [
   { label: "Vendor Portal", href: "https://app.bite.express/vendors" },
   { label: "Rider Portal", href: "/riders" },
   { label: "Business Solutions", href: "/vendors" },
+  { label: "Become an Agent", href: "/agents" },
 ] as const;
 
 const companyLinks = [
@@ -40,6 +41,7 @@ const companyLinks = [
   { label: "Careers", href: "/careers" },
   { label: "Newsroom", href: "/press" },
   { label: "Contact Us", href: "/contact" },
+  { label: "Blog", href: "/blog" },
 ] as const;
 
 const legalLinks = [
