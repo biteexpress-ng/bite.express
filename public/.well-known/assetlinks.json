@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.biteexpress.biteexpress",
+      "sha256_cert_fingerprints": [
+        "D2:A0:6E:02:1D:B0:74:46:9B:DE:FA:A7:A0:D2:FF:BD:CD:76:FD:BA:A5:4D:12:99:46:AA:B9:E2:D6:A1:19:92",
+        "F8:64:B1:0A:30:6D:34:BD:EB:0E:00:FA:C5:3E:46:27:72:91:76:B3:A0:54:B8:B8:FE:0B:7F:09:99:4A:E7:EB"
+      ]
+    }
+  }
+]

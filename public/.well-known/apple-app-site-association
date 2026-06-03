@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["7C8L792YCQ.com.biteexpress.biteexpress"],
+        "components": [
+          { "/": "/store*",    "comment": "Restaurant / store detail" },
+          { "/": "/product*",  "comment": "Item detail" },
+          { "/": "/campaign*", "comment": "Campaign detail" },
+          { "/": "/refer*",    "comment": "Referral code" },
+          { "/": "/bitepass*", "comment": "BitePass plans" },
+          { "/": "/order*",    "comment": "Order detail (auth)" },
+          { "/": "/track*",    "comment": "Order tracking" },
+          { "/": "/category*", "comment": "Category items" }
+        ]
+      }
+    ]
+  }
+}
