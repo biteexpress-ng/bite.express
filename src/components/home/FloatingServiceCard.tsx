@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   Package,
   Pill,
+  ShoppingBag,
   ShoppingBasket,
   UtensilsCrossed,
   Wine,
@@ -23,6 +24,7 @@ const iconLookup: Record<HeroCardIconKey, LucideIcon> = {
   grocery: ShoppingBasket,
   parcel: Package,
   wine: Wine,
+  shopping: ShoppingBag,
 };
 
 type Props = {

@@ -25,7 +25,8 @@ export type HeroCardIconKey =
   | "pharmacy"
   | "grocery"
   | "parcel"
-  | "wine";
+  | "wine"
+  | "shopping";
 
 export type HeroCard = {
   key: string;
@@ -52,6 +53,17 @@ export const heroCards: readonly HeroCard[] = [
       "bg-gradient-to-br from-amber-500/25 via-amber-700/15 to-transparent text-amber-200",
     column: "left",
     delay: 0.05,
+  },
+  {
+    key: "shopping",
+    label: "Shopping",
+    detail: "Trusted local stores",
+    imagePath: "/brand/hero/shopping.png",
+    iconKey: "shopping",
+    placeholderAccent:
+      "bg-gradient-to-br from-violet-500/25 via-violet-700/15 to-transparent text-violet-200",
+    column: "left",
+    delay: 0.2,
   },
   {
     key: "pharmacy",

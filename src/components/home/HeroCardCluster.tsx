@@ -23,6 +23,7 @@ const SLOT_TRANSITION = {
 function slotFor(index: number) {
   const slots = [
     { gridColumn: 1, gridRow: 1 },
+    { gridColumn: 1, gridRow: 2 },
     { gridColumn: 1, gridRow: 3 },
     { gridColumn: 3, gridRow: 1 },
     { gridColumn: 3, gridRow: 2 },
