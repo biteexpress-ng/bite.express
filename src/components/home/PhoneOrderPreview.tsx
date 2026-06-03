@@ -14,7 +14,7 @@ export function PhoneOrderPreview() {
     <div
       aria-hidden
       role="presentation"
-      className="relative mx-auto w-full max-w-56 sm:max-w-64 lg:max-w-72 xl:max-w-80"
+      className="relative mx-auto w-full max-w-44 sm:max-w-56 lg:max-w-72 xl:max-w-80"
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- decorative,
           already-optimised AVIF; sidestepping next/image avoids the

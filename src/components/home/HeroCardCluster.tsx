@@ -65,29 +65,17 @@ export function HeroCardCluster() {
 
   return (
     <>
-      {/* MOBILE: phone, then a wrapped row of the shuffling cards. */}
-      <div className="lg:hidden">
-        <PhoneOrderPreview />
-        <div className="mt-7 flex flex-wrap justify-center gap-2.5">
-          {order.map((card) => (
-            <motion.div key={card.key} layout transition={SLOT_TRANSITION}>
-              {renderCard(card)}
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* DESKTOP: cards flank the centered phone inside a single grid, so they
-          can swap slots and slide smoothly between them. */}
+      {/* Phone flanked by the shuffling cards on every screen — scaled down on
+          small viewports so the cards sit beside the phone, not below it. */}
       <div
-        className="hidden items-center justify-center justify-items-center gap-y-7 lg:grid"
+        className="grid items-center justify-center justify-items-center gap-y-4 sm:gap-y-6 lg:gap-y-7"
         style={{
           gridTemplateColumns: "auto auto auto",
           gridTemplateRows: "auto auto auto",
         }}
       >
         <div
-          className="relative z-10 -mx-9 self-center xl:-mx-12"
+          className="relative z-10 -mx-3 self-center sm:-mx-6 lg:-mx-9 xl:-mx-12"
           style={{ gridColumn: 2, gridRow: "1 / 4" }}
         >
           <PhoneOrderPreview />

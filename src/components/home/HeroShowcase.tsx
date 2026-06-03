@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Clock3, MapPin, Search, ShieldCheck } from "lucide-react";
+import { MapPin, Search } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
@@ -189,27 +189,6 @@ export function HeroShowcase({
             />
 
             <HeroCardCluster />
-
-            <motion.div
-              className="absolute bottom-4 left-1/2 hidden w-[86%] -translate-x-1/2 items-center justify-between rounded-lg border border-white/10 bg-black/55 px-4 py-3 text-white shadow-luxe backdrop-blur-xl lg:flex"
-              initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.95,
-                ease: [0.25, 1, 0.5, 1],
-              }}
-            >
-              <span className="inline-flex items-center gap-2 text-xs text-white/70">
-                <Clock3 size={14} className="text-brand-orange" />
-                Smart dispatch active
-              </span>
-              <span className="inline-flex items-center gap-2 text-xs text-white/70">
-                <ShieldCheck size={14} className="text-emerald-300" />
-                Verified partners
-              </span>
-              <ArrowRight size={15} className="text-white/40" />
-            </motion.div>
           </div>
         </div>
       </Container>

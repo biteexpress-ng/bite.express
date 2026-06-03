@@ -78,7 +78,7 @@ export function FloatingServiceCard({
   const widthClasses =
     variant === "wide"
       ? "w-48 xl:w-56"
-      : "w-22 xl:w-26";
+      : "w-20 lg:w-22 xl:w-26";
 
   return (
     <motion.div
