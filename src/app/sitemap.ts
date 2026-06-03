@@ -13,10 +13,17 @@ import { fetchNewsItems } from "@/lib/news-api";
  * the sitemap still renders the static + curated portion rather than
  * 500-ing.
  *
- * Revalidated hourly. The /api/revalidate webhook bumps /sitemap.xml
- * on every CMS publish so search engines get fresh URLs faster.
+ * Dynamically rendered (`revalidate = 0`) so a CMS publish shows up
+ * immediately. The route always re-renders, but the blog/jobs/news
+ * fetches stay cached + tagged (`next: { revalidate, tags }`), so the
+ * backend is still only hit every few minutes. The /api/revalidate
+ * webhook calls `revalidateTag('blog'|'news'|'jobs', { expire: 0 })`,
+ * expiring that tagged data so the next render emits the new URLs.
+ * (A metadata route's output cache isn't reliably busted by
+ * `revalidatePath('/sitemap.xml')`, so we keep the route uncached
+ * instead and let the tagged Data Cache drive freshness.)
  */
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
