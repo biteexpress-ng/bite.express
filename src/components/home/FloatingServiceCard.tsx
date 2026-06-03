@@ -144,7 +144,7 @@ export function FloatingServiceCard({
                 fill
                 sizes="56px"
                 className={cn(
-                  "object-cover transition-opacity duration-300",
+                  "object-contain transition-opacity duration-300",
                   imgLoaded ? "opacity-100" : "opacity-0",
                 )}
                 onLoad={() => setImgLoaded(true)}
@@ -179,7 +179,7 @@ export function FloatingServiceCard({
                 fill
                 sizes="120px"
                 className={cn(
-                  "object-cover transition-opacity duration-300",
+                  "object-contain transition-opacity duration-300",
                   imgLoaded ? "opacity-100" : "opacity-0",
                 )}
                 onLoad={() => setImgLoaded(true)}

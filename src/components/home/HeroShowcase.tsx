@@ -194,7 +194,7 @@ export function HeroShowcase({
               <PhoneOrderPreview />
             </div>
 
-            <div className="hidden lg:flex lg:items-start lg:justify-center lg:gap-2 xl:gap-4">
+            <div className="hidden lg:flex lg:items-start lg:justify-center lg:gap-0">
               <div className="flex flex-col gap-16 pt-10 xl:gap-20 xl:pt-14">
                 {heroCards
                   .filter((card) => card.column === "left")
@@ -212,7 +212,7 @@ export function HeroShowcase({
                   ))}
               </div>
 
-              <div className="flex-none">
+              <div className="relative z-10 flex-none -mx-5 xl:-mx-7">
                 <PhoneOrderPreview />
               </div>
 
