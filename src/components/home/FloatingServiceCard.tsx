@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useState, useCallback, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  Fuel,
   Package,
   Pill,
   ShoppingBasket,
   UtensilsCrossed,
+  Wine,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -22,7 +22,7 @@ const iconLookup: Record<HeroCardIconKey, LucideIcon> = {
   pharmacy: Pill,
   grocery: ShoppingBasket,
   parcel: Package,
-  petrol: Fuel,
+  wine: Wine,
 };
 
 type Props = {

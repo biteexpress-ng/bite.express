@@ -1,10 +1,10 @@
 import {
-  Fuel,
   Package,
   Pill,
   ShoppingBag,
   ShoppingBasket,
   UtensilsCrossed,
+  Wine,
 } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -23,7 +23,7 @@ export type DeliveryModule = {
 
 /**
  * Verticals BiteExpress operates. Mirrors the modules concept on the
- * customer-app side (Food, Grocery, Pharmacy, Parcel, Shopping, Petrol).
+ * customer-app side (Food, Grocery, Pharmacy, Parcel, Shopping, Wine).
  * Each card on the home page links to the equivalent module landing
  * on app.bite.express.
  */
@@ -71,11 +71,11 @@ export const deliveryModules: readonly DeliveryModule[] = [
     href: `${APP_URL}/home?module=shopping`,
   },
   {
-    slug: "petrol",
-    name: "Petrol",
-    description: "Refuel your vehicle without leaving your home.",
-    icon: Fuel,
+    slug: "wine",
+    name: "Wine",
+    description: "Wine, spirits and beverages delivered to your door.",
+    icon: Wine,
     accent: "bg-rose-50 text-rose-700",
-    href: `${APP_URL}/home?module=petrol`,
+    href: `${APP_URL}/home?module=wine`,
   },
 ];

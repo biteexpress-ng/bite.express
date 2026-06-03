@@ -5,12 +5,12 @@ import { useCallback, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
-  Fuel,
   Package,
   Pill,
   ShoppingBag,
   ShoppingBasket,
   UtensilsCrossed,
+  Wine,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -31,7 +31,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   pharmacy: Pill,
   parcel: Package,
   shopping: ShoppingBag,
-  petrol: Fuel,
+  wine: Wine,
 };
 
 /**

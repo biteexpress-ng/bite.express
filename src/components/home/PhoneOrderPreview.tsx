@@ -20,7 +20,7 @@ export function PhoneOrderPreview() {
           already-optimised AVIF; sidestepping next/image avoids the
           intrinsic-dimension requirement for a transparent mockup. */}
       <img
-        src="/brand/hero/phone-mockup.webp"
+        src="/brand/hero/phone-biteexpress.png"
         alt=""
         className="block h-auto w-full select-none"
         draggable={false}

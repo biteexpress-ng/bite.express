@@ -25,7 +25,7 @@ export type HeroCardIconKey =
   | "pharmacy"
   | "grocery"
   | "parcel"
-  | "petrol";
+  | "wine";
 
 export type HeroCard = {
   key: string;
@@ -87,11 +87,11 @@ export const heroCards: readonly HeroCard[] = [
     delay: 0.3,
   },
   {
-    key: "petrol",
-    label: "Petrol",
-    detail: "Refuel on demand",
-    imagePath: "/brand/hero/petrol.png",
-    iconKey: "petrol",
+    key: "wine",
+    label: "Wine",
+    detail: "Chilled & ready",
+    imagePath: "/brand/hero/wine.png",
+    iconKey: "wine",
     placeholderAccent:
       "bg-gradient-to-br from-rose-500/25 via-rose-700/15 to-transparent text-rose-200",
     column: "right",

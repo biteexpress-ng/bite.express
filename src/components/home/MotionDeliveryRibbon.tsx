@@ -15,7 +15,7 @@
  *   • Only two duplicated text spans per band (minimum for seamless loop).
  * ─────────────────────────────────────────────────────────────────────────*/
 
-const ITEMS = ["FOOD", "GROCERY", "PHARMACY", "PARCEL", "PETROL", "DELIVERY"];
+const ITEMS = ["FOOD", "GROCERY", "PHARMACY", "PARCEL", "WINE", "DELIVERY"];
 const SEPARATOR = "   •   ";
 // Repeat the items sufficiently so a single block spans well over any screen width
 const REPEATED_ITEMS = Array(10).fill(ITEMS).flat();

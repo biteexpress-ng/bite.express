@@ -4,6 +4,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
+  WhatsAppIcon,
   XIcon,
 } from "@/components/brand/social-icons";
 import { Container } from "@/components/ui/container";
@@ -18,6 +19,7 @@ const social = [
   { href: siteConfig.social.facebook, label: "Facebook", Icon: FacebookIcon },
   { href: siteConfig.social.twitter, label: "X (Twitter)", Icon: XIcon },
   { href: siteConfig.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
+  { href: siteConfig.social.whatsapp, label: "WhatsApp", Icon: WhatsAppIcon },
 ] as const;
 
 const customerLinks = [

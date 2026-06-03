@@ -48,7 +48,7 @@ export const metadata = buildMetadata({
     "Jos food delivery",
     "pharmacy delivery",
     "supermarket delivery",
-    "petrol delivery Nigeria",
+    "wine delivery Nigeria",
     "restaurant delivery Zaria",
   ],
 });

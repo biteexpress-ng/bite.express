@@ -75,7 +75,7 @@ export function HeroShowcase({
             </motion.p>
 
             <HeroTextReveal
-              className="mt-6 font-serif text-5xl leading-[0.98] tracking-normal text-white sm:text-6xl lg:text-7xl xl:text-[5.4rem]"
+              className="mt-6 font-serif text-5xl leading-[1.05] tracking-normal text-white sm:text-6xl lg:text-7xl xl:text-[5.4rem]"
               lines={[
                 { text: "Everything" },
                 { text: "you crave." },
