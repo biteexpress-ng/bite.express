@@ -65,7 +65,7 @@ export default async function CityPage({ params }: RouteProps) {
       question: `Where in ${city.name} does BiteExpress deliver?`,
       answer:
         city.neighborhoods.length > 0
-          ? `We deliver across ${city.neighborhoods.slice(0, -1).join(", ")} and ${city.neighborhoods[city.neighborhoods.length - 1]} — plus the surrounding areas in our ${city.state} zone. Type your address into the app to confirm coverage.`
+          ? `We deliver across ${city.neighborhoods.slice(0, -1).join(", ")} and ${city.neighborhoods[city.neighborhoods.length - 1]}, plus the surrounding areas in our ${city.state} zone. Type your address into the app to confirm coverage.`
           : `We deliver across the central districts of ${city.name} and the surrounding areas in our ${city.state} zone. Type your address into the app to confirm coverage.`,
     },
     {
@@ -75,15 +75,15 @@ export default async function CityPage({ params }: RouteProps) {
     {
       question: `What payment methods can I use in ${city.name}?`,
       answer:
-        "Card, bank transfer or cash on delivery — pick what works for you at checkout. Your card details are tokenised through our payment provider; we never store them.",
+        "Card, bank transfer or cash on delivery, pick what works for you at checkout. Your card details are tokenised through our payment provider; we never store them.",
     },
     {
       question: `Can I order groceries and pharmacy items in ${city.name}?`,
-      answer: `Yes — alongside restaurants, our ${city.name} network includes supermarkets and pharmacies. Use the module switcher in the app to browse each category.`,
+      answer: `Yes, alongside restaurants, our ${city.name} network includes supermarkets and pharmacies. Use the module switcher in the app to browse each category.`,
     },
     {
       question: "What if my order is late or wrong?",
-      answer: `Open in-app support and we'll resolve it — refunds, replacements or BitePoints credit, your choice. See our refund policy for the full details.`,
+      answer: `Open in-app support and we'll resolve it, refunds, replacements or BitePoints credit, your choice. See our refund policy for the full details.`,
     },
   ];
 
@@ -126,7 +126,7 @@ export default async function CityPage({ params }: RouteProps) {
               Delivery in {city.state} State
             </Eyebrow>
             <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem]">
-              {city.name} — your favourites, delivered.
+              {city.name}, your favourites, delivered.
             </h1>
             <p className="mt-6 text-lg text-ink-600 sm:text-xl">
               {city.intro}

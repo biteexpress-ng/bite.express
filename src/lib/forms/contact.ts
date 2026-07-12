@@ -24,7 +24,7 @@ export const contactSchema = z
     topic: z.enum(topicSlugs, { message: "Pick a topic" }),
     message: z
       .string()
-      .min(10, "Add a bit more detail — at least 10 characters")
+      .min(10, "Add a bit more detail, at least 10 characters")
       .max(4000, "Keep it under 4000 characters"),
     // Honeypot: real users never see this field, bots fill every input.
     website: z.string().max(0, "Bot detected"),
@@ -40,7 +40,7 @@ export const contactSchema = z
       ctx.addIssue({
         code: "custom",
         path: ["mathAnswer"],
-        message: "That doesn't add up — try again",
+        message: "That doesn't add up, try again",
       });
     }
   });

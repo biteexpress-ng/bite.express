@@ -24,7 +24,7 @@ import { AppStoreButtons } from "@/components/ui/app-store-buttons";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Become a BiteExpress rider — earn flexibly across Nigeria",
+  title: "Become a BiteExpress rider, earn flexibly across Nigeria",
   description:
     "Ride with BiteExpress on your schedule. Use your own bike, motorbike or car. Weekly payouts, real bonuses, and a rider community across 10+ cities.",
   path: "/riders",

@@ -22,6 +22,18 @@
   --color-flame: #ff5026;
   --color-flame-soft: #ff7a52;
 
+  /* WhatsApp channel accent — used ONLY on WhatsApp-ordering CTAs and
+     icons, never to recolor the site. The bright tone is an ACCENT
+     (icons, glows, live dots, chat bubbles); it fails contrast as a
+     text background, so CTA fills use the darker `-cta` tone (white
+     text ≈ 5.2:1) and green text on light uses `-ink` (≈ 6.6:1). */
+  --color-whatsapp: #25d366; /* bright brand accent — icons / glows / bubbles */
+  --color-whatsapp-500: #1ebe57;
+  --color-whatsapp-600: #12a150; /* darker accent */
+  --color-whatsapp-cta: #0a7d3a; /* accessible fill for white-text CTAs */
+  --color-whatsapp-cta-hover: #08682f;
+  --color-whatsapp-ink: #0b6b34; /* accessible green TEXT on light surfaces */
+
   /* Canvas & obsidian surfaces ------------------------------------------ */
   --color-canvas: #fafaf7; /* warm off-white page background */
   --color-canvas-2: #f4f2ec; /* slightly deeper warm panel */

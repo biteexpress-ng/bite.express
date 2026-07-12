@@ -57,7 +57,7 @@ export function ContactForm() {
         </span>
         <h3 className="font-serif text-2xl text-ink-900">Message received.</h3>
         <p className="max-w-md text-base text-ink-600">
-          We aim to reply within 1 business day — sooner during business hours.
+          We aim to reply within 1 business day, sooner during business hours.
         </p>
       </div>
     );

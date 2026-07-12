@@ -65,7 +65,7 @@ export async function fetchBackendZones(): Promise<City[]> {
           state: z.state?.trim() || "Nigeria",
           country: "Nigeria",
           tagline: `Fast delivery across ${name}.`,
-          intro: `BiteExpress now operates in ${name}. Order food, groceries and more from vendors near you — with live tracking from kitchen to door.`,
+          intro: `BiteExpress now operates in ${name}. Order food, groceries and more from vendors near you, with live tracking from kitchen to door.`,
           neighborhoods: [],
           popularCuisineSlugs: [],
         };

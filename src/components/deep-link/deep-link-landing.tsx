@@ -40,7 +40,7 @@ const COPY: Record<DeepLinkType, Copy> = {
     label: "Offer",
     title: "Grab this offer in the BiteExpress app",
     blurb:
-      "Limited-time deals and campaigns live in the app — open it to claim this one before it's gone.",
+      "Limited-time deals and campaigns live in the app, open it to claim this one before it's gone.",
   },
   refer: {
     label: "Invitation",
@@ -58,7 +58,7 @@ const COPY: Record<DeepLinkType, Copy> = {
     label: "Your order",
     title: "See your order in the BiteExpress app",
     blurb:
-      "View your order details, receipt and status — and reorder your favourites in a tap.",
+      "View your order details, receipt and status, and reorder your favourites in a tap.",
   },
   track: {
     label: "Live tracking",

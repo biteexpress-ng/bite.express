@@ -48,7 +48,7 @@ export const FileField = forwardRef<HTMLInputElement, Props>(
                 {fileName ?? "Drag a file here or click to browse"}
               </div>
               <div className="text-xs text-ink-600">
-                {fileName ? "Click to replace" : "PDF or Word — up to 5 MB"}
+                {fileName ? "Click to replace" : "PDF or Word, up to 5 MB"}
               </div>
             </div>
           </div>

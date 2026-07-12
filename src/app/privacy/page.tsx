@@ -45,27 +45,27 @@ export default function PrivacyPage() {
         <p>We collect the following categories of information:</p>
         <ul>
           <li>
-            <strong>Account information</strong> — name, phone number, email,
+            <strong>Account information</strong>, name, phone number, email,
             password (hashed), profile photo.
           </li>
           <li>
-            <strong>Delivery information</strong> — addresses, geolocation, map
+            <strong>Delivery information</strong>, addresses, geolocation, map
             pins, delivery instructions.
           </li>
           <li>
-            <strong>Order information</strong> — items ordered, vendors, totals,
+            <strong>Order information</strong>, items ordered, vendors, totals,
             ratings and feedback.
           </li>
           <li>
-            <strong>Payment information</strong> — tokenised card references,
+            <strong>Payment information</strong>, tokenised card references,
             transaction history. We never store your full card number.
           </li>
           <li>
-            <strong>Device and usage data</strong> — device model, OS, IP
+            <strong>Device and usage data</strong>, device model, OS, IP
             address, in-app interactions, crash reports.
           </li>
           <li>
-            <strong>Communications</strong> — chat messages with riders/
+            <strong>Communications</strong>, chat messages with riders/
             vendors, customer support tickets and call recordings.
           </li>
         </ul>
@@ -96,11 +96,11 @@ export default function PrivacyPage() {
         </p>
         <ul>
           <li>
-            <strong>Vendors and riders</strong> assigned to your order —
+            <strong>Vendors and riders</strong> assigned to your order ,
             limited to what they need to prepare or deliver it.
           </li>
           <li>
-            <strong>Payment processors</strong> licensed in Nigeria — to settle
+            <strong>Payment processors</strong> licensed in Nigeria, to settle
             transactions.
           </li>
           <li>

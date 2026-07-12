@@ -22,7 +22,7 @@ import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema } from "@/lib/jsonld";
 
 export const metadata = buildMetadata({
-  title: "BiteExpress Agent Programme — earn recurring commission",
+  title: "BiteExpress Agent Programme, earn recurring commission",
   description:
     "Bring vendors, riders and customers onto BiteExpress and earn recurring commission on every order. Selective intake, real tools, dedicated support.",
   path: "/agents",
@@ -161,7 +161,7 @@ export default async function AgentsPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Calendar size={16} className="mt-0.5 text-brand-red" />
-                  <span>Selective intake — quality over quantity.</span>
+                  <span>Selective intake, quality over quantity.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Calendar size={16} className="mt-0.5 text-brand-red" />

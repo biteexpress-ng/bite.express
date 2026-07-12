@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: RouteProps) {
   if (!cuisine) return {};
 
   return buildMetadata({
-    title: `${cuisine.name} delivery in Nigeria — order on BiteExpress`,
+    title: `${cuisine.name} delivery in Nigeria, order on BiteExpress`,
     description: `${cuisine.tagline} Order ${cuisine.name.toLowerCase()} from BiteExpress and get it delivered fast across Zaria, Kaduna, Lagos and more.`,
     path: `/cuisines/${cuisine.slug}`,
     keywords: [
@@ -74,12 +74,12 @@ export default async function CuisinePage({ params }: RouteProps) {
     {
       question: `Can I pay cash on delivery?`,
       answer:
-        "Yes — pay by card, bank transfer or cash on delivery, whichever works for you at checkout. Card details are tokenised; we never store them.",
+        "Yes, pay by card, bank transfer or cash on delivery, whichever works for you at checkout. Card details are tokenised; we never store them.",
     },
     {
       question: `What if I want to customise my ${cuisine.name.toLowerCase()} order?`,
       answer:
-        "Use the order notes field at checkout for any special requests — the vendor sees them before they start preparing. For more complex changes, you can also chat the vendor directly through the app.",
+        "Use the order notes field at checkout for any special requests, the vendor sees them before they start preparing. For more complex changes, you can also chat the vendor directly through the app.",
     },
   ];
 

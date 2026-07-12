@@ -64,7 +64,7 @@ export async function api<T>(
     return {
       ok: false,
       skipped: true,
-      reason: "NEXT_PUBLIC_API_BASE_URL not set — backend call skipped.",
+      reason: "NEXT_PUBLIC_API_BASE_URL not set, backend call skipped.",
     };
   }
 

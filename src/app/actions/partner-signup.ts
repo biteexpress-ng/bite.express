@@ -93,7 +93,7 @@ function summariseOutcome(
   mail: ChannelOutcome,
 ): ActionResult {
   if (backend === "failed" && mail === "failed") {
-    console.error(`[partner-signup:${audience}] both channels failed — lead may be lost`);
+    console.error(`[partner-signup:${audience}] both channels failed, lead may be lost`);
     return {
       ok: false,
       message:

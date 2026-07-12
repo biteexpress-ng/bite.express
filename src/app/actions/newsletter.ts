@@ -79,21 +79,21 @@ export async function subscribeToNewsletter(
       text: [
         `Thanks for subscribing to BiteExpress.`,
         ``,
-        `You'll hear from us when something good happens — new cities, new vendors, member-only offers, the occasional behind-the-scenes story.`,
+        `You'll hear from us when something good happens, new cities, new vendors, member-only offers, the occasional behind-the-scenes story.`,
         ``,
         `No spam. Unsubscribe any time.`,
         ``,
-        `— The BiteExpress team`,
+        `, The BiteExpress team`,
         `${siteConfig.url}`,
       ].join("\n"),
       html: `
         <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#111">
           <h1 style="font-size:24px;margin:0 0 12px;color:#111">Thanks for subscribing 👋</h1>
           <p style="font-size:16px;line-height:1.6;color:#2a2a2a">
-            We'll write when something genuinely good is worth telling you about — new cities, new vendors, member offers, the occasional behind-the-scenes story. No spam. Unsubscribe any time.
+            We'll write when something genuinely good is worth telling you about, new cities, new vendors, member offers, the occasional behind-the-scenes story. No spam. Unsubscribe any time.
           </p>
           <p style="font-size:14px;color:#6b7280;margin-top:32px">
-            — The BiteExpress team<br/>
+           , The BiteExpress team<br/>
             <a href="${siteConfig.url}" style="color:#de1600">${siteConfig.url}</a>
           </p>
         </div>`,

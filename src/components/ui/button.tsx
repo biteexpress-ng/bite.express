@@ -9,7 +9,8 @@ type Variant =
   | "obsidian"
   | "secondary"
   | "outline"
-  | "ghost";
+  | "ghost"
+  | "whatsapp";
 type Size = "sm" | "md" | "lg" | "xl";
 
 const variantStyles: Record<Variant, string> = {
@@ -28,6 +29,10 @@ const variantStyles: Record<Variant, string> = {
     "border border-ink-200 bg-surface text-ink-900 shadow-soft hover:border-brand-red/30 hover:bg-ink-50 active:bg-ink-100",
   ghost:
     "bg-transparent text-ink-900 hover:bg-ink-100 active:bg-ink-200",
+  // WhatsApp CTA — accessible deep-green fill (white text ≈ 5.2:1) with a
+  // bright #25D366 glow. Used only for "Order on WhatsApp" actions.
+  whatsapp:
+    "bg-whatsapp-cta text-white shadow-[0_8px_22px_-8px_rgba(37,211,102,0.5)] hover:bg-whatsapp-cta-hover hover:shadow-[0_14px_34px_-8px_rgba(37,211,102,0.62)] active:bg-whatsapp-cta-hover",
 };
 
 const sizeStyles: Record<Size, string> = {

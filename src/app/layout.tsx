@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Analytics } from "@/components/analytics/analytics";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { WhatsAppFab } from "@/components/whatsapp/WhatsAppFab";
 import "./globals.css";
 
 /**
@@ -18,7 +19,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.shortDescription}`,
+    default: `${siteConfig.name}, ${siteConfig.shortDescription}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.longDescription,
@@ -84,6 +85,7 @@ export default async function RootLayout({
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <WhatsAppFab />
         </NextIntlClientProvider>
 
         <Analytics />

@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
   title: "Refund Policy",
-  description: "How refunds work on BiteExpress — clearly and fairly.",
+  description: "How refunds work on BiteExpress, clearly and fairly.",
   path: "/refund",
 });
 
@@ -41,7 +41,7 @@ export default function RefundPage() {
           <li>The order arrives damaged, spoiled or unsafe to consume.</li>
           <li>The delivery never arrives, or is unacceptably late.</li>
           <li>
-            You were charged in error — for example, double-billed for the
+            You were charged in error, for example, double-billed for the
             same order.
           </li>
         </ul>
@@ -81,7 +81,7 @@ export default function RefundPage() {
         <h2>4. Cancellation fees</h2>
         <p>
           Cancellation is free before the vendor accepts your order. Once
-          preparation has started, partial fees may apply — typically the cost
+          preparation has started, partial fees may apply, typically the cost
           of any food the vendor has already cooked or perishable items they&apos;ve
           opened. We try to be fair to both you and the vendor.
         </p>

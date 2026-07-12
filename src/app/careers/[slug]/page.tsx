@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: RouteProps) {
   const job = await fetchJob(slug);
   if (!job) return {};
   return buildMetadata({
-    title: job.meta_title ?? `${job.title} — Careers at BiteExpress`,
+    title: job.meta_title ?? `${job.title}, Careers at BiteExpress`,
     description:
       job.meta_description ??
       job.summary ??
@@ -59,7 +59,7 @@ function employmentLabel(j: JobDetail) {
 }
 
 function formatDate(iso: string | null) {
-  if (!iso) return "—";
+  if (!iso) return ",";
   return new Date(iso).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
@@ -217,7 +217,7 @@ export default async function JobDetailPage({ params }: RouteProps) {
             Apply for {job.title}
           </h2>
           <p className="mt-4 text-base text-ink-600">
-            Send us your details and CV — our team reads every application and
+            Send us your details and CV, our team reads every application and
             replies within 2 weeks either way.
           </p>
 

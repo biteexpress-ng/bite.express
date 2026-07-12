@@ -59,7 +59,7 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
         <h3 className="font-serif text-2xl text-ink-900">Application sent.</h3>
         <p className="max-w-md text-base text-ink-600">
           Thanks for applying to <strong>{jobTitle}</strong>. Our team reviews
-          every application — you&apos;ll hear back within 2 weeks either way.
+          every application, you&apos;ll hear back within 2 weeks either way.
         </p>
       </div>
     );
@@ -121,7 +121,7 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
         required
         name="cv"
         accept={ACCEPTED_CV_TYPES.join(",")}
-        hint="PDF or Word — up to 5 MB"
+        hint="PDF or Word, up to 5 MB"
         className="sm:col-span-2"
       />
 

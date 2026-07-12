@@ -19,9 +19,9 @@ type RouteProps = {
 export const revalidate = 300;
 
 export const metadata = buildMetadata({
-  title: "Blog — stories, guides and updates from BiteExpress",
+  title: "Blog, stories, guides and updates from BiteExpress",
   description:
-    "Behind-the-scenes stories from BiteExpress — product updates, engineering notes, vendor spotlights, rider stories and city guides from the team building Nigeria's delivery network.",
+    "Behind-the-scenes stories from BiteExpress, product updates, engineering notes, vendor spotlights, rider stories and city guides from the team building Nigeria's delivery network.",
   path: "/blog",
   keywords: [
     "BiteExpress blog",
@@ -184,7 +184,7 @@ export default async function BlogIndexPage({ searchParams }: RouteProps) {
               <p className="mt-3 text-base text-ink-600">
                 {activeCategory
                   ? "No posts in this category right now. Try a different filter, or check back soon."
-                  : "We're working on it — our first posts go live shortly. Subscribe in the footer to know when."}
+                  : "We're working on it, our first posts go live shortly. Subscribe in the footer to know when."}
               </p>
             </div>
           ) : (
@@ -259,7 +259,7 @@ export default async function BlogIndexPage({ searchParams }: RouteProps) {
         variant="dark"
         eyebrow="Stay in the loop"
         title="Get our best stories in your inbox."
-        subtitle="Subscribe to the BiteExpress newsletter — no spam, just the good stuff."
+        subtitle="Subscribe to the BiteExpress newsletter, no spam, just the good stuff."
         cta={
           <ButtonLink href={siteConfig.shopHref} variant="primary" size="lg">
             Open the app

@@ -36,7 +36,7 @@ export default function CookiePolicyPage() {
         <h2>1. What is a cookie?</h2>
         <p>
           A cookie is a small text file a website stores in your browser so it
-          can recognise you on subsequent visits — for example, to keep you
+          can recognise you on subsequent visits, for example, to keep you
           signed in, remember your language, or measure which features are
           actually being used.
         </p>
@@ -73,7 +73,7 @@ export default function CookiePolicyPage() {
 
         <h2>3. Managing cookies</h2>
         <p>
-          You can control cookies in your browser settings — block them
+          You can control cookies in your browser settings, block them
           entirely, accept only first-party cookies, or delete existing
           cookies. Note that blocking strictly-necessary cookies will break
           parts of the Services.

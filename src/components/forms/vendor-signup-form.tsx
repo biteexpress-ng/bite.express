@@ -95,7 +95,7 @@ export function VendorSignupForm() {
         min={1}
         max={999}
         required
-        hint="Locations under one brand — start at 1."
+        hint="Locations under one brand, start at 1."
         error={errors.numberOfLocations?.message}
         {...register("numberOfLocations")}
       />
@@ -162,7 +162,7 @@ function SuccessState({ audience }: { audience: "vendor" | "rider" | "agent" }) 
       <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-success/15 text-success">
         <CheckCircle2 size={28} />
       </span>
-      <h3 className="font-serif text-2xl text-ink-900">Thanks — we got it.</h3>
+      <h3 className="font-serif text-2xl text-ink-900">Thanks, we got it.</h3>
       <p className="max-w-md text-base text-ink-600">{messages[audience]}</p>
     </div>
   );

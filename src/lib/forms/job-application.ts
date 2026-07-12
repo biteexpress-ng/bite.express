@@ -49,7 +49,7 @@ export function validateCvFile(file: File | null | undefined):
     return { ok: false, message: "Please attach your CV (PDF or Word document)." };
   }
   if (file.size > MAX_CV_BYTES) {
-    return { ok: false, message: "CV is over 5 MB — please compress and try again." };
+    return { ok: false, message: "CV is over 5 MB, please compress and try again." };
   }
   if (!ACCEPTED_CV_TYPES.includes(file.type)) {
     return { ok: false, message: "CV must be a PDF or Word (.doc / .docx) file." };

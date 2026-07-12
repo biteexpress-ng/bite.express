@@ -19,7 +19,7 @@ function shellHtml(title: string, rows: Array<[string, string]>, body?: string) 
       ([k, v]) => `
         <tr>
           <td style="padding:8px 16px;background:#fafafa;border:1px solid #e5e7eb;font-weight:600;color:#111;width:30%;vertical-align:top">${esc(k)}</td>
-          <td style="padding:8px 16px;border:1px solid #e5e7eb;color:#2a2a2a;vertical-align:top">${esc(v) || "—"}</td>
+          <td style="padding:8px 16px;border:1px solid #e5e7eb;color:#2a2a2a;vertical-align:top">${esc(v) || ","}</td>
         </tr>`,
     )
     .join("");
@@ -34,7 +34,7 @@ function shellHtml(title: string, rows: Array<[string, string]>, body?: string) 
 }
 
 function shellText(title: string, rows: Array<[string, string]>, body?: string) {
-  const lines = rows.map(([k, v]) => `${k}: ${v || "—"}`).join("\n");
+  const lines = rows.map(([k, v]) => `${k}: ${v || ","}`).join("\n");
   return `${title}\nvia ${siteConfig.url}\n\n${lines}${body ? `\n\n----\n${body}` : ""}`;
 }
 
@@ -48,7 +48,7 @@ export function vendorApplicationEmail(v: VendorFormValues): EmailBody {
     ["Vendor type", v.vendorType],
     ["Locations", v.numberOfLocations],
   ];
-  const subject = `New vendor application — ${v.businessName} (${cityName(v.city)})`;
+  const subject = `New vendor application, ${v.businessName} (${cityName(v.city)})`;
   return {
     subject,
     text: shellText(subject, rows, v.message || undefined),
@@ -65,7 +65,7 @@ export function riderApplicationEmail(v: RiderFormValues): EmailBody {
     ["Vehicle", v.vehicleType],
     ["Availability", v.availability],
   ];
-  const subject = `New rider application — ${v.fullName} (${cityName(v.city)})`;
+  const subject = `New rider application, ${v.fullName} (${cityName(v.city)})`;
   return {
     subject,
     text: shellText(subject, rows),
@@ -80,7 +80,7 @@ export function agentApplicationEmail(v: AgentFormValues): EmailBody {
     ["Phone", v.phone],
     ["City / area", cityName(v.city)],
   ];
-  const subject = `New agent application — ${v.fullName} (${cityName(v.city)})`;
+  const subject = `New agent application, ${v.fullName} (${cityName(v.city)})`;
   return {
     subject,
     text: shellText(subject, rows, v.network),

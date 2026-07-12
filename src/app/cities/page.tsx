@@ -15,9 +15,9 @@ import { siteConfig } from "@/lib/site-config";
 export const revalidate = 3600;
 
 export const metadata = buildMetadata({
-  title: "Cities we serve — BiteExpress delivery across Nigeria",
+  title: "Cities we serve, BiteExpress delivery across Nigeria",
   description:
-    "BiteExpress delivers food, groceries and more across Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran — with new cities launching every quarter.",
+    "BiteExpress delivers food, groceries and more across Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran, with new cities launching every quarter.",
   path: "/cities",
   keywords: [
     "BiteExpress cities",
@@ -51,7 +51,7 @@ export default async function CitiesPage() {
           <div className="max-w-3xl">
             <Eyebrow>Now serving</Eyebrow>
             <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem]">
-              {served.length} cities across Nigeria — and counting.
+              {served.length} cities across Nigeria, and counting.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
               BiteExpress brings food, groceries, pharmacy and parcel delivery
@@ -87,7 +87,7 @@ export default async function CitiesPage() {
         variant="dark"
         eyebrow="Don't see your city?"
         title="Tell us where to launch next."
-        subtitle="We're expanding every quarter — drop your city in our contact form and we'll let you know the moment BiteExpress goes live."
+        subtitle="We're expanding every quarter, drop your city in our contact form and we'll let you know the moment BiteExpress goes live."
         cta={
           <ButtonLink href="/contact" variant="primary" size="lg">
             Suggest a city
