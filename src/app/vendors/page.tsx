@@ -24,7 +24,7 @@ import { AppStoreButtons } from "@/components/ui/app-store-buttons";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Become a BiteExpress vendor — grow your restaurant, store or pharmacy",
+  title: "Become a BiteExpress vendor, grow your restaurant, store or pharmacy",
   description:
     "Partner with BiteExpress to reach thousands of new customers across Nigeria. Simple onboarding, transparent commissions, weekly payouts. Apply today.",
   path: "/vendors",

@@ -10,7 +10,7 @@ import { breadcrumbSchema } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Contact BiteExpress — get in touch with our team",
+  title: "Contact BiteExpress, get in touch with our team",
   description:
     "Reach BiteExpress for general enquiries, support, partnerships, press or careers. We typically reply within 1 business day.",
   path: "/contact",
@@ -34,7 +34,7 @@ export default function ContactPage() {
             Get in touch.
           </h1>
           <p className="mt-5 text-lg text-ink-600">
-            For order issues, the fastest route is in-app support — we&apos;ll find
+            For order issues, the fastest route is in-app support, we&apos;ll find
             your order and resolve it within minutes. For everything else, the
             form below or any of the channels on the right.
           </p>

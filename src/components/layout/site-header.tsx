@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
+import { WhatsAppIcon } from "@/components/brand/social-icons";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { primaryNav, siteConfig } from "@/lib/site-config";
@@ -99,8 +100,23 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        {/* Desktop right cluster — Cart + Order now */}
+        {/* Desktop right cluster — WhatsApp + Cart + Order now */}
         <div className="hidden items-center gap-3 md:flex">
+          <a
+            href={siteConfig.whatsappOrder.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Order on WhatsApp"
+            title="Order on WhatsApp"
+            className={cn(
+              "relative inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-200 ease-out-expo hover:-translate-y-px",
+              overDark
+                ? "border-white/20 text-whatsapp hover:border-whatsapp/50 hover:bg-whatsapp/10 hover:text-white"
+                : "border-ink-200 text-whatsapp-ink hover:border-whatsapp/50 hover:bg-whatsapp/10",
+            )}
+          >
+            <WhatsAppIcon size={17} />
+          </a>
           <Link
             href={siteConfig.shopHref}
             aria-label="Cart"
@@ -185,6 +201,16 @@ export function SiteHeader() {
             >
               Order now
             </ButtonLink>
+            <a
+              href={siteConfig.whatsappOrder.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-pill bg-whatsapp-cta text-base font-medium text-white shadow-[0_8px_22px_-8px_rgba(37,211,102,0.5)] transition-all duration-200 ease-out-expo hover:-translate-y-px active:translate-y-0"
+            >
+              <WhatsAppIcon size={18} />
+              Order on WhatsApp
+            </a>
           </Container>
         </div>
       )}

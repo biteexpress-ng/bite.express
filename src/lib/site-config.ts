@@ -7,9 +7,9 @@ export const siteConfig = {
   name: "BiteExpress",
   legalName: "BiteExpress Limited",
   shortDescription:
-    "Get food, groceries, pharmacy and more — delivered fast across Nigeria.",
+    "Get food, groceries, pharmacy and more, delivered fast across Nigeria.",
   longDescription:
-    "Order from your favourite restaurants, supermarkets, pharmacies and local stores. Fast delivery, live tracking, and exclusive offers — only on BiteExpress.",
+    "Order from your favourite restaurants, supermarkets, pharmacies and local stores. Fast delivery, live tracking, and exclusive offers, only on BiteExpress.",
   url: "https://bite.express",
   appUrl: "https://app.bite.express",
   /**
@@ -27,6 +27,21 @@ export const siteConfig = {
   phone: "+234 912 305 1662",
   phoneTel: "2349123051662",
   whatsappNumber: "2349123051662",
+  /**
+   * WhatsApp ORDERING bot — the conversational commerce channel where
+   * customers browse, order and pay entirely inside WhatsApp. This is a
+   * DIFFERENT line from the general support `whatsappNumber` above.
+   *
+   * `link` is the single source of truth for every "Order on WhatsApp"
+   * CTA across the site. Never hardcode the number inline — import this.
+   * The `?text=hi` prefill drops the customer straight into the bot's
+   * welcome flow.
+   */
+  whatsappOrder: {
+    number: "2347042123000",
+    display: "+234 704 212 3000",
+    link: "https://wa.me/2347042123000?text=hi",
+  },
   address: {
     streetAddress: "DPlaza, Sokoto Road",
     addressLocality: "Zaria",

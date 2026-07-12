@@ -20,6 +20,7 @@ import { CitiesCoverage } from "@/components/home/CitiesCoverage";
 import { PartnerTrustStrip } from "@/components/home/PartnerTrustStrip";
 import { HomeFinalCTA } from "@/components/home/HomeFinalCTA";
 import { AppShowcase } from "@/components/home/AppShowcase";
+import { WhatsAppAnnounce } from "@/components/home/WhatsAppAnnounce";
 
 import { siteConfig } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/seo";
@@ -32,9 +33,9 @@ import { deliveryModules } from "@/lib/modules";
 import { cities } from "@/lib/cities";
 
 export const metadata = buildMetadata({
-  title: `${siteConfig.name} — Order food, groceries & more, delivered fast in Nigeria`,
+  title: `${siteConfig.name}, Order food, groceries & more, delivered fast in Nigeria`,
   description:
-    "Order from thousands of restaurants, supermarkets, pharmacies and local shops across Nigeria. Live tracking, fair prices, fast delivery — only on BiteExpress.",
+    "Order from thousands of restaurants, supermarkets, pharmacies and local shops across Nigeria. Live tracking, fair prices, fast delivery, only on BiteExpress.",
   path: "/",
   keywords: [
     "food delivery Nigeria",
@@ -88,6 +89,15 @@ export default async function HomePage() {
         chipTracking={t("hero.chipTracking")}
         chipEta={t("hero.chipEta")}
         chipPayments={t("hero.chipPayments")}
+      />
+
+      {/* 1b. WHATSAPP ORDERING ANNOUNCEMENT */}
+      <WhatsAppAnnounce
+        badge={t("waAnnounce.badge")}
+        title={t("waAnnounce.title")}
+        body={t("waAnnounce.body")}
+        cta={t("waAnnounce.cta")}
+        secondary={t("waAnnounce.secondary")}
       />
 
       {/* 2. DELIVERY MODULES */}
@@ -182,7 +192,7 @@ export default async function HomePage() {
           },
           {
             title: "Secure payments",
-            description: "Pay your way — cash or digital.",
+            description: "Pay your way, cash or digital.",
           },
           {
             title: "24/7 support",

@@ -23,6 +23,7 @@ const social = [
 ] as const;
 
 const customerLinks = [
+  { label: "Order on WhatsApp", href: siteConfig.whatsappOrder.link },
   { label: "Browse Food", href: "https://app.bite.express/home?module=food" },
   { label: "Grocery", href: "https://app.bite.express/home?module=grocery" },
   { label: "Pharmacy", href: "https://app.bite.express/home?module=pharmacy" },

@@ -11,7 +11,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Help & support — BiteExpress",
+  title: "Help & support, BiteExpress",
   description:
     "Answers to common questions about ordering, payments, deliveries, BitePass, vendor and rider matters. Reach our support team if you need more help.",
   path: "/help",
@@ -33,7 +33,7 @@ const groups: FaqGroup[] = [
       {
         question: "Can I schedule a delivery for later?",
         answer:
-          "Yes — at checkout you can pick a delivery time later today or tomorrow. We'll send you a reminder before your scheduled time so you can confirm or adjust.",
+          "Yes, at checkout you can pick a delivery time later today or tomorrow. We'll send you a reminder before your scheduled time so you can confirm or adjust.",
       },
       {
         question: "Can I cancel an order after placing it?",
@@ -43,7 +43,7 @@ const groups: FaqGroup[] = [
       {
         question: "Why don't I see my favourite restaurant?",
         answer:
-          "We're constantly onboarding new vendors. If a place you love isn't on BiteExpress yet, tap 'Suggest a vendor' in the app or tell us via support — we'll reach out to them.",
+          "We're constantly onboarding new vendors. If a place you love isn't on BiteExpress yet, tap 'Suggest a vendor' in the app or tell us via support, we'll reach out to them.",
       },
     ],
   },
@@ -55,12 +55,12 @@ const groups: FaqGroup[] = [
       {
         question: "What payment methods do you accept?",
         answer:
-          "Card (Visa, Mastercard, Verve), bank transfer, and cash on delivery. Your card details are tokenised through our payment provider — we never see or store them.",
+          "Card (Visa, Mastercard, Verve), bank transfer, and cash on delivery. Your card details are tokenised through our payment provider, we never see or store them.",
       },
       {
         question: "How do refunds work?",
         answer:
-          "If something goes wrong, contact support in-app. We refund to your original payment method or credit your BitePoints wallet — your choice. Refunds usually land within 3–5 business days.",
+          "If something goes wrong, contact support in-app. We refund to your original payment method or credit your BitePoints wallet, your choice. Refunds usually land within 3–5 business days.",
       },
       {
         question: "What is BitePoints?",
@@ -82,12 +82,12 @@ const groups: FaqGroup[] = [
       {
         question: "Can I chat with my rider?",
         answer:
-          "Yes — once your rider is on the way, an in-app chat opens up. You can send them gate codes, directions, or call them directly if you need to.",
+          "Yes, once your rider is on the way, an in-app chat opens up. You can send them gate codes, directions, or call them directly if you need to.",
       },
       {
         question: "What if my rider can't find my address?",
         answer:
-          "Open the in-app chat and share clearer directions or a landmark. You can also share your live location once the rider is close — it saves everyone time.",
+          "Open the in-app chat and share clearer directions or a landmark. You can also share your live location once the rider is close, it saves everyone time.",
       },
     ],
   },
@@ -104,14 +104,14 @@ const groups: FaqGroup[] = [
       {
         question: "What is BitePass?",
         answer:
-          "BitePass is our membership programme — pay a small monthly fee and get free delivery on eligible orders, exclusive discounts and priority support. Try it free for your first month.",
+          "BitePass is our membership programme, pay a small monthly fee and get free delivery on eligible orders, exclusive discounts and priority support. Try it free for your first month.",
       },
       {
         question: "How do I delete my account?",
         answer:
           "Go to Profile → Settings → Delete account in the app. Or email us at " +
           siteConfig.supportEmail +
-          " — we'll delete your data within 30 days.",
+          ", we'll delete your data within 30 days.",
       },
     ],
   },
@@ -123,7 +123,7 @@ const groups: FaqGroup[] = [
       {
         question: "How do I list my business on BiteExpress?",
         answer:
-          "Visit /vendors and submit an application — we'll respond within 2 business days with onboarding next steps. Most vendors are live within 48 hours.",
+          "Visit /vendors and submit an application, we'll respond within 2 business days with onboarding next steps. Most vendors are live within 48 hours.",
       },
       {
         question: "When do vendors get paid?",
@@ -140,7 +140,7 @@ const groups: FaqGroup[] = [
       {
         question: "How do I become a BiteExpress rider?",
         answer:
-          "Visit /riders and apply — we verify your documents within 2 business days. Most riders are earning within a week of applying.",
+          "Visit /riders and apply, we verify your documents within 2 business days. Most riders are earning within a week of applying.",
       },
       {
         question: "How and when do riders get paid?",
@@ -173,7 +173,7 @@ export default function HelpPage() {
             How can we help?
           </h1>
           <p className="mt-5 text-lg text-ink-600">
-            Search topics below or reach our support team directly — we&apos;re real
+            Search topics below or reach our support team directly, we&apos;re real
             humans, available across the BiteExpress operating hours.
           </p>
         </Container>
@@ -249,7 +249,7 @@ export default function HelpPage() {
             Didn&apos;t find what you needed?
           </h2>
           <p className="mt-3 text-base text-white/70">
-            Reach out and we&apos;ll get back to you — usually within a few hours.
+            Reach out and we&apos;ll get back to you, usually within a few hours.
           </p>
           <div className="mt-8">
             <ButtonLink href="/contact" variant="primary" size="lg">

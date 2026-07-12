@@ -13,9 +13,9 @@ import { cuisinesAlphabetical } from "@/lib/cuisines";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Cuisines on BiteExpress — order what you crave, delivered fast",
+  title: "Cuisines on BiteExpress, order what you crave, delivered fast",
   description:
-    "Browse cuisines on BiteExpress — jollof, suya, swallow, pepper soup, pizza, shawarma, continental, Chinese and more. Delivered hot across 10+ cities in Nigeria.",
+    "Browse cuisines on BiteExpress, jollof, suya, swallow, pepper soup, pizza, shawarma, continental, Chinese and more. Delivered hot across 10+ cities in Nigeria.",
   path: "/cuisines",
   keywords: [
     "Nigerian cuisines BiteExpress",
@@ -53,7 +53,7 @@ export default function CuisinesPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
               From late-night suya to your Sunday rice and stew, from a quick
-              shawarma to a full Continental breakfast — BiteExpress connects
+              shawarma to a full Continental breakfast, BiteExpress connects
               you to the kitchens making it best in your city.
             </p>
           </div>

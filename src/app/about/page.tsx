@@ -13,7 +13,7 @@ import { breadcrumbSchema } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "About BiteExpress — delivery, reimagined for every neighbourhood",
+  title: "About BiteExpress, delivery, reimagined for every neighbourhood",
   description:
     "BiteExpress is a Nigerian delivery platform connecting local vendors, riders and customers across 10+ cities. Learn about our mission, our story and what drives us.",
   path: "/about",
@@ -47,7 +47,7 @@ export default function AboutPage() {
               vendors, independent riders and Nigerian households. We&#39;re
               building the most-trusted way to move food, essentials and
               everyday things between the people who make them and the people
-              who want them — fast, fairly, and at scale.
+              who want them, fast, fairly, and at scale.
             </p>
           </div>
         </Container>
@@ -71,7 +71,7 @@ export default function AboutPage() {
           <div className="grid items-start gap-12 lg:grid-cols-2">
             <SectionHeading
               eyebrow="Our mission"
-              title="Make on-demand delivery work for Nigeria — not the other way around."
+              title="Make on-demand delivery work for Nigeria, not the other way around."
             />
             <div className="space-y-5 text-lg text-ink-600">
               <p>
@@ -107,12 +107,12 @@ export default function AboutPage() {
             <FeatureCard
               icon={HandHeart}
               title="Fair to everyone"
-              description="Vendors, riders, customers — every BiteExpress decision is checked against whether all three sides win, not just one."
+              description="Vendors, riders, customers, every BiteExpress decision is checked against whether all three sides win, not just one."
             />
             <FeatureCard
               icon={Heart}
               title="Local at the core"
-              description="We hire from the cities we serve, we partner with neighbourhood vendors, and we listen to our riders. Local context isn't decoration — it's strategy."
+              description="We hire from the cities we serve, we partner with neighbourhood vendors, and we listen to our riders. Local context isn't decoration, it's strategy."
             />
             <FeatureCard
               icon={Sparkles}
@@ -122,7 +122,7 @@ export default function AboutPage() {
             <FeatureCard
               icon={MapPin}
               title="Show up everywhere"
-              description="Not just the big cities. We grow into Zaria, Sokoto, Makurdi, Offa, Omu-Aran — every place that's been told they're too small to count."
+              description="Not just the big cities. We grow into Zaria, Sokoto, Makurdi, Offa, Omu-Aran, every place that's been told they're too small to count."
             />
             <FeatureCard
               icon={Bike}
@@ -138,7 +138,7 @@ export default function AboutPage() {
         <Container size="narrow">
           <SectionHeading
             eyebrow="Our story"
-            title="From one city to ten — with thousands to go."
+            title="From one city to ten, with thousands to go."
           />
           <div className="mt-10 space-y-5 text-lg text-ink-600">
             <p>
@@ -154,7 +154,7 @@ export default function AboutPage() {
             </p>
             <p>
               We&#39;ve since expanded to ten cities across Northern Nigeria and
-              beyond, added groceries, pharmacies, parcel delivery and more —
+              beyond, added groceries, pharmacies, parcel delivery and more ,
               all whilst keeping the basics excellent: hot food, fast delivery,
               and a phone you can actually pick up when something goes wrong.
             </p>

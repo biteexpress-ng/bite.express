@@ -47,7 +47,7 @@ export async function sendMail(payload: MailgunPayload): Promise<MailgunResult> 
       ok: false,
       skipped: true,
       reason:
-        "MAILGUN_API_KEY or MAILGUN_DOMAIN not set — email skipped in this environment.",
+        "MAILGUN_API_KEY or MAILGUN_DOMAIN not set, email skipped in this environment.",
     };
   }
 

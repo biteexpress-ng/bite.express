@@ -1,7 +1,7 @@
 {
   "common": {
     "siteName": "BiteExpress",
-    "tagline": "Get food, groceries & more — delivered fast.",
+    "tagline": "Get food, groceries & more, delivered fast.",
     "orderNow": "Order now",
     "downloadApp": "Download the app",
     "learnMore": "Learn more",
@@ -9,7 +9,8 @@
     "signUp": "Sign up",
     "signIn": "Sign in",
     "exploreApp": "Explore the app",
-    "applyNow": "Apply now"
+    "applyNow": "Apply now",
+    "orderOnWhatsapp": "Order on WhatsApp"
   },
   "nav": {
     "orderFood": "Order Food",
@@ -36,7 +37,7 @@
     "modules": {
       "eyebrow": "Everything in one app",
       "title": "More than just food.",
-      "subtitle": "From a midnight snack to your weekly shop, BiteExpress brings you what you need — across every category, all in one app."
+      "subtitle": "From a midnight snack to your weekly shop, BiteExpress brings you what you need across every category, all in one app."
     },
     "stats": {
       "orders": "Orders delivered",
@@ -50,7 +51,7 @@
       "subtitle": "No phone calls. No long forms. Just pick, pay and track.",
       "step1": {
         "title": "Tell us where you are",
-        "description": "Drop a pin or type your address — we'll show you what's available right now in your neighbourhood."
+        "description": "Drop a pin or type your address; we'll show you what's available right now in your neighbourhood."
       },
       "step2": {
         "title": "Pick what you crave",
@@ -63,7 +64,7 @@
     },
     "cities": {
       "eyebrow": "Across Nigeria",
-      "title": "Now serving 10 cities — with more on the way.",
+      "title": "Now serving 10 cities, with more on the way.",
       "subtitle": "Wherever you are in our zones, BiteExpress is just a few taps away. Don't see your city? Tell us where to launch next."
     },
     "vendorBand": {
@@ -81,20 +82,20 @@
     "appShowcase": {
       "eyebrow": "The BiteExpress app",
       "title": "Everything you need, in your pocket.",
-      "subtitle": "Live order tracking, in-app chat with your rider, BitePass member savings, group orders, scheduled deliveries, multi-stop parcel, and more — all on iOS and Android.",
+      "subtitle": "Live order tracking, in-app chat with your rider, BitePass member savings, group orders, scheduled deliveries, multi-stop parcel, and more, all on iOS and Android.",
       "bullet1": "Live map tracking from kitchen to door",
       "bullet2": "In-app chat with your rider and the vendor",
-      "bullet3": "BitePass — save on every order with member pricing",
-      "bullet4": "Schedule orders ahead — never run out of breakfast"
+      "bullet3": "BitePass: save on every order with member pricing",
+      "bullet4": "Schedule orders ahead, never run out of breakfast"
     },
     "faq": {
       "eyebrow": "Frequently asked",
       "title": "Everything you might be wondering.",
-      "subtitle": "Quick answers to the questions we hear most. Need more? Reach out to our support team — we're real humans.",
+      "subtitle": "Quick answers to the questions we hear most. Need more? Reach out to our support team; we're real humans.",
       "items": {
         "q1": {
           "question": "Where does BiteExpress deliver?",
-          "answer": "We currently operate in Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran — with more cities launching every quarter. Drop in your address and we'll tell you instantly if we cover you."
+          "answer": "We currently operate in Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran, with more cities launching every quarter. Drop in your address and we'll tell you instantly if we cover you."
         },
         "q2": {
           "question": "How long does delivery usually take?",
@@ -102,19 +103,19 @@
         },
         "q3": {
           "question": "What payment methods do you accept?",
-          "answer": "Card, bank transfer, and cash on delivery — pick whichever works for you at checkout. Your card details are tokenised; we never store them."
+          "answer": "Card, bank transfer, and cash on delivery: pick whichever works for you at checkout. Your card details are tokenised; we never store them."
         },
         "q4": {
           "question": "Can I order from multiple stores at once?",
-          "answer": "Each order is from a single vendor so we can guarantee freshness and speed — but you can place back-to-back orders effortlessly. We're rolling out grouped multi-vendor checkout for select cities soon."
+          "answer": "Each order is from a single vendor so we can guarantee freshness and speed, but you can place back-to-back orders effortlessly. We're rolling out grouped multi-vendor checkout for select cities soon."
         },
         "q5": {
           "question": "What if something goes wrong with my order?",
-          "answer": "Open in-app support and we'll resolve it fast — refunds, replacements or BitePoints credit, your choice. Our refund policy is straightforward and customer-first."
+          "answer": "Open in-app support and we'll resolve it fast: refunds, replacements or BitePoints credit, your choice. Our refund policy is straightforward and customer-first."
         },
         "q6": {
           "question": "Is there a BiteExpress membership?",
-          "answer": "Yes — BitePass gives you free delivery on eligible orders, exclusive vendor discounts and priority support. Try it free for your first month."
+          "answer": "Yes, BitePass gives you free delivery on eligible orders, exclusive vendor discounts and priority support. Try it free for your first month."
         }
       }
     },
@@ -123,13 +124,20 @@
       "subtitle": "Open the app or place your first order right from your browser.",
       "primary": "Open the app",
       "secondary": "Browse on the web"
+    },
+    "waAnnounce": {
+      "badge": "New",
+      "title": "Now order food on WhatsApp.",
+      "body": "No app, no forms, no signup. Just open a chat, browse, order, and pay by transfer, all inside WhatsApp.",
+      "cta": "See how it works",
+      "secondary": "Say hi on WhatsApp"
     }
   },
   "vendors": {
     "hero": {
       "eyebrow": "For restaurants, stores and pharmacies",
       "title": "Grow your business with BiteExpress.",
-      "subtitle": "Reach thousands of hungry customers in your neighbourhood. Simple onboarding, transparent commissions, weekly payouts — and full ownership of your customer relationships.",
+      "subtitle": "Reach thousands of hungry customers in your neighbourhood. Simple onboarding, transparent commissions, weekly payouts, and full ownership of your customer relationships.",
       "cta": "Start onboarding"
     },
     "why": {
@@ -151,7 +159,7 @@
       },
       "tools": {
         "title": "Vendor tools that pay for themselves",
-        "description": "Promotions, flash sales, smart bundling, inventory sync and a tablet POS — all designed to grow basket size."
+        "description": "Promotions, flash sales, smart bundling, inventory sync and a tablet POS, all designed to grow basket size."
       }
     },
     "how": {
@@ -160,7 +168,7 @@
       "subtitle": "We've made joining BiteExpress as painless as we know how.",
       "step1": {
         "title": "Apply in 3 minutes",
-        "description": "Tell us about your business — what you sell, where you are, how many locations."
+        "description": "Tell us about your business: what you sell, where you are, how many locations."
       },
       "step2": {
         "title": "Quick verification call",
@@ -193,16 +201,16 @@
           "answer": "Weekly settlements every Tuesday to your verified bank account. Your dashboard shows every order, commission and refund in real time."
         },
         "q3": {
-          "question": "Who delivers my orders — my staff or yours?",
+          "question": "Who delivers my orders, my staff or yours?",
           "answer": "Our rider network handles delivery. You focus on preparing great orders; we get them to the customer."
         },
         "q4": {
           "question": "Can I run promotions on BiteExpress?",
-          "answer": "Yes. Run flash sales, percentage discounts, BOGO deals, free-delivery campaigns and curated bundles — all from the vendor dashboard."
+          "answer": "Yes. Run flash sales, percentage discounts, BOGO deals, free-delivery campaigns and curated bundles, all from the vendor dashboard."
         },
         "q5": {
           "question": "Will I keep my customer data?",
-          "answer": "BiteExpress is the customer-facing brand, but you get aggregated insights into reorder rate, peak hours, top items and customer ratings — everything you need to grow."
+          "answer": "BiteExpress is the customer-facing brand, but you get aggregated insights into reorder rate, peak hours, top items and customer ratings: everything you need to grow."
         }
       }
     }
@@ -211,7 +219,7 @@
     "hero": {
       "eyebrow": "For riders",
       "title": "Earn on your schedule. Get paid every week.",
-      "subtitle": "Use your own bike, motorbike or car. Choose when you ride — for an hour after work or full-time. No quotas, no surprises, just rides.",
+      "subtitle": "Use your own bike, motorbike or car. Choose when you ride: for an hour after work or full-time. No quotas, no surprises, just rides.",
       "cta": "Apply to ride"
     },
     "why": {
@@ -221,7 +229,7 @@
     "benefits": {
       "schedule": {
         "title": "Ride when you want",
-        "description": "Go online whenever it suits you. No minimum hours, no schedule lock-ins — just open the app and start earning."
+        "description": "Go online whenever it suits you. No minimum hours, no schedule lock-ins; just open the app and start earning."
       },
       "payouts": {
         "title": "Weekly cashouts",
@@ -239,7 +247,7 @@
     "how": {
       "eyebrow": "Getting started",
       "title": "From application to first ride in days.",
-      "subtitle": "Our rider onboarding is quick — you can be earning before the end of the week.",
+      "subtitle": "Our rider onboarding is quick; you can be earning before the end of the week.",
       "step1": {
         "title": "Apply online",
         "description": "Tell us your city, what you ride and when you're available. Takes 3 minutes."
@@ -268,19 +276,19 @@
       "items": {
         "q1": {
           "question": "Do I need to own a vehicle?",
-          "answer": "Yes — a working bicycle, motorbike or car you own or have permission to use. We're piloting BiteExpress-leased motorbikes in select cities; ask during onboarding."
+          "answer": "Yes, a working bicycle, motorbike or car you own or have permission to use. We're piloting BiteExpress-leased motorbikes in select cities; ask during onboarding."
         },
         "q2": {
           "question": "How much can I earn?",
-          "answer": "Earnings depend on your city, vehicle type, hours and bonus tier. Most active riders earn meaningful side or full-time income — your trip earnings and bonuses show live in the app."
+          "answer": "Earnings depend on your city, vehicle type, hours and bonus tier. Most active riders earn meaningful side or full-time income; your trip earnings and bonuses show live in the app."
         },
         "q3": {
           "question": "How and when do I get paid?",
-          "answer": "Every week, directly to your bank account. You can also use the in-app wallet to cash out anytime — fees apply for instant cashout."
+          "answer": "Every week, directly to your bank account. You can also use the in-app wallet to cash out anytime; fees apply for instant cashout."
         },
         "q4": {
           "question": "Do I need a smartphone?",
-          "answer": "Yes — the Rider app runs on Android and iOS and needs a stable mobile data plan. The app is light on data."
+          "answer": "Yes, the Rider app runs on Android and iOS and needs a stable mobile data plan. The app is light on data."
         },
         "q5": {
           "question": "What if my vehicle breaks down?",
@@ -293,7 +301,7 @@
     "hero": {
       "eyebrow": "Careers at BiteExpress",
       "title": "Build the future of delivery in Nigeria.",
-      "subtitle": "We're hiring across engineering, operations, growth and customer support — in our cities and remote. If you want to ship things customers feel, we'd love to meet you."
+      "subtitle": "We're hiring across engineering, operations, growth and customer support, in our cities and remote. If you want to ship things customers feel, we'd love to meet you."
     },
     "values": {
       "title": "What we look for"
@@ -308,7 +316,7 @@
     "hero": {
       "eyebrow": "BiteExpress Agent Programme",
       "title": "Build your network. Earn recurring commission.",
-      "subtitle": "Bring vendors, riders and customers onto BiteExpress and earn a share of their activity — on every order, every week, for life.",
+      "subtitle": "Bring vendors, riders and customers onto BiteExpress and earn a share of their activity, on every order, every week, for life.",
       "cta": "Apply to be an agent"
     },
     "why": {
@@ -318,7 +326,7 @@
     "benefits": {
       "recurring": {
         "title": "Recurring, not one-off",
-        "description": "Earn an ongoing commission on every order from vendors and riders you sign up — not just a one-time bonus."
+        "description": "Earn an ongoing commission on every order from vendors and riders you sign up, not just a one-time bonus."
       },
       "tools": {
         "title": "Agent toolkit included",
@@ -350,13 +358,13 @@
       },
       "step4": {
         "title": "Earn weekly commission",
-        "description": "Watch your dashboard fill with referrals — and your bank account fill every week."
+        "description": "Watch your dashboard fill with referrals, and your bank account fill every week."
       }
     },
     "form": {
       "eyebrow": "Apply",
       "title": "Join the agent programme.",
-      "subtitle": "Selective intake — we onboard a limited number of agents per city per quarter."
+      "subtitle": "Selective intake: we onboard a limited number of agents per city per quarter."
     },
     "faq": {
       "eyebrow": "Agent FAQ",
@@ -364,7 +372,7 @@
       "items": {
         "q1": {
           "question": "Is this a job?",
-          "answer": "No — the BiteExpress Agent Programme is an independent earner programme. You set your own pace and aren't an employee of BiteExpress."
+          "answer": "No, the BiteExpress Agent Programme is an independent earner programme. You set your own pace and aren't an employee of BiteExpress."
         },
         "q2": {
           "question": "How much commission do I earn?",
@@ -372,7 +380,7 @@
         },
         "q3": {
           "question": "Do I need experience in tech sales?",
-          "answer": "Not at all. Some of our best agents are community leaders, student union reps or established traders — what matters is your reach in your community."
+          "answer": "Not at all. Some of our best agents are community leaders, student union reps or established traders; what matters is your reach in your community."
         },
         "q4": {
           "question": "Is there a cost to join?",
@@ -388,5 +396,144 @@
     "legal": "Legal",
     "rights": "All rights reserved.",
     "tagline": "Delivery, reimagined for every neighbourhood."
+  },
+  "whatsapp": {
+    "meta": {
+      "title": "Order food on WhatsApp: no app, just chat",
+      "description": "Order food on WhatsApp in Nigeria: browse stores, search a dish, order and pay by transfer, and track it, all inside one chat. No app, no forms, no signup. Live across Kaduna, Zaria, Kano, Jos, Ilorin and more."
+    },
+    "hero": {
+      "badge": "Order food on WhatsApp",
+      "title": "Order food on WhatsApp.",
+      "titleAccent": "No app, just chat.",
+      "subtitle": "Skip the download and the signup forms. Open a chat, browse stores or search a dish, order, and pay by transfer, all inside WhatsApp. First-timers just share their name.",
+      "cta": "Order on WhatsApp",
+      "ctaHint": "Opens a WhatsApp chat, we'll say hi back",
+      "qrLabel": "On your computer?",
+      "qrHint": "Scan with your phone camera to start a chat",
+      "trust1": "No app to download",
+      "trust2": "Works on any phone",
+      "trust3": "Pay by bank transfer"
+    },
+    "mockup": {
+      "headerName": "BiteExpress",
+      "headerStatus": "online",
+      "todayLabel": "Today",
+      "b1": "hi",
+      "b2": "Welcome to BiteExpress 👋 What's your name so we can set up your order?",
+      "b3": "Aisha",
+      "b4": "Nice to meet you, Aisha! Reply with a store name, or type 🔍 and a dish, e.g. \"jollof rice\".",
+      "b5": "🔍 shawarma",
+      "b6": "Top spots near you:\n1. Mama's Kitchen: Chicken Shawarma ₦2,500\n2. Grill House: Beef Shawarma ₦3,000\nReply 1 or 2 to add to your order.",
+      "b7": "1",
+      "b8": "Added ✅ Chicken Shawarma ×1: ₦2,500.\nDelivery to Samaru: ₦700. Total: ₦3,200.\nPay by transfer to confirm, account details below.",
+      "b9": "Sent the transfer ✅",
+      "b10": "Payment confirmed 🎉 Your order is being prepared. We'll share live updates right here in this chat.",
+      "typing": "typing…"
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "From \"hi\" to your door, in one chat.",
+      "subtitle": "No app to install, no account to create. Everything happens inside the conversation you already know how to use.",
+      "step1": {
+        "title": "Say hi on WhatsApp",
+        "description": "Tap the button or scan the code to open a chat. New here? Just share your name; that's the whole signup."
+      },
+      "step2": {
+        "title": "Browse or 🔍 search",
+        "description": "Reply with a store name to browse, or type 🔍 and a dish, like \"jollof\" or \"shawarma\", to find it near you."
+      },
+      "step3": {
+        "title": "Order & pay by transfer",
+        "description": "We confirm your items, delivery fee and total, then share account details. Send a bank transfer to lock it in."
+      },
+      "step4": {
+        "title": "Track it in the chat",
+        "description": "Once we confirm your payment, your order is prepared and dispatched, with live updates in the same conversation."
+      }
+    },
+    "why": {
+      "eyebrow": "Why order on WhatsApp",
+      "title": "The easiest way to order food.",
+      "subtitle": "Built for how Nigeria already chats: fast, familiar, and friction-free.",
+      "b1": {
+        "title": "Nothing to download",
+        "description": "No app store, no updates, no storage. If you have WhatsApp, you're ready to order right now."
+      },
+      "b2": {
+        "title": "Works on any phone",
+        "description": "Light on data and kind to older phones. If it can run WhatsApp, it can order from BiteExpress."
+      },
+      "b3": {
+        "title": "Order in seconds",
+        "description": "No long forms or checkout screens. Chat, confirm, done, the way you'd text a friend."
+      },
+      "b4": {
+        "title": "First-timers just share a name",
+        "description": "No sign-up form, no password to remember. Tell us your name once and you're set."
+      }
+    },
+    "trust": {
+      "eyebrow": "Safe & simple",
+      "title": "Pay by transfer. We confirm before we cook.",
+      "body": "Ordering on WhatsApp is as safe as it is simple. You pay by bank transfer, and our team confirms your payment before anything is prepared or dispatched, so you always know your order is on track.",
+      "point1": {
+        "title": "Pay by bank transfer",
+        "description": "We share clear account details in the chat. No card entry, no hidden charges, just a transfer you control."
+      },
+      "point2": {
+        "title": "Confirmed before dispatch",
+        "description": "A real person on our team verifies your payment first. Nothing is cooked or sent out until it clears."
+      },
+      "point3": {
+        "title": "Everything stays in one chat",
+        "description": "Your order, receipt and updates all live in the same WhatsApp thread, easy to find and check back on."
+      }
+    },
+    "coverage": {
+      "eyebrow": "Where it's live",
+      "title": "Ordering on WhatsApp, near you.",
+      "subtitle": "We're rolling out city by city. Don't see yours yet? Say hi anyway; we'll tell you the moment we go live.",
+      "liveLabel": "Live now",
+      "soonLabel": "Coming soon",
+      "cta": "Order on WhatsApp"
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "How ordering on WhatsApp works.",
+      "subtitle": "Everything you might be wondering before your first chat.",
+      "items": {
+        "q1": {
+          "question": "How do I order food on WhatsApp?",
+          "answer": "Tap any \"Order on WhatsApp\" button (or scan the QR code on a computer) to open a chat with BiteExpress. Say hi, share your name if it's your first time, then browse a store or type 🔍 and a dish to search. We confirm your items and total, you pay by transfer, and we handle the rest, all in the chat."
+        },
+        "q2": {
+          "question": "Do I need to download the app?",
+          "answer": "No. Ordering on WhatsApp needs nothing but WhatsApp: no BiteExpress app, no signup form, no account. If you'd rather have live map tracking and member savings, our app is still there, but it's completely optional."
+        },
+        "q3": {
+          "question": "Is it safe to order and pay this way?",
+          "answer": "Yes. You pay by bank transfer to our verified account, and a real member of our team confirms your payment before your order is prepared or dispatched. Your whole order and receipt stay in one WhatsApp thread you can always check back on."
+        },
+        "q4": {
+          "question": "Which areas can order on WhatsApp?",
+          "answer": "WhatsApp ordering is live in Zaria, Kaduna, Kano, Sokoto, Jos, Minna, Ilorin, Benue and Yola, with more cities joining the rollout. Even if your city isn't listed yet, say hi, we'll let you know the moment WhatsApp ordering reaches you."
+        },
+        "q5": {
+          "question": "How do I pay?",
+          "answer": "By bank transfer. Once we confirm your items, delivery fee and total in the chat, we share account details. You send the transfer, we verify it, and your order goes into preparation."
+        },
+        "q6": {
+          "question": "Do I need an account or password?",
+          "answer": "No account and no password. If it's your first order, we simply ask for your name so we know who's ordering and where to deliver. That's the entire setup."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Hungry? Just say hi.",
+      "subtitle": "Open a WhatsApp chat and place your first order in seconds: no app, no forms, just chat.",
+      "cta": "Order on WhatsApp",
+      "hint": "Live in Kaduna, Kano, Jos, Ilorin & more · more cities soon"
+    }
   }
 }

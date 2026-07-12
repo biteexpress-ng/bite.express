@@ -27,7 +27,7 @@ import {
 export const revalidate = 900;
 
 export const metadata = buildMetadata({
-  title: "Careers at BiteExpress — open roles across Nigeria",
+  title: "Careers at BiteExpress, open roles across Nigeria",
   description:
     "Join BiteExpress and help build the future of delivery in Nigeria. Engineering, operations, growth and customer support roles in our cities and remote.",
   path: "/careers",
@@ -145,7 +145,7 @@ export default async function CareersPage() {
             <FeatureCard
               icon={Target}
               title="Bias to outcomes"
-              description="We measure ourselves by what changes for customers, vendors and riders — not by what we did."
+              description="We measure ourselves by what changes for customers, vendors and riders, not by what we did."
             />
             <FeatureCard
               icon={Sparkles}

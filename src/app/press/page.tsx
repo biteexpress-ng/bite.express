@@ -19,7 +19,7 @@ type RouteProps = {
 export const revalidate = 300;
 
 export const metadata = buildMetadata({
-  title: "Newsroom — press releases and BiteExpress in the news",
+  title: "Newsroom, press releases and BiteExpress in the news",
   description:
     "Press releases, announcements and external coverage of BiteExpress. Media inquiries: press@bite.express.",
   path: "/press",
@@ -191,7 +191,7 @@ export default async function PressIndexPage({ searchParams }: RouteProps) {
                 Nothing in the newsroom yet.
               </h2>
               <p className="mt-3 text-base text-ink-600">
-                Check back soon — we ship news regularly. In the meantime, follow us on social.
+                Check back soon, we ship news regularly. In the meantime, follow us on social.
               </p>
             </div>
           ) : (

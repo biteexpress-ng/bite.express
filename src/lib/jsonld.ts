@@ -2,6 +2,7 @@ import type {
   Article,
   BreadcrumbList,
   FAQPage,
+  HowTo,
   JobPosting,
   LocalBusiness,
   Organization,
@@ -87,7 +88,7 @@ export function localBusinessSchema(city: {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: `${siteConfig.name} — ${city.name}`,
+    name: `${siteConfig.name}, ${city.name}`,
     url: absoluteUrl(`/cities/${city.slug}`),
     image: absoluteUrl("/brand/logo.svg"),
     parentOrganization: {
@@ -174,6 +175,33 @@ export function faqSchema(
         "@type": "Answer",
         text: faq.answer,
       },
+    })),
+  };
+}
+
+/**
+ * HowTo schema for step-based flows (e.g. "How to order food on WhatsApp").
+ * Google can surface HowTo steps as a rich result. Keep `text` self-contained
+ * per step — the same copy the visible "How it works" section renders.
+ */
+export function howToSchema(input: {
+  name: string;
+  description: string;
+  /** ISO-8601 duration, e.g. "PT2M" for ~2 minutes. */
+  totalTime?: string;
+  steps: { name: string; text: string }[];
+}): WithContext<HowTo> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: input.name,
+    description: input.description,
+    ...(input.totalTime ? { totalTime: input.totalTime } : {}),
+    step: input.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
     })),
   };
 }

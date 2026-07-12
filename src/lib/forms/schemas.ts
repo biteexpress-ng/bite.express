@@ -104,7 +104,7 @@ export const agentSchema = z.object({
   city,
   network: z
     .string()
-    .min(20, "Give us a bit more context — at least 20 characters")
+    .min(20, "Give us a bit more context, at least 20 characters")
     .max(2000, "Keep it under 2000 characters"),
   consent: z.literal(true, { message: "We need your consent to follow up" }),
 });

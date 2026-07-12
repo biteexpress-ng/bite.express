@@ -17,7 +17,7 @@ export function contactMessageEmail(v: ContactFormValues): {
     ["Topic", topicLabel(v.topic)],
   ];
 
-  const subject = `New contact message — ${topicLabel(v.topic)} — ${v.fullName}`;
+  const subject = `New contact message, ${topicLabel(v.topic)}, ${v.fullName}`;
 
   const text = [
     subject,

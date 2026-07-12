@@ -16,16 +16,16 @@ export function jobApplicationEmail(
     ["Phone", v.phone],
     ["LinkedIn", v.linkedInUrl || ""],
     ["Portfolio", v.portfolioUrl || ""],
-    ["CV", `${cv.name} (${cvSizeKb} KB) — attached`],
+    ["CV", `${cv.name} (${cvSizeKb} KB), attached`],
   ];
 
-  const subject = `Application — ${jobTitle} — ${v.fullName}`;
+  const subject = `Application, ${jobTitle}, ${v.fullName}`;
 
   const text = [
     subject,
     `via ${siteConfig.url}/careers/${v.jobSlug}`,
     "",
-    ...rows.map(([k, val]) => `${k}: ${val || "—"}`),
+    ...rows.map(([k, val]) => `${k}: ${val || ","}`),
     ...(v.coverNote ? ["", "----", "Cover note:", v.coverNote] : []),
   ].join("\n");
 
@@ -34,7 +34,7 @@ export function jobApplicationEmail(
       ([k, val]) => `
         <tr>
           <td style="padding:8px 16px;background:#fafafa;border:1px solid #e5e7eb;font-weight:600;color:#111;width:30%">${esc(k)}</td>
-          <td style="padding:8px 16px;border:1px solid #e5e7eb;color:#2a2a2a">${esc(val) || "—"}</td>
+          <td style="padding:8px 16px;border:1px solid #e5e7eb;color:#2a2a2a">${esc(val) || ","}</td>
         </tr>`,
     )
     .join("");

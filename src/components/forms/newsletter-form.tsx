@@ -54,7 +54,7 @@ export function NewsletterForm({ variant = "dark", className }: Props) {
       >
         <CheckCircle2 size={18} className="text-success" />
         {submitted.already
-          ? "You're already on the list — thanks for the enthusiasm."
+          ? "You're already on the list, thanks for the enthusiasm."
           : "You're in. Look out for a welcome email shortly."}
       </div>
     );
