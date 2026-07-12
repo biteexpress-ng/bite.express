@@ -54,7 +54,14 @@ export const siteConfig = {
     instagram: "https://instagram.com/biteexpressng",
     linkedin: "https://www.linkedin.com/showcase/biteexpress/",
     youtube: "https://www.youtube.com/@BiteExpressApp",
-    whatsapp: "https://wa.me/2349123051662",
+    /**
+     * Consolidated onto the ORDERING bot line (see whatsappOrder above): the
+     * bot carries the Meta-verified "BiteExpress" business profile and handles
+     * support too (Help + talk-to-agent -> customer-care callback), so every
+     * WhatsApp entry point on the site lands in the same managed channel.
+     * The old support line (2349123051662) remains reachable by phone/tel.
+     */
+    whatsapp: "https://wa.me/2347042123000?text=hi",
   },
   /** BiteExpress customer app — used on the deep-link landing pages. */
   appStore: {
