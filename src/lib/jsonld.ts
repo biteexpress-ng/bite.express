@@ -147,6 +147,38 @@ export function cuisineServiceSchema(input: {
   };
 }
 
+/**
+ * Generic Service schema for a programme/offering page (e.g. the Agent
+ * Programme). Declares BiteExpress as the provider and the area it serves,
+ * so Google can model the offering as a distinct entity.
+ */
+export function serviceSchema(input: {
+  name: string;
+  serviceType: string;
+  description: string;
+  path: string;
+  /** Country/region served, defaults to Nigeria (nationwide). */
+  areaServedName?: string;
+}): WithContext<Service> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.name,
+    serviceType: input.serviceType,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.legalName,
+      url: siteUrl(),
+    },
+    areaServed: {
+      "@type": "Country",
+      name: input.areaServedName ?? "Nigeria",
+    },
+  };
+}
+
 export function breadcrumbSchema(
   items: { name: string; path: string }[],
 ): WithContext<BreadcrumbList> {

@@ -1,11 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import {
   ArrowRight,
-  Award,
-  Briefcase,
-  Calendar,
-  HeartHandshake,
+  BadgeCheck,
+  ClipboardCheck,
+  GraduationCap,
+  MessageCircle,
   Repeat,
+  Trophy,
+  UserPlus,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -16,22 +18,26 @@ import { Step } from "@/components/ui/step";
 import { Stat } from "@/components/ui/stat";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { ButtonLink } from "@/components/ui/button";
+import { CTABand } from "@/components/ui/cta-band";
 import { AgentSignupForm } from "@/components/forms/agent-signup-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
-import { breadcrumbSchema, faqSchema } from "@/lib/jsonld";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/jsonld";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "BiteExpress Agent Programme, earn recurring commission",
+  title: "Become a BiteExpress Agent, earn recurring commission in Nigeria",
   description:
-    "Bring vendors, riders and customers onto BiteExpress and earn recurring commission on every order. Selective intake, real tools, dedicated support.",
+    "Join the BiteExpress Agent Programme. Get free training and certification, sign customers up anywhere in Nigeria, and earn recurring commission plus weekly bonuses. Free to join.",
   path: "/agents",
   keywords: [
-    "BiteExpress agent",
+    "become a BiteExpress agent",
+    "BiteExpress agent programme",
     "earn commission Nigeria",
-    "referral programme Nigeria",
-    "side income agent",
-    "community ambassador BiteExpress",
+    "referral agent Nigeria",
+    "make money referring customers",
+    "side income Nigeria",
+    "delivery agent Nigeria",
   ],
 });
 
@@ -43,11 +49,24 @@ export default async function AgentsPage() {
     { question: t("faq.items.q2.question"), answer: t("faq.items.q2.answer") },
     { question: t("faq.items.q3.question"), answer: t("faq.items.q3.answer") },
     { question: t("faq.items.q4.question"), answer: t("faq.items.q4.answer") },
+    { question: t("faq.items.q5.question"), answer: t("faq.items.q5.answer") },
+    { question: t("faq.items.q6.question"), answer: t("faq.items.q6.answer") },
   ];
 
   return (
     <>
       <JsonLd id="ld-faq-agents" data={faqSchema(faqs)} />
+      <JsonLd
+        id="ld-service-agents"
+        data={serviceSchema({
+          name: "BiteExpress Agent Programme",
+          serviceType: "Customer referral and acquisition programme",
+          description:
+            "A programme for certified agents to sign customers onto BiteExpress and earn recurring commission plus weekly bonuses, open across Nigeria.",
+          path: "/agents",
+          areaServedName: "Nigeria",
+        })}
+      />
       <JsonLd
         id="ld-breadcrumb-agents"
         data={breadcrumbSchema([
@@ -80,6 +99,17 @@ export default async function AgentsPage() {
                 How the programme works
               </ButtonLink>
             </div>
+            <p className="mt-5 text-sm text-ink-500">
+              Already an agent?{" "}
+              <a
+                href={siteConfig.agentAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-brand-red underline-offset-4 hover:underline"
+              >
+                Open the agent app
+              </a>
+            </p>
           </div>
         </Container>
       </section>
@@ -88,10 +118,10 @@ export default async function AgentsPage() {
       <Section background="dark" padding="md">
         <Container>
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
-            <Stat invert value="Lifetime" label="Recurring commission" />
-            <Stat invert value="Weekly" label="Agent payouts" />
-            <Stat invert value="4" label="Reward tiers" />
-            <Stat invert value="10+" label="Cities" />
+            <Stat invert value="Certified" label="Free training to start" />
+            <Stat invert value="Recurring" label="Earn on every order" />
+            <Stat invert value="Weekly" label="Bonuses paid Monday" />
+            <Stat invert value="Nationwide" label="Open across Nigeria" />
           </div>
         </Container>
       </Section>
@@ -99,10 +129,7 @@ export default async function AgentsPage() {
       {/* WHY AGENT */}
       <Section background="white" padding="lg">
         <Container>
-          <SectionHeading
-            eyebrow={t("why.eyebrow")}
-            title={t("why.title")}
-          />
+          <SectionHeading eyebrow={t("why.eyebrow")} title={t("why.title")} />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             <FeatureCard
               icon={Repeat}
@@ -110,19 +137,19 @@ export default async function AgentsPage() {
               description={t("benefits.recurring.description")}
             />
             <FeatureCard
-              icon={Briefcase}
-              title={t("benefits.tools.title")}
-              description={t("benefits.tools.description")}
+              icon={UserPlus}
+              title={t("benefits.onboarding.title")}
+              description={t("benefits.onboarding.description")}
             />
             <FeatureCard
-              icon={HeartHandshake}
-              title={t("benefits.support.title")}
-              description={t("benefits.support.description")}
+              icon={Trophy}
+              title={t("benefits.bonuses.title")}
+              description={t("benefits.bonuses.description")}
             />
             <FeatureCard
-              icon={Award}
-              title={t("benefits.tiers.title")}
-              description={t("benefits.tiers.description")}
+              icon={GraduationCap}
+              title={t("benefits.certification.title")}
+              description={t("benefits.certification.description")}
             />
           </div>
         </Container>
@@ -131,10 +158,7 @@ export default async function AgentsPage() {
       {/* HOW IT WORKS */}
       <Section background="soft" padding="lg" id="how">
         <Container>
-          <SectionHeading
-            eyebrow={t("how.eyebrow")}
-            title={t("how.title")}
-          />
+          <SectionHeading eyebrow={t("how.eyebrow")} title={t("how.title")} />
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <Step number={1} title={t("how.step1.title")} description={t("how.step1.description")} />
             <Step number={2} title={t("how.step2.title")} description={t("how.step2.description")} />
@@ -156,16 +180,16 @@ export default async function AgentsPage() {
               />
               <ul className="mt-8 space-y-3 text-sm text-ink-600">
                 <li className="flex items-start gap-2.5">
-                  <Calendar size={16} className="mt-0.5 text-brand-red" />
-                  <span>Review within 5 business days.</span>
+                  <ClipboardCheck size={16} className="mt-0.5 text-brand-red" />
+                  <span>We review every application.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <Calendar size={16} className="mt-0.5 text-brand-red" />
-                  <span>Selective intake, quality over quantity.</span>
+                  <BadgeCheck size={16} className="mt-0.5 text-brand-red" />
+                  <span>Free to join, no fees, ever.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <Calendar size={16} className="mt-0.5 text-brand-red" />
-                  <span>Onboarding training scheduled per intake.</span>
+                  <MessageCircle size={16} className="mt-0.5 text-brand-red" />
+                  <span>Support on WhatsApp after onboarding.</span>
                 </li>
               </ul>
             </div>
@@ -187,6 +211,30 @@ export default async function AgentsPage() {
           <FaqAccordion items={faqs} className="mt-12" />
         </Container>
       </Section>
+
+      {/* CLOSING CTA */}
+      <CTABand
+        variant="dark"
+        eyebrow="Ready when you are"
+        title="Start earning with BiteExpress."
+        subtitle="Apply in minutes, get certified, and grow your income one signup at a time."
+        cta={
+          <ButtonLink href="#apply" variant="primary" size="lg">
+            {t("hero.cta")}
+            <ArrowRight size={18} />
+          </ButtonLink>
+        }
+        secondaryCta={
+          <ButtonLink
+            href={siteConfig.agentAppUrl}
+            external
+            variant="outline"
+            size="lg"
+          >
+            Open the agent app
+          </ButtonLink>
+        }
+      />
     </>
   );
 }

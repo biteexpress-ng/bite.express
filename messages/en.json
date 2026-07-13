@@ -315,56 +315,56 @@
   "agents": {
     "hero": {
       "eyebrow": "BiteExpress Agent Programme",
-      "title": "Build your network. Earn recurring commission.",
-      "subtitle": "Bring vendors, riders and customers onto BiteExpress and earn a share of their activity, on every order, every week, for life.",
-      "cta": "Apply to be an agent"
+      "title": "Get certified. Sign people up. Earn on every order.",
+      "subtitle": "Train up, pass a short certification, and start bringing customers onto BiteExpress. Every time someone you signed up places an order, you earn, week after week.",
+      "cta": "Apply to become an agent"
     },
     "why": {
       "eyebrow": "Why become an agent",
-      "title": "Turn your network into recurring income."
+      "title": "Turn your reach into recurring income."
     },
     "benefits": {
       "recurring": {
         "title": "Recurring, not one-off",
-        "description": "Earn an ongoing commission on every order from vendors and riders you sign up, not just a one-time bonus."
+        "description": "When a customer you signed up places an order, you earn a commission. Not just once, but on the orders they keep making."
       },
-      "tools": {
-        "title": "Agent toolkit included",
-        "description": "Branded sign-up links, vendor pitch deck, rider flyers, training videos and a live performance dashboard."
+      "onboarding": {
+        "title": "Sign people up on the spot",
+        "description": "Share your referral code, or sign a customer up right there on your phone with a quick one-time code. No paperwork, no waiting."
       },
-      "support": {
-        "title": "Dedicated agent manager",
-        "description": "A real human at BiteExpress assigned to your region, available on WhatsApp and weekly group calls."
+      "bonuses": {
+        "title": "Weekly challenge bonuses",
+        "description": "Hit each week's signup targets and earn a cash bonus on top of your commission, paid to your balance every Monday."
       },
-      "tiers": {
-        "title": "Tiered rewards",
-        "description": "Move up agent tiers as your network grows. Higher tiers unlock bigger commission rates, sponsored events and trips."
+      "certification": {
+        "title": "Free training and certification",
+        "description": "Learn the ropes with short videos, pass a quick quiz, and get certified before you start. It's completely free to join."
       }
     },
     "how": {
       "eyebrow": "How the programme works",
-      "title": "Four steps to your first commission.",
+      "title": "From apply to your first commission.",
       "step1": {
-        "title": "Apply with your network",
-        "description": "Tell us about the vendors, riders or communities you have reach into."
+        "title": "Apply online",
+        "description": "Tell us a bit about yourself and where you'll be signing people up. We review every application."
       },
       "step2": {
-        "title": "Get accepted & onboarded",
-        "description": "Complete a short training, get your agent toolkit and unique sign-up links."
+        "title": "Train and get certified",
+        "description": "Once you're approved, watch a few short training videos and pass a quick quiz to become a certified agent."
       },
       "step3": {
-        "title": "Refer & onboard",
-        "description": "Use your toolkit to sign up vendors, riders and customers in your area."
+        "title": "Sign up customers",
+        "description": "Share your referral code or sign customers up on the spot. Everyone you bring on is linked to you."
       },
       "step4": {
-        "title": "Earn weekly commission",
-        "description": "Watch your dashboard fill with referrals, and your bank account fill every week."
+        "title": "Earn and withdraw",
+        "description": "Earn commission whenever your customers order, plus your weekly bonuses. Cash out to your bank once your details are verified."
       }
     },
     "form": {
       "eyebrow": "Apply",
       "title": "Join the agent programme.",
-      "subtitle": "Selective intake: we onboard a limited number of agents per city per quarter."
+      "subtitle": "Open to anyone, anywhere in Nigeria. Tell us about yourself and we'll take it from there."
     },
     "faq": {
       "eyebrow": "Agent FAQ",
@@ -372,19 +372,27 @@
       "items": {
         "q1": {
           "question": "Is this a job?",
-          "answer": "No, the BiteExpress Agent Programme is an independent earner programme. You set your own pace and aren't an employee of BiteExpress."
+          "answer": "No. Being a BiteExpress agent is independent, commission-based work. You set your own pace and you're not an employee of BiteExpress."
         },
         "q2": {
-          "question": "How much commission do I earn?",
-          "answer": "Commissions vary by tier and what kind of activity you generate. We share the full schedule during onboarding so you know exactly what you'll earn."
+          "question": "How much can I earn?",
+          "answer": "You earn a commission every time a customer you signed up places an order, plus bonuses for hitting your weekly targets. We share the full commission details during onboarding."
         },
         "q3": {
-          "question": "Do I need experience in tech sales?",
-          "answer": "Not at all. Some of our best agents are community leaders, student union reps or established traders; what matters is your reach in your community."
+          "question": "Do I need any experience?",
+          "answer": "Not at all. The free training and certification walk you through everything. What matters most is your reach in your community."
         },
         "q4": {
           "question": "Is there a cost to join?",
-          "answer": "Joining is free. There's no kit fee, no monthly subscription, no minimum spend. You earn when your network earns."
+          "answer": "Joining is completely free. No kit fee, no subscription, no minimum. You earn as your customers order."
+        },
+        "q5": {
+          "question": "How do I work as an agent?",
+          "answer": "Everything happens in the agent app at agents.bite.express. It works on any phone with no download, so you can sign customers up and track your earnings anywhere."
+        },
+        "q6": {
+          "question": "How do I get help?",
+          "answer": "Once you're onboarded, our team supports agents on WhatsApp."
         }
       }
     }

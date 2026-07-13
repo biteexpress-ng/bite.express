@@ -12,6 +12,9 @@ export const siteConfig = {
     "Order from your favourite restaurants, supermarkets, pharmacies and local stores. Fast delivery, live tracking, and exclusive offers, only on BiteExpress.",
   url: "https://bite.express",
   appUrl: "https://app.bite.express",
+  /** BiteExpress agent PWA (agents.bite.express) — where certified agents sign
+   *  in, sign customers up and track earnings. Surfaced on /agents. */
+  agentAppUrl: "https://agents.bite.express",
   /**
    * Where "Order now" / cart / "Open the app" CTAs route users.
    * Points at the live customer app on the app subdomain — keep
@@ -113,6 +116,7 @@ export const footerNav: Record<string, readonly NavItem[]> = {
     { label: "Become a Vendor", href: "/vendors" },
     { label: "Become a Rider", href: "/riders" },
     { label: "Become an Agent", href: "/agents" },
+    { label: "Agent Login", href: siteConfig.agentAppUrl, external: true },
   ],
   support: [
     { label: "Help Center", href: "/help" },
