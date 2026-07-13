@@ -393,6 +393,10 @@
         "q6": {
           "question": "How do I get help?",
           "answer": "Once you're onboarded, our team supports agents on WhatsApp."
+        },
+        "q7": {
+          "question": "Is there a welcome bonus?",
+          "answer": "Yes. Once you're certified we add a ₦1,000 welcome bonus to your wallet, locked. It unlocks the moment your first customer places an order, and you can then withdraw it. Terms and conditions apply."
         }
       }
     }

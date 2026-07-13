@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BadgeCheck,
   ClipboardCheck,
+  Gift,
   GraduationCap,
   MessageCircle,
   Repeat,
@@ -51,6 +52,7 @@ export default async function AgentsPage() {
     { question: t("faq.items.q4.question"), answer: t("faq.items.q4.answer") },
     { question: t("faq.items.q5.question"), answer: t("faq.items.q5.answer") },
     { question: t("faq.items.q6.question"), answer: t("faq.items.q6.answer") },
+    { question: t("faq.items.q7.question"), answer: t("faq.items.q7.answer") },
   ];
 
   return (
@@ -110,6 +112,24 @@ export default async function AgentsPage() {
                 Open the agent app
               </a>
             </p>
+
+            <div className="mt-8 flex max-w-xl items-start gap-3 rounded-2xl border border-brand-red/20 bg-[color-mix(in_srgb,var(--color-brand-red)_5%,#ffffff)] px-5 py-4">
+              <Gift className="mt-0.5 size-5 shrink-0 text-brand-red" aria-hidden />
+              <p className="text-sm text-ink-700">
+                <span className="font-semibold text-ink-900">
+                  ₦1,000 welcome bonus
+                </span>{" "}
+                after you get certified. It unlocks when you sign up your first
+                customer who places an order.{" "}
+                <a
+                  href="/terms"
+                  className="font-medium underline underline-offset-2 hover:text-ink-900"
+                >
+                  T&amp;Cs apply
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </Container>
       </section>
