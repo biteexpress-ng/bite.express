@@ -396,7 +396,7 @@
         },
         "q7": {
           "question": "Is there a welcome bonus?",
-          "answer": "Yes. Once you're certified we add a ₦1,000 welcome bonus to your wallet, locked. It unlocks the moment your first customer places an order, and you can then withdraw it. Terms and conditions apply."
+          "answer": "Yes. Once you're certified we add a {amount} welcome bonus to your wallet, locked. It unlocks the moment your first customer places an order, and you can then withdraw it. Terms and conditions apply."
         }
       }
     }
