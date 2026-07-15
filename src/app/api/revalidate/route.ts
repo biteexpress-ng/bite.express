@@ -14,9 +14,11 @@ import { NextResponse } from "next/server";
  *     -H 'Content-Type: application/json' \
  *     -d '{"type":"blog","slug":"hello-world"}'
  *
- * `type` ∈ {"blog","news","jobs","zones","modules","all"}
+ * `type` ∈ {"blog","news","jobs","zones","modules","agents","all"}
  *   - blog/news/jobs: revalidates the index + the slug detail (if provided)
  *   - zones/modules: revalidates pages that depend on those caches
+ *   - agents: refreshes /agents after the agent programme settings change
+ *     (the advertised welcome bonus)
  *   - all: nuclear option — revalidates every CMS-driven path + tag
  *
  * `slug` is optional. When present, the per-slug page is also bumped.
@@ -27,7 +29,7 @@ import { NextResponse } from "next/server";
  */
 
 type Body = {
-  type?: "blog" | "news" | "jobs" | "zones" | "modules" | "all";
+  type?: "blog" | "news" | "jobs" | "zones" | "modules" | "agents" | "all";
   slug?: string;
 };
 
@@ -91,6 +93,11 @@ export async function POST(request: Request) {
   }
   if (type === "modules" || type === "all") {
     bumpTag("modules");
+  }
+  // Agent programme settings (the welcome bonus advertised on /agents).
+  if (type === "agents" || type === "all") {
+    bumpTag("agent-program");
+    bumpPath("/agents");
   }
 
   // Sitemap is computed from all of the above sources.

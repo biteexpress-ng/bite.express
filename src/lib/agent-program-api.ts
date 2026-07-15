@@ -41,7 +41,11 @@ export function formatNaira(amount: number): string {
  */
 export async function getOnboardingBonus(): Promise<OnboardingBonus | null> {
   const res = await api<ProgramInfoResponse>("/api/v1/agent/program-info", {
-    next: { revalidate: 3600 },
+    // Tagged so the admin's "agents" revalidate ping expires this fetch
+    // immediately. Without the tag, revalidatePath alone would re-render the
+    // page against a still-fresh cached response and show the old amount.
+    // The 1h revalidate is the fallback when the webhook is not configured.
+    next: { revalidate: 3600, tags: ["agent-program"] },
   });
   if (!res.ok) return null;
 
