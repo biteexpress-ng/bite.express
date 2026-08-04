@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { antiSpamShape, refineMathAnswer } from "@/lib/forms/anti-spam";
 
 const MAX_CV_BYTES = 5 * 1024 * 1024; // 5 MB
 export const ACCEPTED_CV_TYPES = [
@@ -38,7 +39,8 @@ export const jobApplicationSchema = z.object({
     .optional()
     .or(z.literal("")),
   consent: z.literal(true, { message: "We need your consent to follow up" }),
-});
+  ...antiSpamShape,
+}).superRefine(refineMathAnswer);
 
 export type JobApplicationValues = z.infer<typeof jobApplicationSchema>;
 

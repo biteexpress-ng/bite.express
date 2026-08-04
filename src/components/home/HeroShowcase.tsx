@@ -46,10 +46,6 @@ export function HeroShowcase({
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.55)_1px,transparent_1px)] [background-size:72px_72px]"
-      />
-      <div
-        aria-hidden
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(222,22,0,0.24)_0%,rgba(222,22,0,0.05)_26%,transparent_56%),radial-gradient(ellipse_at_50%_100%,rgba(255,255,255,0.08),transparent_48%)]"
       />
       <div

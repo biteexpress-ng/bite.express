@@ -4,6 +4,7 @@ import {
   jobApplicationSchema,
   validateCvFile,
 } from "@/lib/forms/job-application";
+import { spamReason } from "@/lib/forms/anti-spam";
 import { sendMail } from "@/lib/mailgun";
 import { jobApplicationEmail } from "@/lib/email-templates/job-application";
 import { fetchJob } from "@/lib/jobs-api";
@@ -22,6 +23,20 @@ export type JobActionResult =
 export async function submitJobApplication(
   formData: FormData,
 ): Promise<JobActionResult> {
+  // Anti-spam first: bots get a fake success before we touch the CV,
+  // so they never learn which trap fired.
+  const spam = spamReason({
+    website: String(formData.get("website") ?? ""),
+    startedAt: Number(formData.get("startedAt") ?? 0),
+    mathA: Number(formData.get("mathA") ?? NaN),
+    mathB: Number(formData.get("mathB") ?? NaN),
+    mathAnswer: Number(formData.get("mathAnswer") ?? NaN),
+  });
+  if (spam) {
+    console.warn(`[job-application] ${spam} triggered, dropping silently`);
+    return { ok: true };
+  }
+
   const cvField = formData.get("cv");
   const cvCheck = validateCvFile(cvField instanceof File ? cvField : null);
   if (!cvCheck.ok) return { ok: false, message: cvCheck.message };
@@ -35,6 +50,11 @@ export async function submitJobApplication(
     portfolioUrl: String(formData.get("portfolioUrl") ?? ""),
     coverNote: String(formData.get("coverNote") ?? ""),
     consent: formData.get("consent") === "on" || formData.get("consent") === "true",
+    website: String(formData.get("website") ?? ""),
+    mathA: Number(formData.get("mathA") ?? NaN),
+    mathB: Number(formData.get("mathB") ?? NaN),
+    mathAnswer: Number(formData.get("mathAnswer") ?? NaN),
+    startedAt: Number(formData.get("startedAt") ?? 0),
   };
 
   const parsed = jobApplicationSchema.safeParse(fields);

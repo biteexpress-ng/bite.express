@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { TextField, TextAreaField } from "./field";
+import { AntiSpamFields } from "./anti-spam-fields";
 import { FileField } from "./file-field";
 import { Button } from "@/components/ui/button";
 import { submitJobApplication } from "@/app/actions/job-application";
@@ -25,13 +26,17 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
   const [serverError, setServerError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
+  const mathA = 6;
+  const mathB = 7;
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<JobApplicationValues>({
     resolver: zodResolver(jobApplicationSchema),
-    defaultValues: { jobSlug },
+    defaultValues: { jobSlug, website: "", mathA, mathB, startedAt: 1 },
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -73,7 +78,7 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
         handleSubmit(onSubmit)
       }
       noValidate
-      className="grid gap-5 sm:grid-cols-2"
+      className="relative grid gap-5 sm:grid-cols-2"
     >
       <input type="hidden" name="jobSlug" value={jobSlug} />
 
@@ -132,6 +137,14 @@ export function JobApplicationForm({ jobSlug, jobTitle }: Props) {
         error={errors.coverNote?.message}
         className="sm:col-span-2"
         {...register("coverNote")}
+      />
+
+      <AntiSpamFields
+        register={register}
+        setValue={setValue}
+        mathA={mathA}
+        mathB={mathB}
+        error={errors.mathAnswer?.message}
       />
 
       <label className="flex items-start gap-3 text-sm text-ink-700 sm:col-span-2">

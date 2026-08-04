@@ -52,10 +52,6 @@ export function BenefitsBand({
     <section className="relative overflow-hidden bg-[#0d0d0d] px-5 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:56px_56px]"
-      />
-      <div
-        aria-hidden
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(222,22,0,0.18),transparent_42%),linear-gradient(180deg,transparent,rgba(0,0,0,0.55))]"
       />
 

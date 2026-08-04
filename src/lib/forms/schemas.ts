@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { cities } from "@/lib/cities";
+import { antiSpamShape, refineMathAnswer } from "@/lib/forms/anti-spam";
 
 const citySlugs = cities.map((c) => c.slug) as [string, ...string[]];
 
@@ -53,7 +54,8 @@ export const vendorSchema = z.object({
     .regex(/^[0-9]{1,3}$/, "Enter a whole number (max 999)"),
   message,
   consent: z.literal(true, { message: "We need your consent to follow up" }),
-});
+  ...antiSpamShape,
+}).superRefine(refineMathAnswer);
 
 export type VendorFormValues = z.infer<typeof vendorSchema>;
 
@@ -91,7 +93,8 @@ export const riderSchema = z.object({
     message: "You'll need a smartphone for the rider app",
   }),
   consent: z.literal(true, { message: "We need your consent to follow up" }),
-});
+  ...antiSpamShape,
+}).superRefine(refineMathAnswer);
 
 export type RiderFormValues = z.infer<typeof riderSchema>;
 
@@ -107,6 +110,7 @@ export const agentSchema = z.object({
     .min(20, "Give us a bit more context, at least 20 characters")
     .max(2000, "Keep it under 2000 characters"),
   consent: z.literal(true, { message: "We need your consent to follow up" }),
-});
+  ...antiSpamShape,
+}).superRefine(refineMathAnswer);
 
 export type AgentFormValues = z.infer<typeof agentSchema>;

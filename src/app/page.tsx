@@ -20,6 +20,7 @@ import { CitiesCoverage } from "@/components/home/CitiesCoverage";
 import { PartnerTrustStrip } from "@/components/home/PartnerTrustStrip";
 import { HomeFinalCTA } from "@/components/home/HomeFinalCTA";
 import { AppShowcase } from "@/components/home/AppShowcase";
+import { FooterRiderPath } from "@/components/home/FooterRiderPath";
 import { WhatsAppAnnounce } from "@/components/home/WhatsAppAnnounce";
 
 import { siteConfig } from "@/lib/site-config";
@@ -282,6 +283,9 @@ export default async function HomePage() {
         placeholder={t("hero.addressPlaceholder")}
         cta={t("finalCta.primary")}
       />
+
+      {/* 12. RIDER PATH, in the white gap above the footer */}
+      <FooterRiderPath />
     </>
   );
 }

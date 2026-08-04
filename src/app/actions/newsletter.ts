@@ -1,6 +1,7 @@
 "use server";
 
 import { api } from "@/lib/api-client";
+import { spamReason } from "@/lib/forms/anti-spam";
 import { sendMail } from "@/lib/mailgun";
 import {
   newsletterSchema,
@@ -34,6 +35,14 @@ export async function subscribeToNewsletter(
   if (!parsed.success) {
     return { ok: false, message: "Enter a valid email and try again." };
   }
+
+  // Fake success on spam so bots don't retry with a tweaked payload.
+  const spam = spamReason(parsed.data);
+  if (spam) {
+    console.warn(`[newsletter] ${spam} triggered, dropping silently`);
+    return { ok: true };
+  }
+
   const { email } = parsed.data;
 
   let alreadySubscribed = false;

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   ArrowRight,
@@ -98,6 +99,7 @@ export default async function AgentsPage() {
           className="pointer-events-none absolute -top-32 -right-32 h-[24rem] w-[24rem] rounded-full bg-brand-red/10 blur-3xl"
         />
         <Container className="relative">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-3xl">
             <Eyebrow>{t("hero.eyebrow")}</Eyebrow>
             <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem]">
@@ -146,6 +148,24 @@ export default async function AgentsPage() {
                 </p>
               </div>
             )}
+          </div>
+
+          <div className="relative mx-auto w-full max-w-[300px] lg:max-w-[360px]">
+            <div
+              aria-hidden
+              className="absolute -inset-8 -z-10 rounded-[4rem] bg-brand-red/10 blur-3xl"
+            />
+            <Image
+              src="/brand/screens/agent-app.png"
+              alt="BiteExpress Agent app showing referral earnings and sign-ups"
+              width={882}
+              height={1783}
+              priority
+              sizes="(min-width: 1024px) 360px, 300px"
+              draggable={false}
+              className="h-auto w-full select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.22)]"
+            />
+          </div>
           </div>
         </Container>
       </section>

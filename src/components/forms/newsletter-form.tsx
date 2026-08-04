@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
@@ -25,10 +25,17 @@ export function NewsletterForm({ variant = "dark", className }: Props) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<NewsletterValues>({
     resolver: zodResolver(newsletterSchema),
+    defaultValues: { website: "", startedAt: 1 },
   });
+
+  // Stamp the real render time for the server-side time-trap.
+  useEffect(() => {
+    setValue("startedAt", Date.now());
+  }, [setValue]);
 
   const onSubmit = (values: NewsletterValues) => {
     setServerError(null);
@@ -64,8 +71,25 @@ export function NewsletterForm({ variant = "dark", className }: Props) {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className={cn("flex flex-col gap-2", className)}
+      className={cn("relative flex flex-col gap-2", className)}
     >
+      {/* Honeypot: humans never see it, bots fill every input. */}
+      <div
+        aria-hidden
+        className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
+      >
+        <label>
+          Leave this field empty
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register("website")}
+          />
+        </label>
+      </div>
+      <input type="hidden" {...register("startedAt", { valueAsNumber: true })} />
+
       <label className={cn("text-xs font-medium uppercase tracking-wider", labelClass)}>
         Newsletter
       </label>

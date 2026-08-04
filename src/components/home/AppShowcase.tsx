@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { CheckCircle2, Sparkles } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { AppBadges } from "@/components/ui/app-badges";
@@ -26,28 +27,8 @@ const bulletVariants = {
   }),
 };
 
-const orderItems = [
-  { name: "Mama's Kitchen", meta: "Jollof · 25 min" },
-  { name: "Sahel Grills", meta: "Suya · 22 min" },
-  { name: "Greenfield Market", meta: "Grocery · 35 min" },
-];
-
-const orderCardVariants = {
-  hidden: { opacity: 0, y: 16, scale: 0.95 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      delay: i * 0.12 + 0.5,
-      ease: [0.25, 1, 0.5, 1] as const,
-    },
-  }),
-};
-
 /**
- * App showcase section with animated phone mockup,
+ * App showcase section with the real order-tracking screen,
  * staggered feature bullets, and premium visual polish.
  */
 export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
@@ -133,9 +114,9 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
             </motion.div>
           </div>
 
-          {/* Right — decorative phone mockup */}
+          {/* Right: live order-tracking screen from the app */}
           <motion.div
-            className="relative mx-auto w-full max-w-md"
+            className="relative mx-auto w-full max-w-sm"
             initial={reducedMotion ? false : { opacity: 0, y: 40, rotateY: 5 }}
             whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
             viewport={{ once: true, margin: "-10%" }}
@@ -145,76 +126,15 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
             }}
             style={{ perspective: "1000px" }}
           >
-            <div className="relative aspect-9/16 w-full rounded-[2rem] border-10 border-brand-black bg-brand-black shadow-cinematic">
-              <div className="relative h-full w-full overflow-hidden rounded-[1.35rem] bg-gradient-to-b from-ink-50 to-white">
-                <div className="mx-auto mt-3 h-5 w-24 rounded-full bg-brand-black" />
-                <div className="p-6">
-                  <div className="text-xs uppercase tracking-wider text-ink-600">
-                    Delivering to
-                  </div>
-                  <div className="font-serif text-xl text-ink-900">
-                    Samaru, Zaria
-                  </div>
-
-                  <div className="mt-6 grid gap-3">
-                    {orderItems.map((item, i) => (
-                      <motion.div
-                        key={item.name}
-                        className="rounded-lg border border-ink-200 bg-white p-4 transition-shadow hover:shadow-card"
-                        custom={i}
-                        variants={orderCardVariants}
-                        initial={reducedMotion ? false : "hidden"}
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                      >
-                        <div className="font-semibold text-ink-900">
-                          {item.name}
-                        </div>
-                        <div className="text-xs text-ink-600">
-                          {item.meta}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Pulsing order status card */}
-                  <motion.div
-                    className="mt-6 flex items-center justify-between rounded-lg bg-brand-red p-4 text-white"
-                    initial={
-                      reducedMotion ? false : { opacity: 0, scale: 0.9 }
-                    }
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.9,
-                      ease: [0.34, 1.56, 0.64, 1],
-                    }}
-                  >
-                    <div>
-                      <div className="text-xs uppercase tracking-wider opacity-80">
-                        Order on the way
-                      </div>
-                      <div className="font-semibold">Arriving 6:42pm</div>
-                    </div>
-                    <motion.div
-                      animate={
-                        reducedMotion
-                          ? undefined
-                          : { rotate: [0, 15, -10, 0], scale: [1, 1.1, 1] }
-                      }
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <Sparkles size={22} />
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
+            <Image
+              src="/brand/screens/app-tracking.png"
+              alt="BiteExpress app showing live order tracking on a map, with the rider 16 minutes away"
+              width={884}
+              height={1779}
+              sizes="(min-width: 1024px) 384px, 90vw"
+              draggable={false}
+              className="relative z-10 h-auto w-full select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.25)]"
+            />
 
             {/* Behind-the-phone soft red halo */}
             <motion.div

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { TextField, TextAreaField, SelectField } from "./field";
+import { AntiSpamFields } from "./anti-spam-fields";
 import { Button } from "@/components/ui/button";
 import { submitVendorApplication } from "@/app/actions/partner-signup";
 import { vendorSchema, vendorTypes, type VendorFormValues } from "@/lib/forms/schemas";
@@ -17,13 +18,23 @@ export function VendorSignupForm() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
+  const mathA = 3;
+  const mathB = 8;
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<VendorFormValues>({
     resolver: zodResolver(vendorSchema),
-    defaultValues: { numberOfLocations: "1" },
+    defaultValues: {
+      numberOfLocations: "1",
+      website: "",
+      mathA,
+      mathB,
+      startedAt: 1,
+    },
   });
 
   const onSubmit = (values: VendorFormValues) => {
@@ -41,7 +52,7 @@ export function VendorSignupForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="grid gap-5 sm:grid-cols-2"
+      className="relative grid gap-5 sm:grid-cols-2"
     >
       <TextField
         label="Business name"
@@ -107,6 +118,14 @@ export function VendorSignupForm() {
         error={errors.message?.message}
         className="sm:col-span-2"
         {...register("message")}
+      />
+
+      <AntiSpamFields
+        register={register}
+        setValue={setValue}
+        mathA={mathA}
+        mathB={mathB}
+        error={errors.mathAnswer?.message}
       />
 
       <label className="flex items-start gap-3 text-sm text-ink-700 sm:col-span-2">

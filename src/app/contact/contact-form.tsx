@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { TextField, TextAreaField, SelectField } from "@/components/forms/field";
+import { AntiSpamFields } from "@/components/forms/anti-spam-fields";
 import { Button } from "@/components/ui/button";
 import { submitContactMessage } from "@/app/actions/contact";
 import {
@@ -35,10 +36,6 @@ export function ContactForm() {
       startedAt: 1,
     },
   });
-
-  useEffect(() => {
-    setValue("startedAt", Date.now());
-  }, [setValue]);
 
   const onSubmit = (values: ContactFormValues) => {
     setServerError(null);
@@ -103,32 +100,12 @@ export function ContactForm() {
         {...register("message")}
       />
 
-      {/* Honeypot — visually hidden, off-screen, no autofill. Bots fill it; humans don't see it. */}
-      <div aria-hidden className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
-        <label>
-          Leave this field empty
-          <input
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            {...register("website")}
-          />
-        </label>
-      </div>
-
-      <input type="hidden" {...register("mathA", { valueAsNumber: true })} />
-      <input type="hidden" {...register("mathB", { valueAsNumber: true })} />
-      <input type="hidden" {...register("startedAt", { valueAsNumber: true })} />
-
-      <TextField
-        label={`Spam check: what is ${mathA} + ${mathB}?`}
-        type="number"
-        inputMode="numeric"
-        required
-        placeholder="Your answer"
+      <AntiSpamFields
+        register={register}
+        setValue={setValue}
+        mathA={mathA}
+        mathB={mathB}
         error={errors.mathAnswer?.message}
-        className="sm:col-span-2"
-        {...register("mathAnswer", { valueAsNumber: true })}
       />
 
       {serverError && (

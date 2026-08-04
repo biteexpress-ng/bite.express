@@ -8,6 +8,7 @@ import {
   type RiderFormValues,
   type VendorFormValues,
 } from "@/lib/forms/schemas";
+import { spamReason } from "@/lib/forms/anti-spam";
 import { sendMail } from "@/lib/mailgun";
 import {
   agentApplicationEmail,
@@ -111,6 +112,13 @@ export async function submitVendorApplication(
     return { ok: false, message: "Some fields look off. Please review and try again." };
   }
 
+  // Fake success on spam so bots don't retry with a tweaked payload.
+  const spam = spamReason(parsed.data);
+  if (spam) {
+    console.warn(`[partner-signup:vendor] ${spam} triggered, dropping silently`);
+    return { ok: true };
+  }
+
   const to = process.env.NOTIFY_EMAIL_PARTNERS ?? siteConfig.email;
   const email = vendorApplicationEmail(parsed.data);
 
@@ -135,6 +143,12 @@ export async function submitRiderApplication(
     return { ok: false, message: "Some fields look off. Please review and try again." };
   }
 
+  const spam = spamReason(parsed.data);
+  if (spam) {
+    console.warn(`[partner-signup:rider] ${spam} triggered, dropping silently`);
+    return { ok: true };
+  }
+
   const to = process.env.NOTIFY_EMAIL_RIDERS ?? siteConfig.email;
   const email = riderApplicationEmail(parsed.data);
 
@@ -157,6 +171,12 @@ export async function submitAgentApplication(
   const parsed = agentSchema.safeParse(values);
   if (!parsed.success) {
     return { ok: false, message: "Some fields look off. Please review and try again." };
+  }
+
+  const spam = spamReason(parsed.data);
+  if (spam) {
+    console.warn(`[partner-signup:agent] ${spam} triggered, dropping silently`);
+    return { ok: true };
   }
 
   const to = process.env.NOTIFY_EMAIL_AGENTS ?? siteConfig.email;

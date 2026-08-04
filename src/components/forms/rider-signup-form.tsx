@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { TextField, SelectField } from "./field";
+import { AntiSpamFields } from "./anti-spam-fields";
 import { SuccessState } from "./vendor-signup-form";
 import { Button } from "@/components/ui/button";
 import { submitRiderApplication } from "@/app/actions/partner-signup";
@@ -23,12 +24,17 @@ export function RiderSignupForm() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
+  const mathA = 5;
+  const mathB = 6;
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<RiderFormValues>({
     resolver: zodResolver(riderSchema),
+    defaultValues: { website: "", mathA, mathB, startedAt: 1 },
   });
 
   const onSubmit = (values: RiderFormValues) => {
@@ -46,7 +52,7 @@ export function RiderSignupForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="grid gap-5 sm:grid-cols-2"
+      className="relative grid gap-5 sm:grid-cols-2"
     >
       <TextField
         label="Full name"
@@ -94,6 +100,14 @@ export function RiderSignupForm() {
         options={availabilityOptions.map((a) => ({ value: a.value, label: a.label }))}
         error={errors.availability?.message}
         {...register("availability")}
+      />
+
+      <AntiSpamFields
+        register={register}
+        setValue={setValue}
+        mathA={mathA}
+        mathB={mathB}
+        error={errors.mathAnswer?.message}
       />
 
       <label className="flex items-start gap-3 text-sm text-ink-700 sm:col-span-2">

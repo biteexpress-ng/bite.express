@@ -115,11 +115,7 @@ export default async function WhatsAppPage() {
 
       {/* ============================ HERO ============================ */}
       <section className="relative isolate overflow-hidden bg-obsidian pt-16 pb-20 text-white sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28">
-        {/* Faint grid + green accent glow (accent, never a fill) */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.55)_1px,transparent_1px)] [background-size:72px_72px]"
-        />
+        {/* Green accent glow (accent, never a fill) */}
         <div
           aria-hidden
           className="pointer-events-none absolute -right-24 -top-24 h-[26rem] w-[26rem] rounded-full bg-whatsapp/18 blur-[120px]"

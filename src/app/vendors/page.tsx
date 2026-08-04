@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   ArrowRight,
@@ -66,22 +67,41 @@ export default async function VendorsPage() {
           className="pointer-events-none absolute -top-32 -right-32 h-[24rem] w-[24rem] rounded-full bg-brand-red/10 blur-3xl"
         />
         <Container className="relative">
-          <div className="max-w-3xl">
-            <Eyebrow>{t("hero.eyebrow")}</Eyebrow>
-            <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem]">
-              {t("hero.title")}
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
-              {t("hero.subtitle")}
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <ButtonLink href="#apply" variant="primary" size="lg">
-                {t("hero.cta")}
-                <ArrowRight size={18} />
-              </ButtonLink>
-              <ButtonLink href="#how" variant="outline" size="lg">
-                See how it works
-              </ButtonLink>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="max-w-3xl">
+              <Eyebrow>{t("hero.eyebrow")}</Eyebrow>
+              <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem]">
+                {t("hero.title")}
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg text-ink-600 sm:text-xl">
+                {t("hero.subtitle")}
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <ButtonLink href="#apply" variant="primary" size="lg">
+                  {t("hero.cta")}
+                  <ArrowRight size={18} />
+                </ButtonLink>
+                <ButtonLink href="#how" variant="outline" size="lg">
+                  See how it works
+                </ButtonLink>
+              </div>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-[300px] lg:max-w-[360px]">
+              <div
+                aria-hidden
+                className="absolute -inset-8 -z-10 rounded-[4rem] bg-brand-red/10 blur-3xl"
+              />
+              <Image
+                src="/brand/screens/vendor-app.png"
+                alt="BiteExpress Vendor app home screen showing business analytics and ongoing orders"
+                width={884}
+                height={1779}
+                priority
+                sizes="(min-width: 1024px) 360px, 300px"
+                draggable={false}
+                className="h-auto w-full select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.22)]"
+              />
             </div>
           </div>
         </Container>

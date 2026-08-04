@@ -1,10 +1,10 @@
 "use server";
 
 import {
-  MIN_FILL_SECONDS,
   contactSchema,
   type ContactFormValues,
 } from "@/lib/forms/contact";
+import { spamReason } from "@/lib/forms/anti-spam";
 import { sendMail } from "@/lib/mailgun";
 import { contactMessageEmail } from "@/lib/email-templates/contact";
 import { siteConfig } from "@/lib/site-config";
@@ -21,17 +21,10 @@ export async function submitContactMessage(
     return { ok: false, message: "Some fields look off. Please review and try again." };
   }
 
-  // Honeypot — present, non-empty value means a bot filled the hidden input.
-  // Pretend success so the bot doesn't retry with a tweaked payload.
-  if (parsed.data.website && parsed.data.website.length > 0) {
-    console.warn("[contact] honeypot triggered, dropping silently");
-    return { ok: true };
-  }
-
-  // Time-trap — same idea, silently swallow lightning-fast submissions.
-  const elapsedMs = Date.now() - parsed.data.startedAt;
-  if (elapsedMs < MIN_FILL_SECONDS * 1000) {
-    console.warn(`[contact] submitted in ${elapsedMs}ms, dropping silently`);
+  // Pretend success on spam so the bot doesn't retry with a tweaked payload.
+  const spam = spamReason(parsed.data);
+  if (spam) {
+    console.warn(`[contact] ${spam} triggered, dropping silently`);
     return { ok: true };
   }
 

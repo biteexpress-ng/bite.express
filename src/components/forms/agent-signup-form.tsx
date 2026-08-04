@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { TextField, TextAreaField, SelectField } from "./field";
+import { AntiSpamFields } from "./anti-spam-fields";
 import { SuccessState } from "./vendor-signup-form";
 import { Button } from "@/components/ui/button";
 import { submitAgentApplication } from "@/app/actions/partner-signup";
@@ -18,12 +19,17 @@ export function AgentSignupForm() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
+  const mathA = 2;
+  const mathB = 9;
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<AgentFormValues>({
     resolver: zodResolver(agentSchema),
+    defaultValues: { website: "", mathA, mathB, startedAt: 1 },
   });
 
   const onSubmit = (values: AgentFormValues) => {
@@ -41,7 +47,7 @@ export function AgentSignupForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="grid gap-5 sm:grid-cols-2"
+      className="relative grid gap-5 sm:grid-cols-2"
     >
       <TextField
         label="Full name"
@@ -82,6 +88,14 @@ export function AgentSignupForm() {
         error={errors.network?.message}
         className="sm:col-span-2"
         {...register("network")}
+      />
+
+      <AntiSpamFields
+        register={register}
+        setValue={setValue}
+        mathA={mathA}
+        mathB={mathB}
+        error={errors.mathAnswer?.message}
       />
 
       <label className="flex items-start gap-3 text-sm text-ink-700 sm:col-span-2">
