@@ -51,8 +51,9 @@ export function HeroSpotlight() {
     return () => el.removeEventListener("pointermove", handlePointerMove);
   }, [handlePointerMove]);
 
-  if (reducedMotion) return null;
-
+  // Rendered unconditionally: returning null for reduced motion changed the
+  // markup between the server and hydration. The pointer handler above already
+  // refuses to move the spotlight, so it simply sits still instead.
   return (
     <>
       <div

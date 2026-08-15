@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -29,7 +29,6 @@ const itemVariants = {
 
 export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
   const [openIndex, setOpenIndex] = useState<number>(defaultOpen);
-  const reducedMotion = useReducedMotion();
 
   return (
     <div className={cn("divide-y divide-ink-200 border-y border-ink-200", className)}>
@@ -40,7 +39,7 @@ export function FaqAccordion({ items, defaultOpen = 0, className }: Props) {
             key={i}
             custom={i}
             variants={itemVariants}
-            initial={reducedMotion ? false : "hidden"}
+            initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-5%" }}
           >

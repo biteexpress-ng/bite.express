@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 
 const LOGOS = [
@@ -37,14 +37,12 @@ function LogoItem({ logo }: { logo: typeof LOGOS[number] }) {
 }
 
 export function PartnerTrustStrip() {
-  const reducedMotion = useReducedMotion();
-
   return (
     <section className="bg-white pb-16 pt-8">
       <Container className="max-w-[1400px]">
         <motion.div
           className="border-t border-dashed border-[#e5e5e5] pt-12"
-          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-5%" }}
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -69,20 +67,16 @@ export function PartnerTrustStrip() {
               <div
                 className="flex w-max items-center opacity-60 grayscale transition-[filter,opacity] duration-500 hover:opacity-80 hover:grayscale-[0.3]"
                 style={{
-                  animation: reducedMotion
-                    ? "none"
-                    : "marquee-logos 25s linear infinite",
+                  // The global prefers-reduced-motion rule in globals.css
+                  // neutralises this for users who ask for it.
+                  animation: "marquee-logos 25s linear infinite",
                   animationPlayState: "running",
                 }}
                 onMouseEnter={(e) => {
-                  if (!reducedMotion) {
-                    (e.currentTarget as HTMLDivElement).style.animationPlayState = "paused";
-                  }
+                  (e.currentTarget as HTMLDivElement).style.animationPlayState = "paused";
                 }}
                 onMouseLeave={(e) => {
-                  if (!reducedMotion) {
-                    (e.currentTarget as HTMLDivElement).style.animationPlayState = "running";
-                  }
+                  (e.currentTarget as HTMLDivElement).style.animationPlayState = "running";
                 }}
               >
                 {/* Repeat logos twice for seamless loop */}

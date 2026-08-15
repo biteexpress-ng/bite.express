@@ -1,7 +1,7 @@
 "use client";
 
 import { Bike, MapPinned, PackageCheck, Store, type LucideIcon } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { AnimatedCounter } from "./AnimatedCounter";
 
@@ -33,14 +33,12 @@ const cardVariants = {
 };
 
 export function PremiumStatsBand() {
-  const reducedMotion = useReducedMotion();
-
   return (
     <section className="bg-canvas px-5 py-10 sm:px-6 lg:px-8">
       <Container className="px-0">
         <motion.div
           className="relative overflow-hidden rounded-lg border border-white/10 bg-brand-black px-6 py-10 text-white shadow-2xl sm:px-10 lg:px-14"
-          initial={reducedMotion ? false : { opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -58,7 +56,7 @@ export function PremiumStatsBand() {
               stroke="#de1600"
               strokeWidth="2"
               strokeDasharray="8 18"
-              initial={reducedMotion ? {} : { pathLength: 0, opacity: 0 }}
+              initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
@@ -68,7 +66,7 @@ export function PremiumStatsBand() {
               stroke="#ff6b4a"
               strokeWidth="1"
               strokeDasharray="2 18"
-              initial={reducedMotion ? {} : { pathLength: 0, opacity: 0 }}
+              initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 2.5, delay: 0.6, ease: "easeOut" }}
@@ -82,7 +80,7 @@ export function PremiumStatsBand() {
                 className="relative flex flex-col items-start text-left lg:px-10 first:lg:pl-0 last:lg:pr-0"
                 custom={index}
                 variants={cardVariants}
-                initial={reducedMotion ? false : "hidden"}
+                initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-10%" }}
               >
@@ -97,7 +95,7 @@ export function PremiumStatsBand() {
                 {/* Icon — with subtle pulse on hover */}
                 <motion.span
                   className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-brand-red/30 bg-brand-red/10 text-brand-orange"
-                  whileHover={reducedMotion ? {} : { scale: 1.1 }}
+                  whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
                   <Icon size={20} strokeWidth={1.8} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   CreditCard,
   Headphones,
@@ -46,8 +46,6 @@ export function BenefitsBand({
   titleHighlight,
   benefits,
 }: Props) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden bg-[#0d0d0d] px-5 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
       <div
@@ -57,7 +55,7 @@ export function BenefitsBand({
 
       <div className="relative mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
         <motion.div
-          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -92,7 +90,7 @@ export function BenefitsBand({
                   className="group rounded-lg border border-white/10 bg-white/[0.065] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-colors duration-300 hover:bg-white/[0.10]"
                   custom={index}
                   variants={benefitCardVariants}
-                  initial={reducedMotion ? false : "hidden"}
+                  initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-10%" }}
                 >
@@ -112,7 +110,7 @@ export function BenefitsBand({
 
           <motion.aside
             className="rounded-lg border border-white/10 bg-white/[0.08] p-5 shadow-luxe backdrop-blur-xl"
-            initial={reducedMotion ? false : { opacity: 0, x: 24 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 1, 0.5, 1] }}
@@ -143,7 +141,7 @@ export function BenefitsBand({
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                     <motion.div
                       className="h-full rounded-full bg-brand-red"
-                      initial={reducedMotion ? false : { width: 0 }}
+                      initial={{ width: 0 }}
                       whileInView={{ width: `${74 + index * 8}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.9, delay: 0.45 + index * 0.12 }}

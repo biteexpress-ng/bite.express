@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
@@ -32,8 +32,6 @@ const bulletVariants = {
  * staggered feature bullets, and premium visual polish.
  */
 export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <Section background="white" padding="xl">
       <Container>
@@ -42,7 +40,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
           <div>
             <motion.span
               className="section-eyebrow"
-              initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
@@ -53,7 +51,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
 
             <motion.h2
               className="mt-6 font-serif text-4xl leading-[1.05] tracking-normal text-ink-900 sm:text-5xl md:text-6xl"
-              initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
@@ -67,7 +65,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
 
             <motion.p
               className="mt-6 max-w-xl text-lg text-ink-600"
-              initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
@@ -86,7 +84,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
                   className="flex items-start gap-3 text-base text-ink-700"
                   custom={i}
                   variants={bulletVariants}
-                  initial={reducedMotion ? false : "hidden"}
+                  initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
@@ -101,7 +99,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
 
             <motion.div
               className="mt-10"
-              initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
@@ -117,7 +115,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
           {/* Right: live order-tracking screen from the app */}
           <motion.div
             className="relative mx-auto w-full max-w-sm"
-            initial={reducedMotion ? false : { opacity: 0, y: 40, rotateY: 5 }}
+            initial={{ opacity: 0, y: 40, rotateY: 5 }}
             whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{
@@ -141,9 +139,7 @@ export function AppShowcase({ eyebrow, title, subtitle, bullets }: Props) {
               aria-hidden
               className="absolute -inset-10 -z-10 rounded-[4rem] bg-brand-red/10 blur-3xl"
               animate={
-                reducedMotion
-                  ? undefined
-                  : { scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0.6] }
+                { scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0.6] }
               }
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />

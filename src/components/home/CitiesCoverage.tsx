@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, ChevronRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import type { City } from "@/lib/cities";
 
@@ -48,8 +48,6 @@ const cityCardVariants = {
 };
 
 export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <section className="bg-white py-16 sm:py-24 lg:py-28">
       <Container className="max-w-[1400px]">
@@ -58,7 +56,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
           {/* 1. TEXT BLOCK (Left) */}
           <motion.div
             className="lg:col-span-4 xl:col-span-3"
-            initial={reducedMotion ? false : { opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -86,7 +84,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
           {/* 2. MAP (Middle) — with animated pin drops and pulse rings */}
           <motion.div
             className="relative mx-auto w-full max-w-lg rounded-lg border border-ink-200 bg-canvas p-6 shadow-card lg:col-span-4 xl:col-span-4"
-            initial={reducedMotion ? false : { opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
@@ -108,9 +106,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                 aria-hidden
                 className="pointer-events-none absolute inset-x-2 top-1/2 h-px bg-brand-red/20 blur-sm"
                 animate={
-                  reducedMotion
-                    ? undefined
-                    : { opacity: [0.35, 0.7, 0.35] }
+                  { opacity: [0.35, 0.7, 0.35] }
                 }
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -123,7 +119,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                     key={c.slug}
                     className="absolute z-20 -translate-x-1/2 -translate-y-[100%]"
                     style={{ left: pin.left, top: pin.top }}
-                    initial={reducedMotion ? false : { y: -40, opacity: 0, scale: 0.3 }}
+                    initial={{ y: -40, opacity: 0, scale: 0.3 }}
                     whileInView={{ y: 0, opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{
@@ -154,9 +150,10 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                         <span
                           className="block h-3 w-3 rounded-full bg-brand-red/30"
                           style={{
-                            animation: reducedMotion
-                              ? "none"
-                              : `pulse-ring 2.5s cubic-bezier(0.25,1,0.5,1) ${i * 0.3}s infinite`,
+                            // The global prefers-reduced-motion rule in
+                            // globals.css neutralises this for users who ask
+                            // for it, so no JS branch is needed.
+                            animation: `pulse-ring 2.5s cubic-bezier(0.25,1,0.5,1) ${i * 0.3}s infinite`,
                           }}
                         />
                       </span>
@@ -189,7 +186,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                   key={c.slug}
                   custom={i}
                   variants={cityCardVariants}
-                  initial={reducedMotion ? false : "hidden"}
+                  initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-5%" }}
                 >

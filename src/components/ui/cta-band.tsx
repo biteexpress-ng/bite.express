@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { Container } from "./container";
 
@@ -36,7 +36,6 @@ export function CTABand({
   className,
 }: Props) {
   const invert = variant !== "light";
-  const reducedMotion = useReducedMotion();
 
   return (
     <section
@@ -48,9 +47,7 @@ export function CTABand({
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent,rgba(222,22,0,0.18)_42%,transparent_72%)]"
             animate={
-              reducedMotion
-                ? undefined
-                : { opacity: [0.55, 0.9, 0.55] }
+              { opacity: [0.55, 0.9, 0.55] }
             }
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -64,7 +61,7 @@ export function CTABand({
         <div className="grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
           <motion.div
             className="flex flex-col gap-5"
-            initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -95,7 +92,7 @@ export function CTABand({
           </motion.div>
           <motion.div
             className="flex flex-wrap items-center gap-3 lg:justify-end"
-            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}

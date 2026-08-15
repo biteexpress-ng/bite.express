@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -24,13 +24,11 @@ type Props = {
  * secondary is the direct wa.me shortcut.
  */
 export function WhatsAppAnnounce({ badge, title, body, cta, secondary }: Props) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <Section background="white" padding="md" className="border-b border-ink-200/70">
       <Container>
         <motion.div
-          initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-12%" }}
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}

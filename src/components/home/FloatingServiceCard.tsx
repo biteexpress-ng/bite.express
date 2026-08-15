@@ -86,14 +86,14 @@ export function FloatingServiceCard({
     <motion.div
       aria-hidden
       className={cn(widthClasses, className)}
-      initial={reducedMotion ? false : { opacity: 0, y: 24, scale: 0.92, filter: "blur(8px)" }}
-      animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 24, scale: 0.92, filter: "blur(8px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.8, delay, ease: [0.25, 1, 0.5, 1] }}
     >
       <motion.div
         ref={cardRef}
         onPointerMove={handlePointerMove}
-        animate={reducedMotion ? undefined : {
+        animate={{
           y: [0, -8, 4, 0],
           rotate: [0, 0.5, -0.3, 0],
         }}

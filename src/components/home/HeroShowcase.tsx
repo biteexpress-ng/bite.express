@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPin, Search } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
 import { HeroCardCluster } from "./HeroCardCluster";
@@ -36,7 +36,6 @@ export function HeroShowcase({
   chipEta,
   chipPayments,
 }: Props) {
-  const reducedMotion = useReducedMotion();
   const chipLabels = [chipTracking, chipEta, chipPayments];
 
   return (
@@ -60,7 +59,7 @@ export function HeroShowcase({
           <div className="w-full min-w-0 max-w-[calc(100vw-2.5rem)] sm:max-w-2xl">
             <motion.p
               className="inline-flex items-center gap-2.5 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-white/78 backdrop-blur-xl"
-              initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
             >
@@ -79,7 +78,7 @@ export function HeroShowcase({
 
             <motion.p
               className="mt-7 max-w-xl text-base leading-7 text-white/68 sm:text-lg sm:leading-8"
-              initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.7,
@@ -95,7 +94,7 @@ export function HeroShowcase({
               action={siteConfig.shopHref}
               method="get"
               initial={
-                reducedMotion ? false : { opacity: 0, y: 20, scale: 0.97 }
+                { opacity: 0, y: 20, scale: 0.97 }
               }
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
@@ -131,7 +130,7 @@ export function HeroShowcase({
                 <motion.li
                   key={label}
                   className="inline-flex items-center gap-2"
-                  initial={reducedMotion ? false : { opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
                     duration: 0.5,
@@ -147,7 +146,7 @@ export function HeroShowcase({
 
             <motion.div
               className="mt-9 grid w-full max-w-[calc(100vw-2.5rem)] grid-cols-3 border-y border-white/10 py-5 sm:max-w-xl"
-              initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.7,
@@ -175,7 +174,7 @@ export function HeroShowcase({
             <motion.div
               aria-hidden
               className="absolute -inset-x-8 top-8 bottom-8 hidden rounded-lg border border-white/10 bg-white/[0.025] lg:block"
-              initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
                 duration: 0.9,

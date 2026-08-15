@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, MapPin } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
 
@@ -13,14 +13,12 @@ type Props = {
 };
 
 export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <section className="bg-white px-5 pb-16 sm:px-6 lg:px-8">
       <Container className="px-0 max-w-[1400px]">
         <motion.div
           className="relative overflow-hidden rounded-lg bg-gradient-to-br from-[#DE1600] to-[#b31200] px-6 py-12 text-white shadow-xl sm:px-10 lg:px-14 lg:py-16"
-          initial={reducedMotion ? false : { opacity: 0, scale: 0.95, y: 30 }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
@@ -39,7 +37,7 @@ export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
               strokeWidth="4"
               strokeLinecap="round"
               strokeDasharray="12 24"
-              initial={reducedMotion ? {} : { pathLength: 0, opacity: 0 }}
+              initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
@@ -51,7 +49,7 @@ export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
             {/* Left: Text */}
             <motion.div
               className="w-full text-center lg:w-1/2 lg:text-left"
-              initial={reducedMotion ? false : { opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
@@ -67,7 +65,7 @@ export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
             {/* Right: Form */}
             <motion.div
               className="w-full lg:w-1/2 lg:max-w-[500px]"
-              initial={reducedMotion ? false : { opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}

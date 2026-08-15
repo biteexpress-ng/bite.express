@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone, Video, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -43,16 +43,15 @@ export function WhatsAppChatMockup({
   chat,
   className,
 }: Props) {
-  const reducedMotion = useReducedMotion();
 
   const container = {
     hidden: {},
     visible: {
-      transition: { staggerChildren: reducedMotion ? 0 : 0.14, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.14, delayChildren: 0.1 },
     },
   };
   const bubble = {
-    hidden: reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10, scale: 0.98 },
+    hidden: { opacity: 0, y: 10, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 type HeroLine = {
   text: string;
@@ -46,29 +46,9 @@ const lineVariants = {
  * a stagger, creating the prestigious "curtain rise" effect.
  */
 export function HeroTextReveal({ lines, className }: Props) {
-  const reducedMotion = useReducedMotion();
-
-  if (reducedMotion) {
-    return (
-      <h1 className={className}>
-        {lines.map((line, i) => (
-          <span key={i} className="block">
-            {line.gradient ? (
-              <>
-                <span className="hero-gradient-text italic">
-                  {line.text}
-                </span>
-                {line.suffix && <span>{line.suffix}</span>}
-              </>
-            ) : (
-              line.text
-            )}
-          </span>
-        ))}
-      </h1>
-    );
-  }
-
+  // No reduced-motion branch here. The two variants rendered the same text,
+  // and MotionConfig now applies the line slide instantly for users who ask
+  // for reduced motion, so one markup path serves both.
   return (
     <motion.h1
       className={className}

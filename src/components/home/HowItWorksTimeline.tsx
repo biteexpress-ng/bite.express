@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { MapPin, Search, Truck } from "lucide-react";
 import { useRef } from "react";
 
@@ -42,7 +42,6 @@ const textVariants = {
 };
 
 export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
-  const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-15%" });
 
@@ -54,7 +53,7 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
           {/* ── Left: eyebrow + heading ───────────────────────────────── */}
           <motion.div
             className="lg:w-[38%] lg:shrink-0"
-            initial={reducedMotion ? false : { opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -86,8 +85,8 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
                   strokeWidth="2"
                   strokeDasharray="6 12"
                   className="text-ink-200"
-                  initial={reducedMotion ? {} : { pathLength: 0 }}
-                  animate={isInView && !reducedMotion ? { pathLength: 1 } : {}}
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { pathLength: 1 } : {}}
                   transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
                 />
               </svg>
@@ -105,7 +104,7 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
                         className="flex h-14 w-14 items-center justify-center rounded-full border border-ink-200 bg-surface shadow-card"
                         custom={index}
                         variants={circleVariants}
-                        initial={reducedMotion ? false : "hidden"}
+                        initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-15%" }}
                       >
@@ -116,7 +115,7 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
                         className="absolute -bottom-2.5 left-0 flex h-[22px] min-w-[2rem] items-center justify-center rounded-full bg-brand-red px-1.5 text-[10px] font-bold leading-none text-white"
                         custom={index}
                         variants={circleVariants}
-                        initial={reducedMotion ? false : "hidden"}
+                        initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-15%" }}
                       >
@@ -128,7 +127,7 @@ export function HowItWorksTimeline({ eyebrow, title, steps }: Props) {
                     <motion.div
                       custom={index}
                       variants={textVariants}
-                      initial={reducedMotion ? false : "hidden"}
+                      initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, margin: "-15%" }}
                     >

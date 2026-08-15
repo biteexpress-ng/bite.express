@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, type CSSProperties } from "react";
-import { motion, useReducedMotion, type TargetAndTransition } from "framer-motion";
+import { motion, type TargetAndTransition } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 type Variant = "fade-up" | "slide-left" | "slide-right" | "scale-in" | "blur-in";
@@ -60,7 +60,6 @@ export function SectionReveal({
   style,
   as = "div",
 }: Props) {
-  const reducedMotion = useReducedMotion();
   const v = variants[variant];
   const Tag = motion[as];
 
@@ -68,11 +67,11 @@ export function SectionReveal({
     <Tag
       className={cn(className)}
       style={style}
-      initial={reducedMotion ? false : v.hidden}
-      whileInView={reducedMotion ? {} : v.visible}
+      initial={v.hidden}
+      whileInView={v.visible}
       viewport={{ once: true, margin: viewportMargin }}
       transition={{
-        duration: reducedMotion ? 0 : duration,
+        duration,
         delay,
         ease: [0.25, 1, 0.5, 1],
       }}
@@ -101,7 +100,6 @@ export function StaggerReveal({
   className?: string;
   as?: "div" | "ul" | "ol" | "section";
 }) {
-  const reducedMotion = useReducedMotion();
   const Tag = motion[as];
 
   return (
@@ -111,7 +109,7 @@ export function StaggerReveal({
       whileInView="visible"
       viewport={{ once: true, margin: viewportMargin }}
       transition={{
-        staggerChildren: reducedMotion ? 0 : stagger,
+        staggerChildren: stagger,
       }}
     >
       {children}

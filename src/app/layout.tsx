@@ -10,6 +10,7 @@ import { Analytics } from "@/components/analytics/analytics";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { WhatsAppFab } from "@/components/whatsapp/WhatsAppFab";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
 
 /**
@@ -82,10 +83,12 @@ export default async function RootLayout({
         <JsonLd id="ld-website" data={websiteSchema()} />
 
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <WhatsAppFab />
+          <MotionProvider>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+            <WhatsAppFab />
+          </MotionProvider>
         </NextIntlClientProvider>
 
         <Analytics />
