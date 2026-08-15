@@ -3,6 +3,7 @@ import type {
   BreadcrumbList,
   FAQPage,
   HowTo,
+  ItemList,
   JobPosting,
   LocalBusiness,
   Organization,
@@ -191,6 +192,48 @@ export function breadcrumbSchema(
       name: item.name,
       item: absoluteUrl(item.path),
     })),
+  };
+}
+
+/**
+ * The About-page roster as an ItemList of Person entries. Kept separate from
+ * organizationSchema so the brand-level graph on every page stays small.
+ */
+export function teamSchema(
+  members: {
+    name: string;
+    role: string;
+    bio: string | null;
+    photo_url: string | null;
+    socials: Record<string, string | null>;
+  }[],
+): WithContext<ItemList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${siteConfig.name} team`,
+    itemListElement: members.map((member, i) => {
+      const sameAs = Object.values(member.socials).filter(
+        (url): url is string => Boolean(url),
+      );
+      return {
+        "@type": "ListItem" as const,
+        position: i + 1,
+        item: {
+          "@type": "Person" as const,
+          name: member.name,
+          jobTitle: member.role,
+          ...(member.bio ? { description: member.bio } : {}),
+          ...(member.photo_url ? { image: member.photo_url } : {}),
+          ...(sameAs.length ? { sameAs } : {}),
+          worksFor: {
+            "@type": "Organization" as const,
+            name: siteConfig.name,
+            url: siteUrl(),
+          },
+        },
+      };
+    }),
   };
 }
 

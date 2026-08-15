@@ -8,9 +8,11 @@ import { Stat } from "@/components/ui/stat";
 import { CTABand } from "@/components/ui/cta-band";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/seo/json-ld";
+import { TeamSection } from "@/components/about/team-section";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site-config";
+import { fetchTeam } from "@/lib/team-api";
 
 export const metadata = buildMetadata({
   title: "About BiteExpress, delivery, reimagined for every neighbourhood",
@@ -19,7 +21,9 @@ export const metadata = buildMetadata({
   path: "/about",
 });
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { members } = await fetchTeam();
+
   return (
     <>
       <JsonLd
@@ -166,6 +170,10 @@ export default function AboutPage() {
           </div>
         </Container>
       </Section>
+
+      {/* TEAM. Sits between the story and the hiring CTA on purpose:
+          meet the people, then get asked to join them. */}
+      <TeamSection members={members} />
 
       {/* CTA */}
       <CTABand

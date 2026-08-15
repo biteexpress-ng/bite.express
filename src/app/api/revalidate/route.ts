@@ -14,8 +14,9 @@ import { NextResponse } from "next/server";
  *     -H 'Content-Type: application/json' \
  *     -d '{"type":"blog","slug":"hello-world"}'
  *
- * `type` ∈ {"blog","news","jobs","zones","modules","agents","all"}
+ * `type` ∈ {"blog","news","jobs","team","zones","modules","agents","all"}
  *   - blog/news/jobs: revalidates the index + the slug detail (if provided)
+ *   - team: refreshes /about after the roster changes
  *   - zones/modules: revalidates pages that depend on those caches
  *   - agents: refreshes /agents after the agent programme settings change
  *     (the advertised welcome bonus)
@@ -29,7 +30,15 @@ import { NextResponse } from "next/server";
  */
 
 type Body = {
-  type?: "blog" | "news" | "jobs" | "zones" | "modules" | "agents" | "all";
+  type?:
+    | "blog"
+    | "news"
+    | "jobs"
+    | "team"
+    | "zones"
+    | "modules"
+    | "agents"
+    | "all";
   slug?: string;
 };
 
@@ -86,6 +95,11 @@ export async function POST(request: Request) {
     bumpTag("jobs");
     bumpPath("/careers");
     if (slug) bumpPath(`/careers/${slug}`);
+  }
+  // Team roster on /about. No per-slug page: the roster is one section.
+  if (type === "team" || type === "all") {
+    bumpTag("team");
+    bumpPath("/about");
   }
   if (type === "zones" || type === "all") {
     bumpTag("zones");
