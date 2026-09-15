@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { stateLabel } from "@/lib/cities";
 
 type Props = {
   name: string;
@@ -27,7 +28,7 @@ export function CityChip({ name, state, href, className }: Props) {
             {name}
           </div>
           <div className="text-xs uppercase tracking-wider text-ink-600">
-            {state} State
+            {stateLabel(state)}
           </div>
         </div>
       </div>

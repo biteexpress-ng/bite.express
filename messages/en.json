@@ -64,7 +64,7 @@
     },
     "cities": {
       "eyebrow": "Across Nigeria",
-      "title": "Now serving 10 cities, with more on the way.",
+      "title": "Now serving 16 cities, with more on the way.",
       "subtitle": "Wherever you are in our zones, BiteExpress is just a few taps away. Don't see your city? Tell us where to launch next."
     },
     "vendorBand": {
@@ -95,7 +95,7 @@
       "items": {
         "q1": {
           "question": "Where does BiteExpress deliver?",
-          "answer": "We currently operate in Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran, with more cities launching every quarter. Drop in your address and we'll tell you instantly if we cover you."
+          "answer": "We currently operate in Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa, Omu-Aran, Kubwa (Abuja), Minna, Jalingo, Lokoja, Bauchi and Gombe, with more cities launching every quarter. Drop in your address and we'll tell you instantly if we cover you."
         },
         "q2": {
           "question": "How long does delivery usually take?",
@@ -529,7 +529,7 @@
         },
         "q4": {
           "question": "Which areas can order on WhatsApp?",
-          "answer": "WhatsApp ordering is live in Zaria, Kaduna, Kano, Sokoto, Jos, Minna, Ilorin, Benue and Yola, with more cities joining the rollout. Even if your city isn't listed yet, say hi, we'll let you know the moment WhatsApp ordering reaches you."
+          "answer": "WhatsApp ordering is live in Zaria, Kaduna, Kano, Sokoto, Jos, Minna, Ilorin, Benue, Yola, Kubwa, Jalingo, Lokoja, Bauchi and Gombe, with more cities joining the rollout. Even if your city isn't listed yet, say hi, we'll let you know the moment WhatsApp ordering reaches you."
         },
         "q5": {
           "question": "How do I pay?",

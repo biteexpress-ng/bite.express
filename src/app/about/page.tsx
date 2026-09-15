@@ -142,7 +142,7 @@ export default async function AboutPage() {
         <Container size="narrow">
           <SectionHeading
             eyebrow="Our story"
-            title="From one city to ten, with thousands to go."
+            title="From one city to sixteen, with thousands to go."
           />
           <div className="mt-10 space-y-5 text-lg text-ink-600">
             <p>
@@ -157,7 +157,7 @@ export default async function AboutPage() {
               the professionals they are.
             </p>
             <p>
-              We&#39;ve since expanded to ten cities across Northern Nigeria and
+              We&#39;ve since expanded to sixteen cities across Northern Nigeria and
               beyond, added groceries, pharmacies, parcel delivery and more ,
               all whilst keeping the basics excellent: hot food, fast delivery,
               and a phone you can actually pick up when something goes wrong.

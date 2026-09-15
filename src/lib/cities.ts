@@ -146,10 +146,81 @@ export const cities: readonly City[] = [
     neighborhoods: ["Landmark area", "Town centre", "Idofin", "Aran"],
     popularCuisineSlugs: ["jollof", "swallow", "rice-and-stew", "pastries", "smoothies"],
   },
+  {
+    slug: "kubwa",
+    name: "Kubwa",
+    state: "FCT",
+    country: "Nigeria",
+    tagline: "Kubwa's kitchens and stores, delivered across the satellite town.",
+    intro:
+      "Kubwa is one of Abuja's busiest satellite towns, and BiteExpress riders cover it from Arab Road to Byazhin. Order a hot lunch, restock the kitchen or pick up a prescription without sitting in Kubwa Expressway traffic.",
+    neighborhoods: ["Arab Road", "Phase 4", "Byazhin", "Gbazango", "Dutse Alhaji"],
+    popularCuisineSlugs: ["jollof", "shawarma", "suya", "grilled-fish", "pizza"],
+  },
+  {
+    slug: "minna",
+    name: "Minna",
+    state: "Niger",
+    country: "Nigeria",
+    tagline: "Minna favourites, from Tunga to Bosso, at your door.",
+    intro:
+      "BiteExpress serves Minna from Tunga and Chanchaga through to Bosso and the FUT Minna community. Local kitchens, supermarkets and pharmacies are all in one app, with live tracking on every order.",
+    neighborhoods: ["Tunga", "Bosso", "Chanchaga", "Maitumbi", "Kpakungu"],
+    popularCuisineSlugs: ["jollof", "suya", "swallow", "rice-and-stew", "grilled-fish"],
+  },
+  {
+    slug: "jalingo",
+    name: "Jalingo",
+    state: "Taraba",
+    country: "Nigeria",
+    tagline: "Jalingo's go-to kitchens and shops, delivered fast.",
+    intro:
+      "BiteExpress brings Jalingo's restaurants, neighbourhood vendors and pharmacies onto one app. Riders cover the town from Mayo Goi to Sabon Gari, so dinner, groceries and everyday essentials are a few taps away.",
+    neighborhoods: ["Mayo Goi", "Sabon Gari", "Magami", "Nukkai", "Barade"],
+    popularCuisineSlugs: ["swallow", "suya", "rice-and-stew", "grilled-fish", "jollof"],
+  },
+  {
+    slug: "lokoja",
+    name: "Lokoja",
+    state: "Kogi",
+    country: "Nigeria",
+    tagline: "Confluence city eats and essentials, on demand.",
+    intro:
+      "Lokoja sits where the Niger meets the Benue, and BiteExpress delivers across the city from Adankolo to Lokongoma. Fresh fish, local plates, weekly groceries and pharmacy runs all come with live tracking to your door.",
+    neighborhoods: ["Adankolo", "Lokongoma", "Ganaja", "Felele", "Kabawa"],
+    popularCuisineSlugs: ["grilled-fish", "pepper-soup", "swallow", "jollof", "rice-and-stew"],
+  },
+  {
+    slug: "bauchi",
+    name: "Bauchi",
+    state: "Bauchi",
+    country: "Nigeria",
+    tagline: "Bauchi restaurants and supermarkets, at your door.",
+    intro:
+      "BiteExpress covers Bauchi from the GRA to Yelwa and the ATBU community, connecting students, families and offices to the city's kitchens, supermarkets and pharmacies. Order in a few taps and follow your rider on the map.",
+    neighborhoods: ["GRA", "Yelwa", "Wunti", "Gwallameji", "Fadaman Mada"],
+    popularCuisineSlugs: ["suya", "jollof", "swallow", "rice-and-stew", "shawarma"],
+  },
+  {
+    slug: "gombe",
+    name: "Gombe",
+    state: "Gombe",
+    country: "Nigeria",
+    tagline: "Gombe's favourite spots, delivered hot and fast.",
+    intro:
+      "BiteExpress riders cover Gombe from Pantami to Bolari, bringing local kitchens, supermarkets and pharmacies to your door. Whether it's a late suya run or the week's groceries, it's all on the same app.",
+    neighborhoods: ["Pantami", "Tudun Wada", "Jekadafari", "Bolari", "Nasarawo"],
+    popularCuisineSlugs: ["suya", "jollof", "swallow", "rice-and-stew", "pastries"],
+  },
 ];
 
 export function getCity(slug: string): City | undefined {
   return cities.find((c) => c.slug === slug);
+}
+
+/** "Kaduna State", but the FCT is not a state, so it reads "Abuja, FCT". */
+export function stateLabel(state: string): string {
+  return state === "FCT" ? "Abuja, FCT" : `${state} State`;
 }
 
 /** Cities sorted alphabetically — used by the index page and footers. */

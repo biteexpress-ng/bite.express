@@ -14,7 +14,7 @@ import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, localBusinessSchema } from "@/lib/jsonld";
-import { cities, getCity } from "@/lib/cities";
+import { cities, getCity, stateLabel } from "@/lib/cities";
 import { getCuisine } from "@/lib/cuisines";
 import { deliveryModules } from "@/lib/modules";
 import { siteConfig } from "@/lib/site-config";
@@ -123,7 +123,7 @@ export default async function CityPage({ params }: RouteProps) {
 
           <div className="mt-6 max-w-3xl">
             <Eyebrow>
-              Delivery in {city.state} State
+              Delivery in {stateLabel(city.state)}
             </Eyebrow>
             <h1 className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-ink-900 sm:text-[3.75rem] md:text-[4.5rem]">
               {city.name}, your favourites, delivered.

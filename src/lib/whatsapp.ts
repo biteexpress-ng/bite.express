@@ -30,6 +30,11 @@ export const waLiveCities: readonly WaCity[] = [
   { name: "Yola", state: "Adamawa" },
   { name: "Offa", state: "Kwara" },
   { name: "Omu-Aran", state: "Kwara" },
+  { name: "Kubwa", state: "Abuja" },
+  { name: "Jalingo", state: "Taraba" },
+  { name: "Lokoja", state: "Kogi" },
+  { name: "Bauchi", state: "Bauchi" },
+  { name: "Gombe", state: "Gombe" },
 ];
 
 /** Next markets in the rollout, shown as a lighter "coming soon" row. */

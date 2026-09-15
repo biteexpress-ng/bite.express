@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
-import type { City } from "@/lib/cities";
+import { stateLabel, type City } from "@/lib/cities";
 
 type Props = {
   eyebrow: string;
@@ -31,6 +31,12 @@ const cityPins: Record<string, { left: string; top: string }> = {
   ilorin:     { left: "24.8%", top: "57.6%" },
   offa:       { left: "25.9%", top: "60.9%" },
   "omu-aran": { left: "28.4%", top: "61.0%" },
+  kubwa:      { left: "43.1%", top: "51.6%" },
+  minna:      { left: "37.9%", top: "47.4%" },
+  jalingo:    { left: "69.8%", top: "54.0%" },
+  lokoja:     { left: "39.3%", top: "64.0%" },
+  bauchi:     { left: "59.7%", top: "40.9%" },
+  gombe:      { left: "68.5%", top: "41.1%" },
 };
 
 const cityCardVariants = {
@@ -130,7 +136,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                   >
                     <Link
                       href={`/cities/${c.slug}`}
-                      aria-label={`${c.name}, ${c.state} State`}
+                      aria-label={`${c.name}, ${stateLabel(c.state)}`}
                       className="group/pin relative block focus-visible:outline-none"
                     >
                       {/* Hover / focus tooltip with the city + state name */}
@@ -138,7 +144,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                         role="tooltip"
                         className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1a1a1a] px-2.5 py-1 text-[11px] font-semibold text-white opacity-0 shadow-floating transition-opacity duration-200 group-hover/pin:opacity-100 group-focus-visible/pin:opacity-100"
                       >
-                        {c.name}, {c.state} State
+                        {c.name}, {stateLabel(c.state)}
                         <span
                           aria-hidden
                           className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-[#1a1a1a]"
@@ -202,7 +208,7 @@ export function CitiesCoverage({ eyebrow, title, subtitle, cities }: Props) {
                         {c.name}
                       </div>
                       <div className="truncate text-[10px] text-[#8e8e93]">
-                        {c.state} State
+                        {stateLabel(c.state)}
                       </div>
                     </div>
                     <ChevronRight

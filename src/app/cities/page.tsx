@@ -17,7 +17,7 @@ export const revalidate = 3600;
 export const metadata = buildMetadata({
   title: "Cities we serve, BiteExpress delivery across Nigeria",
   description:
-    "BiteExpress delivers food, groceries and more across Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa and Omu-Aran, with new cities launching every quarter.",
+    "BiteExpress delivers food, groceries and more across Zaria, Kaduna, Sokoto, Kano, Makurdi, Jos, Yola, Ilorin, Offa, Omu-Aran, Kubwa, Minna, Jalingo, Lokoja, Bauchi and Gombe, with new cities launching every quarter.",
   path: "/cities",
   keywords: [
     "BiteExpress cities",
