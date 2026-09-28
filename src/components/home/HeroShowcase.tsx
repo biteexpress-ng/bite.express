@@ -8,7 +8,8 @@ import { HeroCardCluster } from "./HeroCardCluster";
 import { HeroSpotlight } from "./HeroSpotlight";
 import { MotionDeliveryRibbon } from "./MotionDeliveryRibbon";
 import { HeroTextReveal } from "./HeroTextReveal";
-import { UseMyLocationButton } from "./UseMyLocationButton";
+import { LocateMeButton, LocateMeError } from "./UseMyLocationButton";
+import { useLocateMe } from "./use-locate-me";
 
 type Props = {
   eyebrow: string;
@@ -44,6 +45,7 @@ export function HeroShowcase({
   locationErrorMessage,
 }: Props) {
   const chipLabels = [chipTracking, chipEta, chipPayments];
+  const { status: locateStatus, locate } = useLocateMe(siteConfig.shopHref);
 
   return (
     <section
@@ -123,6 +125,26 @@ export function HeroShowcase({
                   className="h-13 w-full rounded-md bg-transparent pl-11 pr-4 text-[15px] font-medium text-ink-900 placeholder:text-ink-500 focus:outline-none"
                 />
               </label>
+
+              {/* Narrow screens: full-width labeled row, between the input and submit. */}
+              <LocateMeButton
+                status={locateStatus}
+                onLocate={locate}
+                label={useMyLocationLabel}
+                locatingLabel={locatingLabel}
+                showLabel
+                className="flex h-11 w-full items-center justify-center gap-1.5 rounded-md bg-ink-50 text-[13px] font-semibold text-ink-700 transition-colors hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-60 sm:hidden"
+              />
+
+              {/* sm and up: compact icon docked beside the input, before submit. */}
+              <LocateMeButton
+                status={locateStatus}
+                onLocate={locate}
+                label={useMyLocationLabel}
+                locatingLabel={locatingLabel}
+                className="hidden h-13 shrink-0 items-center justify-center rounded-md bg-ink-50 px-3.5 text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 disabled:cursor-not-allowed disabled:opacity-60 sm:inline-flex"
+              />
+
               <button
                 type="submit"
                 className="inline-flex h-13 items-center justify-center gap-2 rounded-md bg-brand-red px-5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(222,22,0,0.34)] transition-all hover:-translate-y-px hover:bg-brand-red-600 hover:shadow-[0_14px_38px_rgba(222,22,0,0.44)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
@@ -132,13 +154,10 @@ export function HeroShowcase({
               </button>
             </motion.form>
 
-            <UseMyLocationButton
-              appUrl={siteConfig.shopHref}
-              label={useMyLocationLabel}
-              locatingLabel={locatingLabel}
-              errorMessage={locationErrorMessage}
-              className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/68 transition-colors hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
-              errorClassName="mt-1.5 text-[12px] text-white/55"
+            <LocateMeError
+              status={locateStatus}
+              message={locationErrorMessage}
+              className="mt-3 text-[12px] text-white/55"
             />
 
             <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] text-white/68">

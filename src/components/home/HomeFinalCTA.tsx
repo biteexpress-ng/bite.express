@@ -4,7 +4,8 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
-import { UseMyLocationButton } from "./UseMyLocationButton";
+import { LocateMeButton, LocateMeError } from "./UseMyLocationButton";
+import { useLocateMe } from "./use-locate-me";
 
 type Props = {
   title: string;
@@ -25,6 +26,8 @@ export function HomeFinalCTA({
   locatingLabel,
   locationErrorMessage,
 }: Props) {
+  const { status: locateStatus, locate } = useLocateMe(siteConfig.shopHref);
+
   return (
     <section className="bg-white px-5 pb-16 sm:px-6 lg:px-8">
       <Container className="px-0 max-w-[1400px]">
@@ -95,9 +98,28 @@ export function HomeFinalCTA({
                   name="q"
                   placeholder={placeholder}
                   aria-label={placeholder}
-                  className="h-12 w-full rounded-md bg-ink-50 pl-11 pr-3 text-[15px] font-medium text-[#1a1a1a] placeholder:text-[#8e8e93] focus:outline-none sm:h-full sm:bg-transparent sm:pl-3 sm:pr-[140px]"
+                  className="h-12 w-full rounded-md bg-ink-50 pl-11 pr-3 text-[15px] font-medium text-[#1a1a1a] placeholder:text-[#8e8e93] focus:outline-none sm:h-full sm:bg-transparent sm:pl-3 sm:pr-[188px]"
                 />
-                <div className="sm:absolute sm:right-1.5 sm:top-1.5 sm:bottom-1.5">
+
+                {/* Narrow screens: full-width labeled row, below the input, above submit. */}
+                <LocateMeButton
+                  status={locateStatus}
+                  onLocate={locate}
+                  label={useMyLocationLabel}
+                  locatingLabel={locatingLabel}
+                  showLabel
+                  className="flex h-11 w-full items-center justify-center gap-1.5 rounded-md bg-ink-50 text-[13px] font-semibold text-[#1a1a1a] transition-colors hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-60 sm:hidden"
+                />
+
+                <div className="flex items-center gap-1.5 sm:absolute sm:right-1.5 sm:top-1.5 sm:bottom-1.5">
+                  {/* sm and up: compact icon docked beside submit, inside the same reserved zone. */}
+                  <LocateMeButton
+                    status={locateStatus}
+                    onLocate={locate}
+                    label={useMyLocationLabel}
+                    locatingLabel={locatingLabel}
+                    className="hidden h-full shrink-0 items-center justify-center rounded-md px-3 text-[#1a1a1a] transition-colors hover:bg-ink-50 disabled:cursor-not-allowed disabled:opacity-60 sm:inline-flex"
+                  />
                   <button
                     type="submit"
                     className="flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[#1a1a1a] px-6 text-[14px] font-semibold text-white transition-all hover:-translate-y-px hover:bg-black hover:shadow-elevated active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 sm:h-full sm:w-auto"
@@ -108,13 +130,10 @@ export function HomeFinalCTA({
                 </div>
               </form>
 
-              <UseMyLocationButton
-                appUrl={siteConfig.shopHref}
-                label={useMyLocationLabel}
-                locatingLabel={locatingLabel}
-                errorMessage={locationErrorMessage}
-                className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/85 transition-colors hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
-                errorClassName="mt-1.5 text-[12px] text-white/70"
+              <LocateMeError
+                status={locateStatus}
+                message={locationErrorMessage}
+                className="mt-3 text-[12px] text-white/70"
               />
             </motion.div>
 

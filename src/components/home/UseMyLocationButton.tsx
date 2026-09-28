@@ -1,88 +1,70 @@
 "use client";
 
-import { useState } from "react";
 import { Loader2, LocateFixed } from "lucide-react";
-import { buildAppLocationUrl } from "@/lib/location-url";
+import type { LocateMeStatus } from "./use-locate-me";
 
-type Status = "idle" | "locating" | "error";
-
-type Props = {
-  /** Customer-app base URL the browser is sent to on success. */
-  appUrl: string;
+type ButtonProps = {
+  status: LocateMeStatus;
+  onLocate: () => void;
   label: string;
   locatingLabel: string;
-  errorMessage: string;
+  /** Shows the label text next to the icon. Icon-only (with aria-label) when false. */
+  showLabel?: boolean;
   className?: string;
-  errorClassName?: string;
-};
-
-const GEOLOCATION_OPTIONS: PositionOptions = {
-  enableHighAccuracy: true,
-  timeout: 12000,
-  maximumAge: 60000,
 };
 
 /**
- * "Use my current location" control shared by the hero form and the final
- * CTA form. On success it hands off to the customer app with the rounded
- * coordinates in the query string; on denial, timeout, or missing browser
- * support it shows an inline message instead of the typed-address form.
+ * Trigger for the "use my current location" flow. Presentational only: the
+ * status and click handler come from `useLocateMe`, so the same state can
+ * drive a full-label button on narrow screens and a compact icon-only one
+ * docked beside the input at wider widths.
  */
-export function UseMyLocationButton({
-  appUrl,
+export function LocateMeButton({
+  status,
+  onLocate,
   label,
   locatingLabel,
-  errorMessage,
+  showLabel = false,
   className,
-  errorClassName,
-}: Props) {
-  const [status, setStatus] = useState<Status>("idle");
+}: ButtonProps) {
+  const locating = status === "locating";
+  const text = locating ? locatingLabel : label;
 
-  function handleClick() {
-    if (typeof navigator === "undefined" || !navigator.geolocation) {
-      setStatus("error");
-      return;
-    }
+  return (
+    <button
+      type="button"
+      onClick={onLocate}
+      disabled={locating}
+      aria-busy={locating}
+      aria-label={text}
+      title={text}
+      className={className}
+    >
+      {locating ? (
+        <Loader2 size={16} className="animate-spin" aria-hidden />
+      ) : (
+        <LocateFixed size={16} aria-hidden />
+      )}
+      {showLabel ? <span>{text}</span> : null}
+    </button>
+  );
+}
 
-    setStatus("locating");
+type ErrorProps = {
+  status: LocateMeStatus;
+  message: string;
+  className?: string;
+};
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const url = buildAppLocationUrl(
-          appUrl,
-          position.coords.latitude,
-          position.coords.longitude,
-        );
-        window.location.assign(url);
-      },
-      () => {
-        setStatus("error");
-      },
-      GEOLOCATION_OPTIONS,
-    );
+/** Inline error line shown under the form when geolocation is denied, times out, or isn't supported. */
+export function LocateMeError({ status, message, className }: ErrorProps) {
+  if (status !== "error") {
+    return null;
   }
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={handleClick}
-        disabled={status === "locating"}
-        aria-busy={status === "locating"}
-        className={className}
-      >
-        {status === "locating" ? (
-          <Loader2 size={14} className="animate-spin" aria-hidden />
-        ) : (
-          <LocateFixed size={14} aria-hidden />
-        )}
-        {status === "locating" ? locatingLabel : label}
-      </button>
-      {status === "error" ? (
-        <p role="status" className={errorClassName}>
-          {errorMessage}
-        </p>
-      ) : null}
-    </div>
+    <p role="alert" className={className}>
+      {message}
+    </p>
   );
 }
