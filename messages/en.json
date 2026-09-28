@@ -32,7 +32,10 @@
       "trust": "Trusted by thousands across 10+ cities in Nigeria",
       "chipTracking": "Live order tracking",
       "chipEta": "25–45 min avg. delivery",
-      "chipPayments": "Card · transfer · cash"
+      "chipPayments": "Card · transfer · cash",
+      "useMyLocation": "Use my current location",
+      "locating": "Locating you...",
+      "locationError": "We couldn't get your location. Type your address instead."
     },
     "modules": {
       "eyebrow": "Everything in one app",
