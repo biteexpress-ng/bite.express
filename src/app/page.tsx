@@ -96,6 +96,9 @@ export default async function HomePage() {
         chipTracking={t("hero.chipTracking")}
         chipEta={t("hero.chipEta")}
         chipPayments={t("hero.chipPayments")}
+        useMyLocationLabel={t("hero.useMyLocation")}
+        locatingLabel={t("hero.locating")}
+        locationErrorMessage={t("hero.locationError")}
       />
 
       {/* 1b. WHATSAPP ORDERING ANNOUNCEMENT */}
@@ -288,6 +291,9 @@ export default async function HomePage() {
         subtitle={t("finalCta.subtitle")}
         placeholder={t("hero.addressPlaceholder")}
         cta={t("finalCta.primary")}
+        useMyLocationLabel={t("hero.useMyLocation")}
+        locatingLabel={t("hero.locating")}
+        locationErrorMessage={t("hero.locationError")}
       />
 
       {/* 12. RIDER PATH, in the white gap above the footer */}

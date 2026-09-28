@@ -4,15 +4,27 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
+import { UseMyLocationButton } from "./UseMyLocationButton";
 
 type Props = {
   title: string;
   subtitle: string;
   placeholder: string;
   cta: string;
+  useMyLocationLabel: string;
+  locatingLabel: string;
+  locationErrorMessage: string;
 };
 
-export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
+export function HomeFinalCTA({
+  title,
+  subtitle,
+  placeholder,
+  cta,
+  useMyLocationLabel,
+  locatingLabel,
+  locationErrorMessage,
+}: Props) {
   return (
     <section className="bg-white px-5 pb-16 sm:px-6 lg:px-8">
       <Container className="px-0 max-w-[1400px]">
@@ -95,6 +107,15 @@ export function HomeFinalCTA({ title, subtitle, placeholder, cta }: Props) {
                   </button>
                 </div>
               </form>
+
+              <UseMyLocationButton
+                appUrl={siteConfig.shopHref}
+                label={useMyLocationLabel}
+                locatingLabel={locatingLabel}
+                errorMessage={locationErrorMessage}
+                className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/85 transition-colors hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
+                errorClassName="mt-1.5 text-[12px] text-white/70"
+              />
             </motion.div>
 
           </div>

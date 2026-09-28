@@ -8,6 +8,7 @@ import { HeroCardCluster } from "./HeroCardCluster";
 import { HeroSpotlight } from "./HeroSpotlight";
 import { MotionDeliveryRibbon } from "./MotionDeliveryRibbon";
 import { HeroTextReveal } from "./HeroTextReveal";
+import { UseMyLocationButton } from "./UseMyLocationButton";
 
 type Props = {
   eyebrow: string;
@@ -18,6 +19,9 @@ type Props = {
   chipTracking: string;
   chipEta: string;
   chipPayments: string;
+  useMyLocationLabel: string;
+  locatingLabel: string;
+  locationErrorMessage: string;
 };
 
 const marketSignals = [
@@ -35,6 +39,9 @@ export function HeroShowcase({
   chipTracking,
   chipEta,
   chipPayments,
+  useMyLocationLabel,
+  locatingLabel,
+  locationErrorMessage,
 }: Props) {
   const chipLabels = [chipTracking, chipEta, chipPayments];
 
@@ -124,6 +131,15 @@ export function HeroShowcase({
                 {cta}
               </button>
             </motion.form>
+
+            <UseMyLocationButton
+              appUrl={siteConfig.shopHref}
+              label={useMyLocationLabel}
+              locatingLabel={locatingLabel}
+              errorMessage={locationErrorMessage}
+              className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/68 transition-colors hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
+              errorClassName="mt-1.5 text-[12px] text-white/55"
+            />
 
             <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] text-white/68">
               {chipLabels.map((label, index) => (

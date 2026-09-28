@@ -9,6 +9,21 @@ import {
 } from "@/components/brand/social-icons";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site-config";
+import { deliveryModules } from "@/lib/modules";
+
+/**
+ * Resolves a customer-app link for a delivery module by slug, reusing the
+ * numeric module ids already defined in `deliveryModules` (single source of
+ * truth for `/browse/{moduleId}` links). Falls back to the module picker if
+ * the slug isn't found, rather than ever pointing at the app's non-existent
+ * `/home` route.
+ */
+function moduleHref(slug: string): string {
+  return (
+    deliveryModules.find((m) => m.slug === slug)?.href ??
+    `${siteConfig.shopHref}/browse`
+  );
+}
 
 const social = [
   {
@@ -24,9 +39,9 @@ const social = [
 
 const customerLinks = [
   { label: "Order on WhatsApp", href: siteConfig.whatsappOrder.link },
-  { label: "Browse Food", href: "https://app.bite.express/home?module=food" },
-  { label: "Grocery", href: "https://app.bite.express/home?module=grocery" },
-  { label: "Pharmacy", href: "https://app.bite.express/home?module=pharmacy" },
+  { label: "Browse Food", href: moduleHref("food") },
+  { label: "Grocery", href: moduleHref("grocery") },
+  { label: "Pharmacy", href: moduleHref("pharmacy") },
   { label: "Track Order", href: "https://app.bite.express/orders" },
   { label: "Help Centre", href: "/help" },
 ] as const;
