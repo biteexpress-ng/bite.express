@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { PixelRouteChange } from "./pixel-route-change";
 
 /**
  * Analytics + ad-pixel loader. Each tool is gated on its own env var
@@ -31,6 +32,7 @@ export function Analytics() {
         </>
       )}
 
+      {pixel && <PixelRouteChange />}
       {pixel && (
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
