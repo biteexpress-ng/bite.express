@@ -110,16 +110,34 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
         },
   };
 
-  // Search-engine verification meta tags — populated only when env is set,
-  // so we never emit an empty <meta name="google-site-verification" content="">.
-  const google = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-  const bing = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
-  if (google || bing) {
-    metadata.verification = {
-      ...(google ? { google } : {}),
-      ...(bing ? { other: { "msvalidate.01": bing } } : {}),
-    };
-  }
+  // A page's `verification` replaces the root layout's outright, so every
+  // page has to carry the full set, not just the search-engine ones.
+  metadata.verification = siteVerification();
 
   return metadata;
+}
+
+/**
+ * Meta Business domain verification for bite.express. Not a secret: it
+ * is printed in the page head for Meta's crawler to read. Hard-coded so
+ * removing it is a deliberate code change, because unverifying the
+ * domain would cut the ads account off from the site's pixel events.
+ */
+const FACEBOOK_DOMAIN_VERIFICATION = "yt6c2ip78lqsfktmf70axv43iynd82";
+
+/**
+ * Verification meta tags for the root layout and every buildMetadata()
+ * page. Search-engine tags are added only when their env var is set, so
+ * we never emit an empty <meta name="google-site-verification" content="">.
+ */
+export function siteVerification(): NonNullable<Metadata["verification"]> {
+  const google = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+  const bing = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+  return {
+    ...(google ? { google } : {}),
+    other: {
+      "facebook-domain-verification": FACEBOOK_DOMAIN_VERIFICATION,
+      ...(bing ? { "msvalidate.01": bing } : {}),
+    },
+  };
 }

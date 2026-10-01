@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { dmSans, dmSerifDisplay, geistMono } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site-config";
-import { siteUrl } from "@/lib/seo";
+import { siteUrl, siteVerification } from "@/lib/seo";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Analytics } from "@/components/analytics/analytics";
@@ -35,23 +35,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     statusBarStyle: "black-translucent",
   },
-  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
-  process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
-    ? {
-        verification: {
-          ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-            ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-            : {}),
-          ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
-            ? {
-                other: {
-                  "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
-                },
-              }
-            : {}),
-        },
-      }
-    : {}),
+  verification: siteVerification(),
 };
 
 export const viewport: Viewport = {
